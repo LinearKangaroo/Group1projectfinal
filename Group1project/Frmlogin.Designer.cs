@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Frmlogin));
             uiPanel1 = new Sunny.UI.UIPanel();
             uiLine1 = new Sunny.UI.UILine();
             btnClear = new Sunny.UI.UISymbolButton();
@@ -37,8 +38,10 @@
             uiRadioButtonGroup1 = new Sunny.UI.UIRadioButtonGroup();
             rdouser = new Sunny.UI.UIRadioButton();
             rdoadmin = new Sunny.UI.UIRadioButton();
+            pictureBox1 = new PictureBox();
             uiPanel1.SuspendLayout();
             uiRadioButtonGroup1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // uiPanel1
@@ -182,16 +185,29 @@
             rdoadmin.TabIndex = 0;
             rdoadmin.Text = "Admin";
             // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(53, 80);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(303, 294);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 1;
+            pictureBox1.TabStop = false;
+            // 
             // Frmlogin
             // 
             AutoScaleMode = AutoScaleMode.None;
             ClientSize = new Size(800, 450);
+            Controls.Add(pictureBox1);
             Controls.Add(uiPanel1);
+            IconImage = (Image)resources.GetObject("$this.IconImage");
             Name = "Frmlogin";
-            Text = "Login";
+            Text = "Sales and Inventory analysis system";
             ZoomScaleRect = new Rectangle(21, 21, 800, 450);
             uiPanel1.ResumeLayout(false);
             uiRadioButtonGroup1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
         }
 
@@ -206,5 +222,6 @@
         private Sunny.UI.UISymbolButton btnClear;
         private Sunny.UI.UISymbolButton btnLogin;
         private Sunny.UI.UILine uiLine1;
+        private PictureBox pictureBox1;
     }
 }

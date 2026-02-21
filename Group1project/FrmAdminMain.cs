@@ -14,7 +14,8 @@ namespace Group1project
     {
         // keep created pages to avoid duplicate tabs
         private readonly Dictionary<string, UIPage> _pages = new Dictionary<string, UIPage>();
-        private readonly List<Sunny.UI.UIButton> _navBarButtons = new List<Sunny.UI.UIButton>();
+        // right-side nav handled via uiNavBar1 nodes (CreateNode) when available
+        private readonly Dictionary<int, Func<UIPage>> _rightNavPageMap = new Dictionary<int, Func<UIPage>>();
         public FrmAdminMain()
         {
             InitializeComponent();
@@ -23,14 +24,24 @@ namespace Group1project
             //窗体上如果只有一个UITabControl，也会自动关联，超过一个需要手动关联
             this.MainTabControl = uiTabControl1;
             uiNavMenu1.TabControl = uiTabControl1;
-            // initialize navigation menu and right-side nav bar buttons
+            // initialize navigation menu and right-side nav bar nodes
             InitializeNavMenu();
-            InitializeNavBarButtons();
-            // handle nav menu clicks
+            InitializeNavBarNodes();
+            // handle nav menu clicks and selection
             uiNavMenu1.NodeMouseClick += UiNavMenu1_NodeMouseClick;
+            uiNavMenu1.AfterSelect += UiNavMenu1_AfterSelect;
 
-            // reposition right-side buttons when navbar is resized
-            uiNavBar1.SizeChanged += (s, e) => RepositionNavBarButtons();
+            // open dashboard after form shown
+            this.Shown += (s, e) =>
+            {
+                if (uiNavMenu1.Nodes.Count > 0)
+                {
+                    uiNavMenu1.SelectedNode = uiNavMenu1.Nodes[0];
+                    OpenPage("Dashboard", new Adminchildform.FrmAdash());
+                }
+            };
+
+            // right-side nodes are docked; no manual reposition required
 
         }   
 
@@ -42,7 +53,7 @@ namespace Group1project
             var dash = new TreeNode("Dashboard");
             var user = new TreeNode("User");
             var product = new TreeNode("Product");
-            var imei = new TreeNode("IMEI information");
+            var imei = new TreeNode("IMEI info");
             var sales = new TreeNode("Sales");
             var analysis = new TreeNode("Analysis");
 
@@ -54,44 +65,89 @@ namespace Group1project
             uiNavMenu1.Nodes.Add(analysis);
         }
 
-        private void InitializeNavBarButtons()
+        private void InitializeNavBarNodes()
         {
-            // remove existing runtime buttons
-            foreach (var b in _navBarButtons) uiNavBar1.Controls.Remove(b);
-            _navBarButtons.Clear();
+            // Try to use Sunny.UI.UINavBar.CreateNode and TabControl.AddPage if available (reflection)
+            var navBarType = uiNavBar1.GetType();
 
-            // create profile, settings, logout buttons
-            var btnProfile = new Sunny.UI.UIButton { Text = "Profile", AutoSize = true };
-            var btnSettings = new Sunny.UI.UIButton { Text = "Settings", AutoSize = true };
-            var btnLogout = new Sunny.UI.UIButton { Text = "Logout", AutoSize = true };
+            // prepare right-side nodes mapping (use page indices starting at 2001)
+            _rightNavPageMap.Clear();
+            _rightNavPageMap[2001] = () => new Adminchildform.FrmAdash(); // Profile -> placeholder
+            _rightNavPageMap[2002] = () => new Adminchildform.FrmAanalysis(); // Settings -> placeholder
 
-            btnProfile.Click += (s, e) => OpenPage("Profile", new Adminchildform.FrmAdash());
-            btnSettings.Click += (s, e) => OpenPage("Settings", new Adminchildform.FrmAanalysis());
-            btnLogout.Click += BtnLogout_Click;
-
-            _navBarButtons.Add(btnProfile);
-            _navBarButtons.Add(btnSettings);
-            _navBarButtons.Add(btnLogout);
-
-            foreach (var b in _navBarButtons)
+            try
             {
-                b.Parent = uiNavBar1;
-                uiNavBar1.Controls.Add(b);
-            }
+                var createNode = navBarType.GetMethod("CreateNode", new Type[] { typeof(string), typeof(int) });
+                if (createNode != null)
+                {
+                    createNode.Invoke(uiNavBar1, new object[] { "Profile", 2001 });
+                    createNode.Invoke(uiNavBar1, new object[] { "Settings", 2002 });
+                    createNode.Invoke(uiNavBar1, new object[] { "Logout", 2003 });
+                }
 
-            RepositionNavBarButtons();
+                // try to subscribe to MenuItemClick event (signature: string text, int menuIndex, int pageIndex)
+                var eventInfo = navBarType.GetEvent("MenuItemClick");
+                if (eventInfo == null)
+                {
+                    eventInfo = navBarType.GetEvent("MenuItemClickEvent");
+                }
+                if (eventInfo != null)
+                {
+                    var handler = Delegate.CreateDelegate(eventInfo.EventHandlerType, this, nameof(NavBar_MenuItemClick));
+                    eventInfo.AddEventHandler(uiNavBar1, handler);
+                }
+            }
+            catch
+            {
+                // ignore -- fallback: nothing to do, nav bar will remain default
+            }
         }
 
-        private void RepositionNavBarButtons()
+        // right-side nav uses a TreeView; no reposition helper needed
+
+        private void UiNavMenu1_AfterSelect(object sender, TreeViewEventArgs e)
         {
-            // place buttons aligned to the right with spacing
-            int spacing = 8;
-            int x = uiNavBar1.Width - spacing;
-            for (int i = _navBarButtons.Count - 1; i >= 0; i--)
+            var key = e.Node?.Text;
+            if (string.IsNullOrEmpty(key)) return;
+            switch (key)
             {
-                var b = _navBarButtons[i];
-                b.Location = new Point(x - b.Width, (uiNavBar1.Height - b.Height) / 2);
-                x = b.Left - spacing;
+                case "Dashboard":
+                    OpenPage(key, new Adminchildform.FrmAdash());
+                    break;
+                case "User":
+                    OpenPage(key, new Adminchildform.FrmUser());
+                    break;
+                case "Product":
+                    OpenPage(key, new Adminchildform.FrmAproduct());
+                    break;
+                case "IMEI info":
+                    OpenPage(key, new Adminchildform.FrmAIMEI());
+                    break;
+                case "Sales":
+                    OpenPage(key, new Adminchildform.FrmAsale());
+                    break;
+                case "Analysis":
+                    OpenPage(key, new Adminchildform.FrmAanalysis());
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        // handler for reflected MenuItemClick event from Sunny.UI.UINavBar
+        // expected signature: void MenuItemClick(string text, int menuIndex, int pageIndex)
+        private void NavBar_MenuItemClick(string text, int menuIndex, int pageIndex)
+        {
+            // pageIndex maps to our _rightNavPageMap
+            if (pageIndex == 2003)
+            {
+                BtnLogout_Click(this, EventArgs.Empty);
+                return;
+            }
+
+            if (_rightNavPageMap.TryGetValue(pageIndex, out var pageFactory))
+            {
+                OpenPage(text, pageFactory());
             }
         }
 
@@ -117,7 +173,7 @@ namespace Group1project
                 case "Product":
                     OpenPage(key, new Adminchildform.FrmAproduct());
                     break;
-                case "IMEI information":
+                case "IMEI info":
                     OpenPage(key, new Adminchildform.FrmAIMEI());
                     break;
                 case "Sales":
@@ -148,11 +204,31 @@ namespace Group1project
             }
 
             // create a new page and add to tab control
-            var tab = new TabPage { Text = title };
-            page.Dock = DockStyle.Fill;
-            tab.Controls.Add(page);
-            uiTabControl1.TabPages.Add(tab);
-            uiTabControl1.SelectedTab = tab;
+            try
+            {
+                // If UITabControl supports AddPage(UIPage) use it
+                var addMethod = uiTabControl1.GetType().GetMethod("AddPage", new Type[] { typeof(UIPage) });
+                if (addMethod != null)
+                {
+                    addMethod.Invoke(uiTabControl1, new object[] { page });
+                }
+                else
+                {
+                    var tab = new TabPage { Text = title };
+                    page.Dock = DockStyle.Fill;
+                    tab.Controls.Add(page);
+                    uiTabControl1.TabPages.Add(tab);
+                    uiTabControl1.SelectedTab = tab;
+                }
+            }
+            catch
+            {
+                var tab = new TabPage { Text = title };
+                page.Dock = DockStyle.Fill;
+                tab.Controls.Add(page);
+                uiTabControl1.TabPages.Add(tab);
+                uiTabControl1.SelectedTab = tab;
+            }
             _pages[title] = page;
         }
     }

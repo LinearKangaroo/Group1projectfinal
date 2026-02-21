@@ -14,10 +14,10 @@ namespace Group1project.Adminchildform
         public FrmAdash()
         {
             InitializeComponent();
-            LoadData();
+            //LoadData();
         }
 
-        private void LoadData()
+        /*private void LoadData()
         {
             try
             {
@@ -49,7 +49,7 @@ namespace Group1project.Adminchildform
 
                 // Best sell today
                 var best = salesSvc.GetTodayBestSell();
-                lblbestsell.Text = string.IsNullOrEmpty(best) ? "-" : best;
+                lblhotsell.Text = string.IsNullOrEmpty(best) ? "-" : best;
             }
             catch (Exception ex)
             {
@@ -58,10 +58,10 @@ namespace Group1project.Adminchildform
                 lblstock.Text = "0";
                 lblDos.Text = "-";
                 lblamount.Text = "0";
-                lblbestsell.Text = "-";
+                lblhotsell.Text = "-";
                 // optionally log exception
                 Console.WriteLine(ex.ToString());
             }
-        }
+        }*/
     }
 }
