@@ -73,7 +73,6 @@
             btnlogout.TabIndex = 2;
             btnlogout.Text = "Logout";
             btnlogout.TipsFont = new Font("Microsoft Sans Serif", 9F);
-            btnlogout.Click += btnlogout_Click;
             // 
             // btnsetting
             // 
