@@ -262,7 +262,7 @@
             Padding = new Padding(0, 35, 0, 0);
             ShowTitle = true;
             Symbol = 361788;
-            Text = "Sale Transaction";
+            Text = "Transaction";
             ((System.ComponentModel.ISupportInitialize)uiDataGridView1).EndInit();
             uiPanel1.ResumeLayout(false);
             ResumeLayout(false);

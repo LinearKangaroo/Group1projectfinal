@@ -127,7 +127,7 @@
             Padding = new Padding(0, 35, 0, 0);
             ShowTitle = true;
             Symbol = 558149;
-            Text = "Inventory Information";
+            Text = "Inventory";
             ((System.ComponentModel.ISupportInitialize)dgvproduct).EndInit();
             ResumeLayout(false);
         }
