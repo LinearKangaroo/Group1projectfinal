@@ -54,11 +54,11 @@
             uiPanel1.Controls.Add(uiSmoothLabel1);
             uiPanel1.Dock = DockStyle.Top;
             uiPanel1.Font = new Font("Microsoft Sans Serif", 12F);
-            uiPanel1.Location = new Point(0, 35);
+            uiPanel1.Location = new Point(2, 36);
             uiPanel1.Margin = new Padding(4, 5, 4, 5);
             uiPanel1.MinimumSize = new Size(1, 1);
             uiPanel1.Name = "uiPanel1";
-            uiPanel1.Size = new Size(1132, 80);
+            uiPanel1.Size = new Size(1128, 80);
             uiPanel1.TabIndex = 1;
             uiPanel1.Text = null;
             uiPanel1.TextAlignment = ContentAlignment.MiddleCenter;
@@ -94,12 +94,12 @@
             uiNavMenu1.FullRowSelect = true;
             uiNavMenu1.HotTracking = true;
             uiNavMenu1.ItemHeight = 50;
-            uiNavMenu1.Location = new Point(0, 115);
+            uiNavMenu1.Location = new Point(2, 116);
             uiNavMenu1.Name = "uiNavMenu1";
             uiNavMenu1.ShowLines = false;
             uiNavMenu1.ShowPlusMinus = false;
             uiNavMenu1.ShowRootLines = false;
-            uiNavMenu1.Size = new Size(147, 731);
+            uiNavMenu1.Size = new Size(210, 728);
             uiNavMenu1.TabIndex = 2;
             uiNavMenu1.TipsFont = new Font("Microsoft Sans Serif", 9F);
             // 
@@ -108,12 +108,13 @@
             uiTabControl1.Dock = DockStyle.Fill;
             uiTabControl1.DrawMode = TabDrawMode.OwnerDrawFixed;
             uiTabControl1.Font = new Font("Microsoft Sans Serif", 12F);
+            uiTabControl1.Frame = this;
             uiTabControl1.ItemSize = new Size(0, 1);
-            uiTabControl1.Location = new Point(147, 115);
+            uiTabControl1.Location = new Point(212, 116);
             uiTabControl1.MainPage = "";
             uiTabControl1.Name = "uiTabControl1";
             uiTabControl1.SelectedIndex = 0;
-            uiTabControl1.Size = new Size(985, 731);
+            uiTabControl1.Size = new Size(918, 728);
             uiTabControl1.SizeMode = TabSizeMode.Fixed;
             uiTabControl1.TabIndex = 3;
             uiTabControl1.TabUnSelectedForeColor = Color.FromArgb(240, 240, 240);
@@ -129,7 +130,10 @@
             Controls.Add(uiPanel1);
             ExtendBox = true;
             IconImage = (Image)resources.GetObject("$this.IconImage");
+            MainTabControl = uiTabControl1;
             Name = "FrmUserMain";
+            Padding = new Padding(2, 36, 2, 2);
+            Resizable = true;
             Text = "User";
             ZoomScaleRect = new Rectangle(21, 21, 800, 450);
             uiPanel1.ResumeLayout(false);
