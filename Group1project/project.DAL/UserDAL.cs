@@ -8,8 +8,41 @@ using Group1project.Model;
 
 namespace Group1project.project.DAL
 {
+    using User = UserModel;
     public class UserDAL
     {
-        public UserDAL() { }
+        public List<User> GetAllUsers()
+        {
+            const string sql = @"SELECT [userId],[username],[password],[status],[role],[email],[phone],[position],[create_time],[edit_time]
+                                 FROM [tbluser]
+                                 ORDER BY [userId]";
+            return DBHelper.Query<User>(sql);
+        }
+
+        public int AddUser(User user)
+        {
+            const string sql = @"INSERT INTO [tbluser]
+                                 ([username],[password],[status],[role],[email],[phone],[position],[create_time],[edit_time])
+                                 VALUES
+                                 (@username,@password,@status,@role,@email,@phone,@position,@create_time,@edit_time)";
+
+            return DBHelper.Execute(sql, user);
+        }
+
+        public int UpdateUser(User user)
+        {
+            const string sql = @"UPDATE [tbluser]
+                                 SET [username]=@username,
+                                     [password]=@password,
+                                     [status]=@status,
+                                     [role]=@role,
+                                     [email]=@email,
+                                     [phone]=@phone,
+                                     [position]=@position,
+                                     [edit_time]=@edit_time
+                                 WHERE [userId]=@userId";
+
+            return DBHelper.Execute(sql, user);
+        }
     }
 }

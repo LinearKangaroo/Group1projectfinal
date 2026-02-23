@@ -44,12 +44,16 @@
             uiLabel6 = new Sunny.UI.UILabel();
             uiLabel7 = new Sunny.UI.UILabel();
             cboposition = new Sunny.UI.UIComboBox();
+            uiRadioButtonGroup1 = new Sunny.UI.UIRadioButtonGroup();
+            uiRadioButtonGroup2 = new Sunny.UI.UIRadioButtonGroup();
             pnlBtm.SuspendLayout();
+            uiRadioButtonGroup1.SuspendLayout();
+            uiRadioButtonGroup2.SuspendLayout();
             SuspendLayout();
             // 
             // pnlBtm
             // 
-            pnlBtm.Location = new Point(1, 419);
+            pnlBtm.Location = new Point(1, 475);
             pnlBtm.Size = new Size(529, 55);
             // 
             // btnCancel
@@ -60,7 +64,7 @@
             // 
             // btnOK
             // 
-            btnOK.Location = new Point(250, 12);
+            btnOK.Location = new Point(239, 12);
             btnOK.Size = new Size(136, 35);
             btnOK.Text = "Confrim";
             // 
@@ -98,9 +102,9 @@
             // 
             uiLabel4.Font = new Font("Microsoft Sans Serif", 12F);
             uiLabel4.ForeColor = Color.FromArgb(48, 48, 48);
-            uiLabel4.Location = new Point(34, 207);
+            uiLabel4.Location = new Point(34, 222);
             uiLabel4.Name = "uiLabel4";
-            uiLabel4.Size = new Size(126, 39);
+            uiLabel4.Size = new Size(108, 39);
             uiLabel4.TabIndex = 5;
             uiLabel4.Text = "Role";
             // 
@@ -108,7 +112,7 @@
             // 
             uiLabel5.Font = new Font("Microsoft Sans Serif", 12F);
             uiLabel5.ForeColor = Color.FromArgb(48, 48, 48);
-            uiLabel5.Location = new Point(34, 311);
+            uiLabel5.Location = new Point(35, 332);
             uiLabel5.Name = "uiLabel5";
             uiLabel5.Size = new Size(126, 39);
             uiLabel5.TabIndex = 6;
@@ -145,7 +149,7 @@
             // txtphone
             // 
             txtphone.Font = new Font("Microsoft Sans Serif", 12F);
-            txtphone.Location = new Point(180, 311);
+            txtphone.Location = new Point(181, 332);
             txtphone.Margin = new Padding(4, 5, 4, 5);
             txtphone.MinimumSize = new Size(1, 16);
             txtphone.Name = "txtphone";
@@ -159,7 +163,7 @@
             // rdoenable
             // 
             rdoenable.Font = new Font("Microsoft Sans Serif", 12F);
-            rdoenable.Location = new Point(180, 153);
+            rdoenable.Location = new Point(6, 24);
             rdoenable.MinimumSize = new Size(1, 1);
             rdoenable.Name = "rdoenable";
             rdoenable.Size = new Size(106, 29);
@@ -169,7 +173,7 @@
             // rdodisable
             // 
             rdodisable.Font = new Font("Microsoft Sans Serif", 12F);
-            rdodisable.Location = new Point(328, 153);
+            rdodisable.Location = new Point(149, 24);
             rdodisable.MinimumSize = new Size(1, 1);
             rdodisable.Name = "rdodisable";
             rdodisable.Size = new Size(115, 29);
@@ -179,7 +183,7 @@
             // rdoadmin
             // 
             rdoadmin.Font = new Font("Microsoft Sans Serif", 12F);
-            rdoadmin.Location = new Point(180, 207);
+            rdoadmin.Location = new Point(6, 30);
             rdoadmin.MinimumSize = new Size(1, 1);
             rdoadmin.Name = "rdoadmin";
             rdoadmin.Size = new Size(106, 29);
@@ -189,7 +193,7 @@
             // rdouser
             // 
             rdouser.Font = new Font("Microsoft Sans Serif", 12F);
-            rdouser.Location = new Point(328, 207);
+            rdouser.Location = new Point(149, 30);
             rdouser.MinimumSize = new Size(1, 1);
             rdouser.Name = "rdouser";
             rdouser.Size = new Size(106, 29);
@@ -199,7 +203,7 @@
             // txtemail
             // 
             txtemail.Font = new Font("Microsoft Sans Serif", 12F);
-            txtemail.Location = new Point(180, 365);
+            txtemail.Location = new Point(181, 386);
             txtemail.Margin = new Padding(4, 5, 4, 5);
             txtemail.MinimumSize = new Size(1, 16);
             txtemail.Name = "txtemail";
@@ -214,7 +218,7 @@
             // 
             uiLabel6.Font = new Font("Microsoft Sans Serif", 12F);
             uiLabel6.ForeColor = Color.FromArgb(48, 48, 48);
-            uiLabel6.Location = new Point(34, 365);
+            uiLabel6.Location = new Point(35, 386);
             uiLabel6.Name = "uiLabel6";
             uiLabel6.Size = new Size(126, 39);
             uiLabel6.TabIndex = 9;
@@ -224,7 +228,7 @@
             // 
             uiLabel7.Font = new Font("Microsoft Sans Serif", 12F);
             uiLabel7.ForeColor = Color.FromArgb(48, 48, 48);
-            uiLabel7.Location = new Point(34, 255);
+            uiLabel7.Location = new Point(35, 276);
             uiLabel7.Name = "uiLabel7";
             uiLabel7.Size = new Size(126, 39);
             uiLabel7.TabIndex = 13;
@@ -238,7 +242,7 @@
             cboposition.ItemHoverColor = Color.FromArgb(155, 200, 255);
             cboposition.Items.AddRange(new object[] { "apple", "samsaung", "redmi", "oppo", "vivo" });
             cboposition.ItemSelectForeColor = Color.FromArgb(235, 243, 255);
-            cboposition.Location = new Point(185, 253);
+            cboposition.Location = new Point(186, 274);
             cboposition.Margin = new Padding(4, 5, 4, 5);
             cboposition.MinimumSize = new Size(63, 0);
             cboposition.Name = "cboposition";
@@ -249,18 +253,44 @@
             cboposition.TextAlignment = ContentAlignment.MiddleLeft;
             cboposition.Watermark = "";
             // 
+            // uiRadioButtonGroup1
+            // 
+            uiRadioButtonGroup1.Controls.Add(rdodisable);
+            uiRadioButtonGroup1.Controls.Add(rdoenable);
+            uiRadioButtonGroup1.Font = new Font("Microsoft Sans Serif", 12F);
+            uiRadioButtonGroup1.Location = new Point(180, 130);
+            uiRadioButtonGroup1.Margin = new Padding(4, 5, 4, 5);
+            uiRadioButtonGroup1.MinimumSize = new Size(1, 1);
+            uiRadioButtonGroup1.Name = "uiRadioButtonGroup1";
+            uiRadioButtonGroup1.Padding = new Padding(0, 32, 0, 0);
+            uiRadioButtonGroup1.Size = new Size(267, 62);
+            uiRadioButtonGroup1.TabIndex = 15;
+            uiRadioButtonGroup1.TextAlignment = ContentAlignment.MiddleLeft;
+            // 
+            // uiRadioButtonGroup2
+            // 
+            uiRadioButtonGroup2.Controls.Add(rdoadmin);
+            uiRadioButtonGroup2.Controls.Add(rdouser);
+            uiRadioButtonGroup2.Font = new Font("Microsoft Sans Serif", 12F);
+            uiRadioButtonGroup2.Location = new Point(180, 202);
+            uiRadioButtonGroup2.Margin = new Padding(4, 5, 4, 5);
+            uiRadioButtonGroup2.MinimumSize = new Size(1, 1);
+            uiRadioButtonGroup2.Name = "uiRadioButtonGroup2";
+            uiRadioButtonGroup2.Padding = new Padding(0, 32, 0, 0);
+            uiRadioButtonGroup2.Size = new Size(267, 62);
+            uiRadioButtonGroup2.TabIndex = 16;
+            uiRadioButtonGroup2.TextAlignment = ContentAlignment.MiddleLeft;
+            // 
             // Fuseredit
             // 
             AutoScaleMode = AutoScaleMode.None;
-            ClientSize = new Size(531, 477);
+            ClientSize = new Size(531, 533);
+            Controls.Add(uiRadioButtonGroup2);
+            Controls.Add(uiRadioButtonGroup1);
             Controls.Add(cboposition);
             Controls.Add(uiLabel7);
             Controls.Add(txtemail);
             Controls.Add(uiLabel6);
-            Controls.Add(rdouser);
-            Controls.Add(rdoadmin);
-            Controls.Add(rdodisable);
-            Controls.Add(rdoenable);
             Controls.Add(txtphone);
             Controls.Add(txtpassword);
             Controls.Add(txtusername);
@@ -280,15 +310,15 @@
             Controls.SetChildIndex(txtusername, 0);
             Controls.SetChildIndex(txtpassword, 0);
             Controls.SetChildIndex(txtphone, 0);
-            Controls.SetChildIndex(rdoenable, 0);
-            Controls.SetChildIndex(rdodisable, 0);
-            Controls.SetChildIndex(rdoadmin, 0);
-            Controls.SetChildIndex(rdouser, 0);
             Controls.SetChildIndex(uiLabel6, 0);
             Controls.SetChildIndex(txtemail, 0);
             Controls.SetChildIndex(uiLabel7, 0);
             Controls.SetChildIndex(cboposition, 0);
+            Controls.SetChildIndex(uiRadioButtonGroup1, 0);
+            Controls.SetChildIndex(uiRadioButtonGroup2, 0);
             pnlBtm.ResumeLayout(false);
+            uiRadioButtonGroup1.ResumeLayout(false);
+            uiRadioButtonGroup2.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -310,5 +340,7 @@
         private Sunny.UI.UILabel uiLabel6;
         private Sunny.UI.UILabel uiLabel7;
         private Sunny.UI.UIComboBox cboposition;
+        private Sunny.UI.UIRadioButtonGroup uiRadioButtonGroup1;
+        private Sunny.UI.UIRadioButtonGroup uiRadioButtonGroup2;
     }
 }

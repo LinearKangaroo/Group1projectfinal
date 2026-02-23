@@ -155,7 +155,7 @@
             Padding = new Padding(0, 35, 0, 0);
             ShowTitle = true;
             Symbol = 61447;
-            Text = "User Management";
+            Text = "User";
             ((System.ComponentModel.ISupportInitialize)dgvuser).EndInit();
             ResumeLayout(false);
         }
