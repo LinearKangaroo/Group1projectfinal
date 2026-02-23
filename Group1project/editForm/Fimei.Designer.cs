@@ -34,6 +34,7 @@
             uiLabel1 = new Sunny.UI.UILabel();
             txtskucode = new Sunny.UI.UITextBox();
             uiLabel4 = new Sunny.UI.UILabel();
+            btnimport = new Sunny.UI.UISymbolButton();
             pnlBtm.SuspendLayout();
             SuspendLayout();
             // 
@@ -49,7 +50,7 @@
             // 
             // btnOK
             // 
-            btnOK.Location = new Point(229, 12);
+            btnOK.Location = new Point(227, 12);
             btnOK.Size = new Size(125, 35);
             btnOK.Text = "Confrim";
             // 
@@ -125,10 +126,23 @@
             uiLabel4.TabIndex = 13;
             uiLabel4.Text = "SKUcode";
             // 
+            // btnimport
+            // 
+            btnimport.Font = new Font("Microsoft Sans Serif", 12F);
+            btnimport.Location = new Point(272, 194);
+            btnimport.MinimumSize = new Size(1, 1);
+            btnimport.Name = "btnimport";
+            btnimport.Size = new Size(169, 34);
+            btnimport.Symbol = 61717;
+            btnimport.TabIndex = 16;
+            btnimport.Text = "Import";
+            btnimport.TipsFont = new Font("Microsoft Sans Serif", 9F);
+            // 
             // Fimei
             // 
             AutoScaleMode = AutoScaleMode.None;
             ClientSize = new Size(496, 297);
+            Controls.Add(btnimport);
             Controls.Add(txtskucode);
             Controls.Add(uiLabel4);
             Controls.Add(txtstatus);
@@ -144,6 +158,7 @@
             Controls.SetChildIndex(txtstatus, 0);
             Controls.SetChildIndex(uiLabel4, 0);
             Controls.SetChildIndex(txtskucode, 0);
+            Controls.SetChildIndex(btnimport, 0);
             pnlBtm.ResumeLayout(false);
             ResumeLayout(false);
         }
@@ -156,5 +171,6 @@
         private Sunny.UI.UILabel uiLabel1;
         private Sunny.UI.UITextBox txtskucode;
         private Sunny.UI.UILabel uiLabel4;
+        private Sunny.UI.UISymbolButton btnimport;
     }
 }

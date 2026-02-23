@@ -35,28 +35,32 @@
             uiLabel5 = new Sunny.UI.UILabel();
             txtusername = new Sunny.UI.UITextBox();
             txtpassword = new Sunny.UI.UITextBox();
-            txtposition = new Sunny.UI.UITextBox();
+            txtphone = new Sunny.UI.UITextBox();
             rdoenable = new Sunny.UI.UIRadioButton();
             rdodisable = new Sunny.UI.UIRadioButton();
             rdoadmin = new Sunny.UI.UIRadioButton();
             rdouser = new Sunny.UI.UIRadioButton();
+            txtemail = new Sunny.UI.UITextBox();
+            uiLabel6 = new Sunny.UI.UILabel();
+            uiLabel7 = new Sunny.UI.UILabel();
+            cboposition = new Sunny.UI.UIComboBox();
             pnlBtm.SuspendLayout();
             SuspendLayout();
             // 
             // pnlBtm
             // 
-            pnlBtm.Location = new Point(1, 322);
-            pnlBtm.Size = new Size(519, 55);
+            pnlBtm.Location = new Point(1, 419);
+            pnlBtm.Size = new Size(529, 55);
             // 
             // btnCancel
             // 
-            btnCancel.Location = new Point(391, 12);
+            btnCancel.Location = new Point(401, 12);
             btnCancel.Size = new Size(115, 35);
             btnCancel.Text = "Cancel";
             // 
             // btnOK
             // 
-            btnOK.Location = new Point(241, 12);
+            btnOK.Location = new Point(250, 12);
             btnOK.Size = new Size(136, 35);
             btnOK.Text = "Confrim";
             // 
@@ -104,11 +108,11 @@
             // 
             uiLabel5.Font = new Font("Microsoft Sans Serif", 12F);
             uiLabel5.ForeColor = Color.FromArgb(48, 48, 48);
-            uiLabel5.Location = new Point(34, 261);
+            uiLabel5.Location = new Point(34, 311);
             uiLabel5.Name = "uiLabel5";
             uiLabel5.Size = new Size(126, 39);
             uiLabel5.TabIndex = 6;
-            uiLabel5.Text = "Position";
+            uiLabel5.Text = "Phone";
             // 
             // txtusername
             // 
@@ -138,19 +142,19 @@
             txtpassword.TextAlignment = ContentAlignment.MiddleLeft;
             txtpassword.Watermark = "";
             // 
-            // txtposition
+            // txtphone
             // 
-            txtposition.Font = new Font("Microsoft Sans Serif", 12F);
-            txtposition.Location = new Point(180, 261);
-            txtposition.Margin = new Padding(4, 5, 4, 5);
-            txtposition.MinimumSize = new Size(1, 16);
-            txtposition.Name = "txtposition";
-            txtposition.Padding = new Padding(5);
-            txtposition.ShowText = false;
-            txtposition.Size = new Size(254, 35);
-            txtposition.TabIndex = 8;
-            txtposition.TextAlignment = ContentAlignment.MiddleLeft;
-            txtposition.Watermark = "";
+            txtphone.Font = new Font("Microsoft Sans Serif", 12F);
+            txtphone.Location = new Point(180, 311);
+            txtphone.Margin = new Padding(4, 5, 4, 5);
+            txtphone.MinimumSize = new Size(1, 16);
+            txtphone.Name = "txtphone";
+            txtphone.Padding = new Padding(5);
+            txtphone.ShowText = false;
+            txtphone.Size = new Size(254, 35);
+            txtphone.TabIndex = 8;
+            txtphone.TextAlignment = ContentAlignment.MiddleLeft;
+            txtphone.Watermark = "";
             // 
             // rdoenable
             // 
@@ -192,15 +196,72 @@
             rdouser.TabIndex = 12;
             rdouser.Text = "User";
             // 
+            // txtemail
+            // 
+            txtemail.Font = new Font("Microsoft Sans Serif", 12F);
+            txtemail.Location = new Point(180, 365);
+            txtemail.Margin = new Padding(4, 5, 4, 5);
+            txtemail.MinimumSize = new Size(1, 16);
+            txtemail.Name = "txtemail";
+            txtemail.Padding = new Padding(5);
+            txtemail.ShowText = false;
+            txtemail.Size = new Size(254, 35);
+            txtemail.TabIndex = 10;
+            txtemail.TextAlignment = ContentAlignment.MiddleLeft;
+            txtemail.Watermark = "";
+            // 
+            // uiLabel6
+            // 
+            uiLabel6.Font = new Font("Microsoft Sans Serif", 12F);
+            uiLabel6.ForeColor = Color.FromArgb(48, 48, 48);
+            uiLabel6.Location = new Point(34, 365);
+            uiLabel6.Name = "uiLabel6";
+            uiLabel6.Size = new Size(126, 39);
+            uiLabel6.TabIndex = 9;
+            uiLabel6.Text = "Email";
+            // 
+            // uiLabel7
+            // 
+            uiLabel7.Font = new Font("Microsoft Sans Serif", 12F);
+            uiLabel7.ForeColor = Color.FromArgb(48, 48, 48);
+            uiLabel7.Location = new Point(34, 255);
+            uiLabel7.Name = "uiLabel7";
+            uiLabel7.Size = new Size(126, 39);
+            uiLabel7.TabIndex = 13;
+            uiLabel7.Text = "Position";
+            // 
+            // cboposition
+            // 
+            cboposition.DataSource = null;
+            cboposition.FillColor = Color.White;
+            cboposition.Font = new Font("Microsoft Sans Serif", 12F);
+            cboposition.ItemHoverColor = Color.FromArgb(155, 200, 255);
+            cboposition.Items.AddRange(new object[] { "apple", "samsaung", "redmi", "oppo", "vivo" });
+            cboposition.ItemSelectForeColor = Color.FromArgb(235, 243, 255);
+            cboposition.Location = new Point(185, 253);
+            cboposition.Margin = new Padding(4, 5, 4, 5);
+            cboposition.MinimumSize = new Size(63, 0);
+            cboposition.Name = "cboposition";
+            cboposition.Padding = new Padding(0, 0, 30, 2);
+            cboposition.Size = new Size(248, 41);
+            cboposition.SymbolSize = 24;
+            cboposition.TabIndex = 14;
+            cboposition.TextAlignment = ContentAlignment.MiddleLeft;
+            cboposition.Watermark = "";
+            // 
             // Fuseredit
             // 
             AutoScaleMode = AutoScaleMode.None;
-            ClientSize = new Size(521, 380);
+            ClientSize = new Size(531, 477);
+            Controls.Add(cboposition);
+            Controls.Add(uiLabel7);
+            Controls.Add(txtemail);
+            Controls.Add(uiLabel6);
             Controls.Add(rdouser);
             Controls.Add(rdoadmin);
             Controls.Add(rdodisable);
             Controls.Add(rdoenable);
-            Controls.Add(txtposition);
+            Controls.Add(txtphone);
             Controls.Add(txtpassword);
             Controls.Add(txtusername);
             Controls.Add(uiLabel5);
@@ -218,11 +279,15 @@
             Controls.SetChildIndex(uiLabel5, 0);
             Controls.SetChildIndex(txtusername, 0);
             Controls.SetChildIndex(txtpassword, 0);
-            Controls.SetChildIndex(txtposition, 0);
+            Controls.SetChildIndex(txtphone, 0);
             Controls.SetChildIndex(rdoenable, 0);
             Controls.SetChildIndex(rdodisable, 0);
             Controls.SetChildIndex(rdoadmin, 0);
             Controls.SetChildIndex(rdouser, 0);
+            Controls.SetChildIndex(uiLabel6, 0);
+            Controls.SetChildIndex(txtemail, 0);
+            Controls.SetChildIndex(uiLabel7, 0);
+            Controls.SetChildIndex(cboposition, 0);
             pnlBtm.ResumeLayout(false);
             ResumeLayout(false);
         }
@@ -236,10 +301,14 @@
         private Sunny.UI.UILabel uiLabel5;
         private Sunny.UI.UITextBox txtusername;
         private Sunny.UI.UITextBox txtpassword;
-        private Sunny.UI.UITextBox txtposition;
+        private Sunny.UI.UITextBox txtphone;
         private Sunny.UI.UIRadioButton rdoenable;
         private Sunny.UI.UIRadioButton rdodisable;
         private Sunny.UI.UIRadioButton rdoadmin;
         private Sunny.UI.UIRadioButton rdouser;
+        private Sunny.UI.UITextBox txtemail;
+        private Sunny.UI.UILabel uiLabel6;
+        private Sunny.UI.UILabel uiLabel7;
+        private Sunny.UI.UIComboBox cboposition;
     }
 }
