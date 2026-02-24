@@ -12,10 +12,10 @@ namespace Group1project.Model
         public string SKUcode { get; set; }
 
         // 来自 tblproduct 的字段（你想要在页面上显示的）
+        public string SPUcode { get; set; }
         public string SPUname { get; set; }
-        public string SKUname { get; set; }
         public string brand { get; set; }
-        public decimal purchase_price { get; set; }
-        public decimal retail_price { get; set; }
+        public string SKUspec { get; set; }
+        public string SKUname { get; set; }
     }
 }
