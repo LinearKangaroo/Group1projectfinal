@@ -28,13 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            txtstatus = new Sunny.UI.UITextBox();
             txtimei = new Sunny.UI.UITextBox();
             uiLabel2 = new Sunny.UI.UILabel();
             uiLabel1 = new Sunny.UI.UILabel();
-            txtskucode = new Sunny.UI.UITextBox();
             uiLabel4 = new Sunny.UI.UILabel();
-            btnimport = new Sunny.UI.UISymbolButton();
+            cbostatus = new Sunny.UI.UIComboBox();
+            cboskucode = new Sunny.UI.UIComboDataGridView();
             pnlBtm.SuspendLayout();
             SuspendLayout();
             // 
@@ -50,23 +49,9 @@
             // 
             // btnOK
             // 
-            btnOK.Location = new Point(227, 12);
+            btnOK.Location = new Point(251, 12);
             btnOK.Size = new Size(125, 35);
             btnOK.Text = "Confrim";
-            // 
-            // txtstatus
-            // 
-            txtstatus.Font = new Font("Microsoft Sans Serif", 12F);
-            txtstatus.Location = new Point(187, 106);
-            txtstatus.Margin = new Padding(4, 5, 4, 5);
-            txtstatus.MinimumSize = new Size(1, 16);
-            txtstatus.Name = "txtstatus";
-            txtstatus.Padding = new Padding(5);
-            txtstatus.ShowText = false;
-            txtstatus.Size = new Size(254, 35);
-            txtstatus.TabIndex = 12;
-            txtstatus.TextAlignment = ContentAlignment.MiddleLeft;
-            txtstatus.Watermark = "";
             // 
             // txtimei
             // 
@@ -86,7 +71,7 @@
             // 
             uiLabel2.Font = new Font("Microsoft Sans Serif", 12F);
             uiLabel2.ForeColor = Color.FromArgb(48, 48, 48);
-            uiLabel2.Location = new Point(41, 113);
+            uiLabel2.Location = new Point(41, 109);
             uiLabel2.Name = "uiLabel2";
             uiLabel2.Size = new Size(126, 39);
             uiLabel2.TabIndex = 10;
@@ -102,75 +87,79 @@
             uiLabel1.TabIndex = 9;
             uiLabel1.Text = "IMEI";
             // 
-            // txtskucode
-            // 
-            txtskucode.Font = new Font("Microsoft Sans Serif", 12F);
-            txtskucode.Location = new Point(187, 151);
-            txtskucode.Margin = new Padding(4, 5, 4, 5);
-            txtskucode.MinimumSize = new Size(1, 16);
-            txtskucode.Name = "txtskucode";
-            txtskucode.Padding = new Padding(5);
-            txtskucode.ShowText = false;
-            txtskucode.Size = new Size(254, 35);
-            txtskucode.TabIndex = 15;
-            txtskucode.TextAlignment = ContentAlignment.MiddleLeft;
-            txtskucode.Watermark = "";
-            // 
             // uiLabel4
             // 
             uiLabel4.Font = new Font("Microsoft Sans Serif", 12F);
             uiLabel4.ForeColor = Color.FromArgb(48, 48, 48);
-            uiLabel4.Location = new Point(41, 149);
+            uiLabel4.Location = new Point(41, 165);
             uiLabel4.Name = "uiLabel4";
             uiLabel4.Size = new Size(126, 39);
             uiLabel4.TabIndex = 13;
             uiLabel4.Text = "SKUcode";
             // 
-            // btnimport
+            // cbostatus
             // 
-            btnimport.Font = new Font("Microsoft Sans Serif", 12F);
-            btnimport.Location = new Point(272, 194);
-            btnimport.MinimumSize = new Size(1, 1);
-            btnimport.Name = "btnimport";
-            btnimport.Size = new Size(169, 34);
-            btnimport.Symbol = 61717;
-            btnimport.TabIndex = 16;
-            btnimport.Text = "Import";
-            btnimport.TipsFont = new Font("Microsoft Sans Serif", 9F);
+            cbostatus.DataSource = null;
+            cbostatus.FillColor = Color.White;
+            cbostatus.Font = new Font("Microsoft Sans Serif", 12F);
+            cbostatus.ItemHoverColor = Color.FromArgb(155, 200, 255);
+            cbostatus.ItemSelectForeColor = Color.FromArgb(235, 243, 255);
+            cbostatus.Location = new Point(187, 109);
+            cbostatus.Margin = new Padding(4, 5, 4, 5);
+            cbostatus.MinimumSize = new Size(63, 0);
+            cbostatus.Name = "cbostatus";
+            cbostatus.Padding = new Padding(0, 0, 30, 2);
+            cbostatus.Size = new Size(255, 34);
+            cbostatus.SymbolSize = 24;
+            cbostatus.TabIndex = 17;
+            cbostatus.TextAlignment = ContentAlignment.MiddleLeft;
+            cbostatus.Watermark = "";
+            // 
+            // cboskucode
+            // 
+            cboskucode.DropDownStyle = Sunny.UI.UIDropDownStyle.DropDownList;
+            cboskucode.FillColor = Color.White;
+            cboskucode.Font = new Font("Microsoft Sans Serif", 12F);
+            cboskucode.Location = new Point(187, 165);
+            cboskucode.Margin = new Padding(4, 5, 4, 5);
+            cboskucode.MinimumSize = new Size(63, 0);
+            cboskucode.Name = "cboskucode";
+            cboskucode.Padding = new Padding(0, 0, 30, 2);
+            cboskucode.Size = new Size(255, 39);
+            cboskucode.SymbolSize = 24;
+            cboskucode.TabIndex = 18;
+            cboskucode.TextAlignment = ContentAlignment.MiddleLeft;
+            cboskucode.Watermark = "";
             // 
             // Fimei
             // 
             AutoScaleMode = AutoScaleMode.None;
             ClientSize = new Size(496, 297);
-            Controls.Add(btnimport);
-            Controls.Add(txtskucode);
+            Controls.Add(cboskucode);
+            Controls.Add(cbostatus);
             Controls.Add(uiLabel4);
-            Controls.Add(txtstatus);
             Controls.Add(txtimei);
             Controls.Add(uiLabel2);
             Controls.Add(uiLabel1);
             Name = "Fimei";
-            Text = "IMEI";
+            Text = "IMEI Edit";
             Controls.SetChildIndex(pnlBtm, 0);
             Controls.SetChildIndex(uiLabel1, 0);
             Controls.SetChildIndex(uiLabel2, 0);
             Controls.SetChildIndex(txtimei, 0);
-            Controls.SetChildIndex(txtstatus, 0);
             Controls.SetChildIndex(uiLabel4, 0);
-            Controls.SetChildIndex(txtskucode, 0);
-            Controls.SetChildIndex(btnimport, 0);
+            Controls.SetChildIndex(cbostatus, 0);
+            Controls.SetChildIndex(cboskucode, 0);
             pnlBtm.ResumeLayout(false);
             ResumeLayout(false);
         }
 
         #endregion
-
-        private Sunny.UI.UITextBox txtstatus;
         private Sunny.UI.UITextBox txtimei;
         private Sunny.UI.UILabel uiLabel2;
         private Sunny.UI.UILabel uiLabel1;
-        private Sunny.UI.UITextBox txtskucode;
         private Sunny.UI.UILabel uiLabel4;
-        private Sunny.UI.UISymbolButton btnimport;
+        private Sunny.UI.UIComboBox cbostatus;
+        private Sunny.UI.UIComboDataGridView cboskucode;
     }
 }

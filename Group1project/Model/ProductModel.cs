@@ -13,7 +13,7 @@ namespace Group1project.Model
         public decimal purchase_price { get; set; }
         public decimal retail_price { get; set; }
         public DateTime creative_time { get; set; }
-        public DateTime edite_time { get; set; }
+        public DateTime edit_time { get; set; }
 
         // 其他属性可以根据需要添加
         public int Stock { get; set; } // StockQTY

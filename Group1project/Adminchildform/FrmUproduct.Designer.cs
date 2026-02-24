@@ -35,7 +35,9 @@
             DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
             txtproduct = new Sunny.UI.UITextBox();
             btnSearch = new Sunny.UI.UISymbolButton();
+            uiPanel1 = new Sunny.UI.UIPanel();
             dgvproduct = new Sunny.UI.UIDataGridView();
+            uiPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvproduct).BeginInit();
             SuspendLayout();
             // 
@@ -44,7 +46,7 @@
             txtproduct.ButtonSymbol = 361453;
             txtproduct.ButtonSymbolOffset = new Point(0, 1);
             txtproduct.Font = new Font("Microsoft Sans Serif", 12F);
-            txtproduct.Location = new Point(19, 428);
+            txtproduct.Location = new Point(24, 26);
             txtproduct.Margin = new Padding(4, 5, 4, 5);
             txtproduct.MinimumSize = new Size(1, 16);
             txtproduct.Name = "txtproduct";
@@ -59,7 +61,7 @@
             // btnSearch
             // 
             btnSearch.Font = new Font("Microsoft Sans Serif", 12F);
-            btnSearch.Location = new Point(404, 428);
+            btnSearch.Location = new Point(409, 26);
             btnSearch.MinimumSize = new Size(1, 1);
             btnSearch.Name = "btnSearch";
             btnSearch.Size = new Size(121, 34);
@@ -67,6 +69,20 @@
             btnSearch.TabIndex = 21;
             btnSearch.Text = "Search";
             btnSearch.TipsFont = new Font("Microsoft Sans Serif", 9F);
+            // 
+            // uiPanel1
+            // 
+            uiPanel1.Controls.Add(txtproduct);
+            uiPanel1.Controls.Add(btnSearch);
+            uiPanel1.Dock = DockStyle.Top;
+            uiPanel1.Font = new Font("Microsoft Sans Serif", 12F);
+            uiPanel1.Location = new Point(0, 35);
+            uiPanel1.Margin = new Padding(4, 5, 4, 5);
+            uiPanel1.MinimumSize = new Size(1, 1);
+            uiPanel1.Name = "uiPanel1";
+            uiPanel1.Size = new Size(889, 86);
+            uiPanel1.TabIndex = 25;
+            uiPanel1.TextAlignment = ContentAlignment.MiddleCenter;
             // 
             // dgvproduct
             // 
@@ -91,12 +107,13 @@
             dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
             dgvproduct.DefaultCellStyle = dataGridViewCellStyle3;
-            dgvproduct.Dock = DockStyle.Top;
+            dgvproduct.Dock = DockStyle.Fill;
             dgvproduct.EnableHeadersVisualStyles = false;
             dgvproduct.Font = new Font("Microsoft Sans Serif", 12F);
             dgvproduct.GridColor = Color.FromArgb(80, 160, 255);
-            dgvproduct.Location = new Point(0, 35);
+            dgvproduct.Location = new Point(0, 121);
             dgvproduct.Name = "dgvproduct";
+            dgvproduct.ReadOnly = true;
             dgvproduct.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
             dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle4.BackColor = Color.FromArgb(235, 243, 255);
@@ -111,23 +128,23 @@
             dataGridViewCellStyle5.Font = new Font("Microsoft Sans Serif", 12F);
             dgvproduct.RowsDefaultCellStyle = dataGridViewCellStyle5;
             dgvproduct.SelectedIndex = -1;
-            dgvproduct.Size = new Size(889, 360);
+            dgvproduct.Size = new Size(889, 389);
             dgvproduct.StripeOddColor = Color.FromArgb(235, 243, 255);
-            dgvproduct.TabIndex = 20;
+            dgvproduct.TabIndex = 26;
             // 
             // FrmUproduct
             // 
             AllowShowTitle = true;
             AutoScaleMode = AutoScaleMode.None;
             ClientSize = new Size(889, 510);
-            Controls.Add(txtproduct);
-            Controls.Add(btnSearch);
             Controls.Add(dgvproduct);
+            Controls.Add(uiPanel1);
             Name = "FrmUproduct";
             Padding = new Padding(0, 35, 0, 0);
             ShowTitle = true;
             Symbol = 558149;
             Text = "Inventory";
+            uiPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgvproduct).EndInit();
             ResumeLayout(false);
         }
@@ -136,6 +153,7 @@
 
         private Sunny.UI.UITextBox txtproduct;
         private Sunny.UI.UISymbolButton btnSearch;
+        private Sunny.UI.UIPanel uiPanel1;
         private Sunny.UI.UIDataGridView dgvproduct;
     }
 }
