@@ -1,9 +1,10 @@
-﻿using System;
+﻿using Dapper;
+using Group1project.Model;
+using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.OleDb;
 using System.Data.SqlClient;
-using Dapper;
-using Group1project.Model;
 
 
 namespace Group1project.project.DAL
@@ -26,18 +27,21 @@ namespace Group1project.project.DAL
                                  VALUES
                                  (?,?,?,?,?,?,?,?,?)";
 
-            return DBHelper.Execute(sql, new
-            {
-                user.username,
-                user.password,
-                status = user.status ? 1 : 0,
-                user.role,
-                user.email,
-                user.phone,
-                user.position,
-                user.create_time,
-                user.edit_time
-            });
+            using var conn = new OleDbConnection(GetConnectionString());
+            using var cmd = new OleDbCommand(sql, conn);
+
+            cmd.Parameters.AddWithValue("@username", DbNullIfWhiteSpace(user.username));
+            cmd.Parameters.AddWithValue("@password", DbNullIfWhiteSpace(user.password));
+            cmd.Parameters.AddWithValue("@status", user.status ? -1 : 0);
+            cmd.Parameters.AddWithValue("@role", DbNullIfWhiteSpace(user.role));
+            cmd.Parameters.AddWithValue("@email", DbNullIfWhiteSpace(user.email));
+            cmd.Parameters.AddWithValue("@phone", DbNullIfWhiteSpace(user.phone));
+            cmd.Parameters.AddWithValue("@position", DbNullIfWhiteSpace(user.position));
+            cmd.Parameters.AddWithValue("@create_time", user.create_time.ToString("yyyy-MM-dd HH:mm:ss"));
+            cmd.Parameters.AddWithValue("@edit_time", user.edit_time.ToString("yyyy-MM-dd HH:mm:ss"));
+
+            conn.Open();
+            return cmd.ExecuteNonQuery();
         }
 
         public int UpdateUser(User user)
@@ -53,18 +57,32 @@ namespace Group1project.project.DAL
                                      [edit_time]=?
                                  WHERE [userId]=?";
 
-            return DBHelper.Execute(sql, new
-            {
-                user.username,
-                user.password,
-                status = user.status ? 1 : 0,
-                user.role,
-                user.email,
-                user.phone,
-                user.position,
-                user.edit_time,
-                user.userId
-            });
+            using var conn = new OleDbConnection(GetConnectionString());
+            using var cmd = new OleDbCommand(sql, conn);
+
+            cmd.Parameters.AddWithValue("@username", DbNullIfWhiteSpace(user.username));
+            cmd.Parameters.AddWithValue("@password", DbNullIfWhiteSpace(user.password));
+            cmd.Parameters.AddWithValue("@status", user.status ? -1 : 0);
+            cmd.Parameters.AddWithValue("@role", DbNullIfWhiteSpace(user.role));
+            cmd.Parameters.AddWithValue("@email", DbNullIfWhiteSpace(user.email));
+            cmd.Parameters.AddWithValue("@phone", DbNullIfWhiteSpace(user.phone));
+            cmd.Parameters.AddWithValue("@position", DbNullIfWhiteSpace(user.position));
+            cmd.Parameters.AddWithValue("@edit_time", user.edit_time.ToString("yyyy-MM-dd HH:mm:ss"));
+            cmd.Parameters.AddWithValue("@userId", user.userId);
+
+
+            conn.Open();
+            return cmd.ExecuteNonQuery();
+        }
+
+        private static string GetConnectionString()
+        {
+            using var conn = DBHelper.GetConnection();
+            return conn.ConnectionString;
+        }
+        private static object DbNullIfWhiteSpace(string? value)
+        {
+            return string.IsNullOrWhiteSpace(value) ? DBNull.Value : value.Trim();
         }
     }
 }
