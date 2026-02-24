@@ -24,25 +24,47 @@ namespace Group1project.project.DAL
             const string sql = @"INSERT INTO [tbluser]
                                  ([username],[password],[status],[role],[email],[phone],[position],[create_time],[edit_time])
                                  VALUES
-                                 (@username,@password,@status,@role,@email,@phone,@position,@create_time,@edit_time)";
+                                 (?,?,?,?,?,?,?,?,?)";
 
-            return DBHelper.Execute(sql, user);
+            return DBHelper.Execute(sql, new
+            {
+                user.username,
+                user.password,
+                status = user.status ? 1 : 0,
+                user.role,
+                user.email,
+                user.phone,
+                user.position,
+                user.create_time,
+                user.edit_time
+            });
         }
 
         public int UpdateUser(User user)
         {
             const string sql = @"UPDATE [tbluser]
-                                 SET [username]=@username,
-                                     [password]=@password,
-                                     [status]=@status,
-                                     [role]=@role,
-                                     [email]=@email,
-                                     [phone]=@phone,
-                                     [position]=@position,
-                                     [edit_time]=@edit_time
-                                 WHERE [userId]=@userId";
+                                 SET [username]=?,
+                                     [password]=?,
+                                     [status]=?,
+                                     [role]=?,
+                                     [email]=?,
+                                     [phone]=?,
+                                     [position]=?,
+                                     [edit_time]=?
+                                 WHERE [userId]=?";
 
-            return DBHelper.Execute(sql, user);
+            return DBHelper.Execute(sql, new
+            {
+                user.username,
+                user.password,
+                status = user.status ? 1 : 0,
+                user.role,
+                user.email,
+                user.phone,
+                user.position,
+                user.edit_time,
+                user.userId
+            });
         }
     }
 }
