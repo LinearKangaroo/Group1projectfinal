@@ -20,6 +20,7 @@ namespace Group1project.Adminchildform
         private List<ProductModel> _skuOptions = new List<ProductModel>();
         private const int PageSize = 20;
         private bool _isPagerUpdating;
+        private UILabel? _footerLabel;
 
         public FrmAIMEI()
         {
@@ -30,7 +31,7 @@ namespace Group1project.Adminchildform
             btnAdd.Click += BtnAdd_Click;
             btnEdit.Click += BtnEdit_Click;
             btnimport.Click += Btnimport_Click;
-            uiSymbolButton2.Click += BtnExport_Click;
+            btnexport.Click += BtnExport_Click;
             txtimei.ButtonClick += Txtimei_ButtonClick;
             txtimei.TextChanged += Txtimei_TextChanged;
             uiPagination1.PageChanged += UiPagination1_PageChanged;
@@ -38,8 +39,29 @@ namespace Group1project.Adminchildform
 
         private void FrmAIMEI_Load(object? sender, EventArgs e)
         {
+            InitFooter();
             _skuOptions = _imeiBll.GetSkuOptions();
             LoadImei();
+        }
+
+        private void InitFooter()
+        {
+            uiDataGridViewFooter1.DataGridView = dgvimei;
+
+            if (_footerLabel != null)
+            {
+                return;
+            }
+
+            _footerLabel = new UILabel
+            {
+                Dock = DockStyle.Fill,
+                TextAlign = System.Drawing.ContentAlignment.MiddleLeft,
+                Padding = new Padding(10, 0, 0, 0),
+                Font = uiDataGridViewFooter1.Font
+            };
+
+            uiDataGridViewFooter1.Controls.Add(_footerLabel);
         }
 
         private void LoadImei()
@@ -108,7 +130,12 @@ namespace Group1project.Adminchildform
             int total = source.Count;
             int sold = _imeiBll.CountSold(source);
             int instock = _imeiBll.CountInStock(source);
-            uiDataGridViewFooter1.Text = $"信息总计: {total}    sold总计: {sold}    instock总计: {instock}";
+            string footerText = $"Total: {total}    sold: {sold}    instock: {instock}";
+            uiDataGridViewFooter1.Text = footerText;
+            if (_footerLabel != null)
+            {
+                _footerLabel.Text = footerText;
+            }
         }
 
         private void BtnSearch_Click(object? sender, EventArgs e)
@@ -193,8 +220,8 @@ namespace Group1project.Adminchildform
                 return;
             }
 
-            int count = _imeiBll.Import(ofd.FileName);
-            UIMessageTip.ShowOk($"Import completed. {count} row(s) inserted.");
+            var result = _imeiBll.Import(ofd.FileName);
+            UIMessageTip.ShowOk($"Import completed. {result.insertedCount} row(s) inserted, {result.duplicateCount} duplicate row(s) skipped.");
             LoadImei();
         }
 

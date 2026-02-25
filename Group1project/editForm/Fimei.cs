@@ -38,8 +38,7 @@ namespace Group1project.editForm
             cbostatus.Items.Add("sold");
             cbostatus.SelectedItem = "instock";
             cbostatus.DropDownStyle = UIDropDownStyle.DropDownList;
-            
-            
+
             ConfigureSkuDropdownColumns();
         }
 

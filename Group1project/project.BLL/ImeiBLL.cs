@@ -44,7 +44,7 @@ namespace Group1project.project.BLL
 
         public int CountInStock(List<imeiModel> source) => source.Count(x => string.Equals(x.status, "instock", StringComparison.OrdinalIgnoreCase));
 
-        public int Import(string filePath) => _imeiDal.ImportImei(filePath);
+        public (int insertedCount, int duplicateCount) Import(string filePath) => _imeiDal.ImportImei(filePath);
 
         public void Export(string filePath) => _imeiDal.ExportImei(filePath);
 

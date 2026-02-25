@@ -27,6 +27,31 @@ namespace Group1project.project.DAL
             return DBHelper.Query<ProductModel>(sql);
         }
 
+        private static HashSet<string> GetExistingImeiSet(OleDbConnection conn, OleDbTransaction trans)
+        {
+            var existing = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            using var cmd = new OleDbCommand("SELECT [imei] FROM [tblimei]", conn, trans);
+            using var reader = cmd.ExecuteReader();
+            if (reader == null)
+            {
+                return existing;
+            }
+
+            while (reader.Read())
+            {
+                if (!reader.IsDBNull(0))
+                {
+                    string imei = Convert.ToString(reader.GetValue(0))?.Trim() ?? string.Empty;
+                    if (!string.IsNullOrWhiteSpace(imei))
+                    {
+                        existing.Add(imei);
+                    }
+                }
+            }
+
+            return existing;
+        }
+
         public int AddImei(imeiModel model)
         {
             const string sql = @"INSERT INTO [tblimei] ([imei],[status],[SKUcode]) VALUES (?,?,?)";
@@ -58,17 +83,17 @@ namespace Group1project.project.DAL
 
         public void ExportImei(string filePath)
         {
-            List<imeiModel> data = GetAllImeiWithProduct()
-                .Select(x => new imeiModel { imei = x.imei, status = x.status, SKUcode = x.SKUcode })
-                .ToList();
+            List<imeiModel> data = GetAllImeiWithProduct();
+                //.Select(x => new imeiModel { imei = x.imei, status = x.status, SKUcode = x.SKUcode })
+                //.ToList();
             MiniExcel.SaveAs(filePath, data);
         }
 
-        public int ImportImei(string filePath)
+        public (int insertedCount, int duplicateCount) ImportImei(string filePath)
         {
             if (!File.Exists(filePath))
             {
-                return 0;
+                return (0, 0);
             }
 
             List<imeiModel> rows = MiniExcel.Query<imeiModel>(filePath)
@@ -83,7 +108,7 @@ namespace Group1project.project.DAL
 
             if (rows.Count == 0)
             {
-                return 0;
+                return (0, 0);
             }
 
             using var conn = new OleDbConnection(GetConnectionString());
@@ -92,18 +117,37 @@ namespace Group1project.project.DAL
             try
             {
                 int count = 0;
+                int duplicateCount = 0;
+                HashSet<string> existingImei = GetExistingImeiSet(conn, trans);
+                var importSeen = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+
                 const string sql = @"INSERT INTO [tblimei] ([imei],[status],[SKUcode]) VALUES (?,?,?)";
                 foreach (imeiModel row in rows)
                 {
+                    string imeiCode = row.imei?.Trim() ?? string.Empty;
+                    if (string.IsNullOrWhiteSpace(imeiCode))
+                    {
+                        continue;
+                    }
+
+                    if (existingImei.Contains(imeiCode) || importSeen.Contains(imeiCode))
+                    {
+                        duplicateCount++;
+                        continue;
+                    }
+
                     using var cmd = new OleDbCommand(sql, conn, trans);
-                    cmd.Parameters.AddWithValue("@imei", DbNullIfWhiteSpace(row.imei));
+                    cmd.Parameters.AddWithValue("@imei", DbNullIfWhiteSpace(imeiCode));
                     cmd.Parameters.AddWithValue("@status", DbNullIfWhiteSpace(row.status));
                     cmd.Parameters.AddWithValue("@SKUcode", DbNullIfWhiteSpace(row.SKUcode));
                     count += cmd.ExecuteNonQuery();
+
+                    existingImei.Add(imeiCode);
+                    importSeen.Add(imeiCode);
                 }
 
                 trans.Commit();
-                return count;
+                return (count, duplicateCount);
             }
             catch
             {
