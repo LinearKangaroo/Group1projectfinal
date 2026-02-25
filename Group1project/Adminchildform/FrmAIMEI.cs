@@ -170,6 +170,11 @@ namespace Group1project.Adminchildform
             {
                 return;
             }
+            if (_imeiBll.ExistsImei(editForm.ImeiData.imei))
+            {
+                UIMessageBox.ShowWarning("IMEI already exists. Please enter a unique IMEI.");
+                return;
+            }
 
             int rows = _imeiBll.AddImei(editForm.ImeiData);
             if (rows > 0)

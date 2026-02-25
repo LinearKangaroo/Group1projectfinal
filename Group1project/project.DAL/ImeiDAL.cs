@@ -66,6 +66,18 @@ namespace Group1project.project.DAL
             return cmd.ExecuteNonQuery();
         }
 
+        public bool ExistsImei(string imei)
+        {
+            const string sql = "SELECT COUNT(1) FROM [tblimei] WHERE [imei]=?";
+            using var conn = new OleDbConnection(GetConnectionString());
+            using var cmd = new OleDbCommand(sql, conn);
+            cmd.Parameters.AddWithValue("@imei", DbNullIfWhiteSpace(imei));
+
+            conn.Open();
+            object? result = cmd.ExecuteScalar();
+            return Convert.ToInt32(result) > 0;
+        }
+
         public int UpdateImei(imeiModel model, string originalImei)
         {
             const string sql = @"UPDATE [tblimei] SET [imei]=?, [status]=?, [SKUcode]=? WHERE [imei]=?";

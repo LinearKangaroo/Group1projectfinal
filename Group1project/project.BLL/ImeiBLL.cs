@@ -34,6 +34,16 @@ namespace Group1project.project.BLL
             return _imeiDal.AddImei(model);
         }
 
+        public bool ExistsImei(string imei)
+        {
+            if (string.IsNullOrWhiteSpace(imei))
+            {
+                return false;
+            }
+
+            return _imeiDal.ExistsImei(imei.Trim());
+        }
+
         public int UpdateImei(imeiModel model, string originalImei)
         {
             model.status = NormalizeStatus(model.status);

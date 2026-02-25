@@ -14,7 +14,7 @@ namespace Group1project.editForm
     public partial class Fimei : UIEditForm
     {
         private readonly List<ProductModel> _skuOptions;
-
+        private DataGridView? _skuGrid;
         public imeiModel ImeiData { get; private set; } = new imeiModel();
 
         public Fimei(List<ProductModel> skuOptions)
@@ -45,13 +45,6 @@ namespace Group1project.editForm
 
         private void ConfigureSkuDropdownColumns()
         {
-            var gridProperty = cboskucode.GetType().GetProperty("DataGridView");
-            DataGridView? grid = gridProperty?.GetValue(cboskucode) as DataGridView;
-            if (grid == null)
-            {
-                return;
-            }
-
             DataTable table = new DataTable();
             table.Columns.Add("SKUcode", typeof(string));
             table.Columns.Add("SKUname", typeof(string));
@@ -60,17 +53,52 @@ namespace Group1project.editForm
                 table.Rows.Add(sku.SKUcode, sku.SKUname);
             }
 
-            grid.AutoGenerateColumns = false;
-            grid.Columns.Clear();
-            grid.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "SKUcode", HeaderText = "SKUcode", Width = 140 });
-            grid.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "SKUname", HeaderText = "SKUname", Width = 220 });
-            grid.DataSource = table;
+            _skuGrid = GetSkuGrid();
+            if (_skuGrid != null)
+            {
+                _skuGrid.AutoGenerateColumns = false;
+                _skuGrid.ReadOnly = true;
+                _skuGrid.MultiSelect = false;
+                _skuGrid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+                _skuGrid.Columns.Clear();
+                _skuGrid.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "SKUcode", HeaderText = "SKUcode", Width = 140, MinimumWidth = 120 });
+                _skuGrid.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "SKUname", HeaderText = "SKUname", AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill, MinimumWidth = 300 });
+                _skuGrid.DataSource = table;
+                _skuGrid.CellClick -= SkuGrid_CellClick;
+                _skuGrid.CellClick += SkuGrid_CellClick;
+            }
 
+            SetComboMemberIfExists("DataSource", table);
             SetComboMemberIfExists("DisplayMember", "SKUcode");
             SetComboMemberIfExists("ValueMember", "SKUcode");
+            SetComboMemberIfExists("DropDownWidth", 520);
+            SetComboMemberIfExists("DropDownStyle", UIDropDownStyle.DropDownList);
         }
 
-        private void SetComboMemberIfExists(string propertyName, string value)
+        private DataGridView? GetSkuGrid()
+        {
+            var gridProperty = cboskucode.GetType().GetProperty("DataGridView");
+            return gridProperty?.GetValue(cboskucode) as DataGridView;
+        }
+
+        private void SkuGrid_CellClick(object? sender, DataGridViewCellEventArgs e)
+        {
+            if (_skuGrid?.CurrentRow?.Cells.Count < 1)
+            {
+                return;
+            }
+
+            string skuCode = _skuGrid.CurrentRow.Cells[0].Value?.ToString()?.Trim() ?? string.Empty;
+            if (string.IsNullOrWhiteSpace(skuCode))
+            {
+                return;
+            }
+
+            cboskucode.Text = skuCode;
+            SetComboMemberIfExists("SelectedValue", skuCode);
+        }
+
+        private void SetComboMemberIfExists(string propertyName, object value)
         {
             PropertyInfo? property = cboskucode.GetType().GetProperty(propertyName);
             if (property?.CanWrite == true)
@@ -87,6 +115,7 @@ namespace Group1project.editForm
             if (!string.IsNullOrWhiteSpace(model.SKUcode) && _skuOptions.Any(x => x.SKUcode == model.SKUcode))
             {
                 cboskucode.Text = model.SKUcode;
+                SetComboMemberIfExists("SelectedValue", model.SKUcode);
             }
         }
 
@@ -132,9 +161,7 @@ namespace Group1project.editForm
                 return textValue;
             }
 
-            var gridProperty = cboskucode.GetType().GetProperty("DataGridView");
-            DataGridView? grid = gridProperty?.GetValue(cboskucode) as DataGridView;
-            if (grid?.CurrentRow?.Cells.Count > 0 && grid.CurrentRow.Cells[0].Value is string skuCode && !string.IsNullOrWhiteSpace(skuCode))
+            if (_skuGrid?.CurrentRow?.Cells.Count > 0 && _skuGrid.CurrentRow.Cells[0].Value is string skuCode && !string.IsNullOrWhiteSpace(skuCode))
             {
                 return skuCode.Trim();
             }
