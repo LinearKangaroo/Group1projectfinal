@@ -15,6 +15,7 @@ namespace Group1project.editForm
         private readonly bool _readOnlyMode;
         private readonly int? _viewInvoiceId;
         private readonly Dictionary<int, string> _userMap = new Dictionary<int, string>();
+        private UILabel? _footerLabel;
 
         public Fsaleadd()
         {
@@ -43,6 +44,7 @@ namespace Group1project.editForm
         private void Fsaleadd_Load(object? sender, EventArgs e)
         {
             InitStaticData();
+            InitFooter();
             InitGrid();
 
             if (_readOnlyMode && _viewInvoiceId.HasValue)
@@ -55,6 +57,27 @@ namespace Group1project.editForm
             txtinvoice.Text = _saleBll.GetNextInvoiceId().ToString();
             txtinvoice.ReadOnly = true;
             uiDatePicker1.Value = DateTime.Today;
+        }
+
+
+        private void InitFooter()
+        {
+            uiDataGridViewFooter1.DataGridView = dgvinvoice;
+
+            if (_footerLabel != null)
+            {
+                return;
+            }
+
+            _footerLabel = new UILabel
+            {
+                Dock = DockStyle.Fill,
+                TextAlign = System.Drawing.ContentAlignment.MiddleLeft,
+                Padding = new Padding(10, 0, 0, 0),
+                Font = uiDataGridViewFooter1.Font
+            };
+
+            uiDataGridViewFooter1.Controls.Add(_footerLabel);
         }
 
         private void InitStaticData()
@@ -118,7 +141,13 @@ namespace Group1project.editForm
         {
             int totalItems = _invoiceItems.Count;
             decimal amount = _saleBll.SumAmount(_invoiceItems);
-            uiDataGridViewFooter1.Text = $"Items: {totalItems}    Amount: {amount:C2}";
+            string footerText = $"Items: {totalItems}    Amount: {amount:C2}";
+            //string footerText = $"Items: {totalItems}    Amount: ${amount:N2}";
+            uiDataGridViewFooter1.Text = footerText;
+            if (_footerLabel != null)
+            {
+                _footerLabel.Text = footerText;
+            }
         }
 
         private void Txtimei_KeyDown(object? sender, KeyEventArgs e)

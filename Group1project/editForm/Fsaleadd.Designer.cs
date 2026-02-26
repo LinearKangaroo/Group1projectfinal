@@ -34,6 +34,9 @@
             DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
             uiPanel1 = new Sunny.UI.UIPanel();
+            btnclear = new Sunny.UI.UISymbolButton();
+            cbouserid = new Sunny.UI.UIComboBox();
+            uiDatePicker1 = new Sunny.UI.UIDatePicker();
             btnAdd = new Sunny.UI.UISymbolButton();
             cbopayment = new Sunny.UI.UIComboBox();
             uiLabel5 = new Sunny.UI.UILabel();
@@ -44,10 +47,7 @@
             txtimei = new Sunny.UI.UITextBox();
             txtinvoice = new Sunny.UI.UITextBox();
             uiDataGridViewFooter1 = new Sunny.UI.UIDataGridViewFooter();
-            uiDatePicker1 = new Sunny.UI.UIDatePicker();
-            cbouserid = new Sunny.UI.UIComboBox();
             dgvinvoice = new Sunny.UI.UIDataGridView();
-            btnclear = new Sunny.UI.UISymbolButton();
             pnlBtm.SuspendLayout();
             uiPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvinvoice).BeginInit();
@@ -94,6 +94,57 @@
             uiPanel1.TabIndex = 2;
             uiPanel1.Text = null;
             uiPanel1.TextAlignment = ContentAlignment.MiddleCenter;
+            // 
+            // btnclear
+            // 
+            btnclear.Font = new Font("Microsoft Sans Serif", 12F);
+            btnclear.Location = new Point(478, 87);
+            btnclear.MinimumSize = new Size(1, 1);
+            btnclear.Name = "btnclear";
+            btnclear.Size = new Size(107, 34);
+            btnclear.Symbol = 61544;
+            btnclear.TabIndex = 20;
+            btnclear.Text = "Clear";
+            btnclear.TipsFont = new Font("Microsoft Sans Serif", 9F);
+            // 
+            // cbouserid
+            // 
+            cbouserid.DataSource = null;
+            cbouserid.FillColor = Color.White;
+            cbouserid.Font = new Font("Microsoft Sans Serif", 12F);
+            cbouserid.ItemHoverColor = Color.FromArgb(155, 200, 255);
+            cbouserid.ItemSelectForeColor = Color.FromArgb(235, 243, 255);
+            cbouserid.Location = new Point(721, 19);
+            cbouserid.Margin = new Padding(4, 5, 4, 5);
+            cbouserid.MinimumSize = new Size(63, 0);
+            cbouserid.Name = "cbouserid";
+            cbouserid.Padding = new Padding(0, 0, 30, 2);
+            cbouserid.Size = new Size(173, 37);
+            cbouserid.SymbolSize = 24;
+            cbouserid.TabIndex = 10;
+            cbouserid.TextAlignment = ContentAlignment.MiddleLeft;
+            cbouserid.Watermark = "";
+            // 
+            // uiDatePicker1
+            // 
+            uiDatePicker1.DateCultureInfo = new System.Globalization.CultureInfo("");
+            uiDatePicker1.FillColor = Color.White;
+            uiDatePicker1.Font = new Font("Microsoft Sans Serif", 12F);
+            uiDatePicker1.Location = new Point(380, 23);
+            uiDatePicker1.Margin = new Padding(4, 5, 4, 5);
+            uiDatePicker1.MaxLength = 10;
+            uiDatePicker1.MinimumSize = new Size(63, 0);
+            uiDatePicker1.Name = "uiDatePicker1";
+            uiDatePicker1.Padding = new Padding(0, 0, 30, 2);
+            uiDatePicker1.Size = new Size(205, 33);
+            uiDatePicker1.SymbolDropDown = 61555;
+            uiDatePicker1.SymbolNormal = 61555;
+            uiDatePicker1.SymbolSize = 24;
+            uiDatePicker1.TabIndex = 19;
+            uiDatePicker1.Text = "2026-02-26";
+            uiDatePicker1.TextAlignment = ContentAlignment.MiddleLeft;
+            uiDatePicker1.Value = new DateTime(2026, 2, 26, 1, 20, 37, 0);
+            uiDatePicker1.Watermark = "";
             // 
             // btnAdd
             // 
@@ -221,44 +272,6 @@
             uiDataGridViewFooter1.TabIndex = 4;
             uiDataGridViewFooter1.Text = "uiDataGridViewFooter1";
             // 
-            // uiDatePicker1
-            // 
-            uiDatePicker1.DateCultureInfo = new System.Globalization.CultureInfo("");
-            uiDatePicker1.FillColor = Color.White;
-            uiDatePicker1.Font = new Font("Microsoft Sans Serif", 12F);
-            uiDatePicker1.Location = new Point(380, 23);
-            uiDatePicker1.Margin = new Padding(4, 5, 4, 5);
-            uiDatePicker1.MaxLength = 10;
-            uiDatePicker1.MinimumSize = new Size(63, 0);
-            uiDatePicker1.Name = "uiDatePicker1";
-            uiDatePicker1.Padding = new Padding(0, 0, 30, 2);
-            uiDatePicker1.Size = new Size(205, 33);
-            uiDatePicker1.SymbolDropDown = 61555;
-            uiDatePicker1.SymbolNormal = 61555;
-            uiDatePicker1.SymbolSize = 24;
-            uiDatePicker1.TabIndex = 19;
-            uiDatePicker1.TextAlignment = ContentAlignment.MiddleLeft;
-            uiDatePicker1.Value = new DateTime(2026, 2, 26, 1, 20, 37, 0);
-            uiDatePicker1.Watermark = "";
-            // 
-            // cbouserid
-            // 
-            cbouserid.DataSource = null;
-            cbouserid.FillColor = Color.White;
-            cbouserid.Font = new Font("Microsoft Sans Serif", 12F);
-            cbouserid.ItemHoverColor = Color.FromArgb(155, 200, 255);
-            cbouserid.ItemSelectForeColor = Color.FromArgb(235, 243, 255);
-            cbouserid.Location = new Point(721, 19);
-            cbouserid.Margin = new Padding(4, 5, 4, 5);
-            cbouserid.MinimumSize = new Size(63, 0);
-            cbouserid.Name = "cbouserid";
-            cbouserid.Padding = new Padding(0, 0, 30, 2);
-            cbouserid.Size = new Size(173, 37);
-            cbouserid.SymbolSize = 24;
-            cbouserid.TabIndex = 10;
-            cbouserid.TextAlignment = ContentAlignment.MiddleLeft;
-            cbouserid.Watermark = "";
-            // 
             // dgvinvoice
             // 
             dataGridViewCellStyle1.BackColor = Color.FromArgb(235, 243, 255);
@@ -288,6 +301,7 @@
             dgvinvoice.GridColor = Color.FromArgb(80, 160, 255);
             dgvinvoice.Location = new Point(1, 181);
             dgvinvoice.Name = "dgvinvoice";
+            dgvinvoice.ReadOnly = true;
             dgvinvoice.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
             dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle4.BackColor = Color.FromArgb(235, 243, 255);
@@ -305,18 +319,6 @@
             dgvinvoice.Size = new Size(948, 288);
             dgvinvoice.StripeOddColor = Color.FromArgb(235, 243, 255);
             dgvinvoice.TabIndex = 5;
-            // 
-            // btnclear
-            // 
-            btnclear.Font = new Font("Microsoft Sans Serif", 12F);
-            btnclear.Location = new Point(478, 87);
-            btnclear.MinimumSize = new Size(1, 1);
-            btnclear.Name = "btnclear";
-            btnclear.Size = new Size(107, 34);
-            btnclear.Symbol = 61544;
-            btnclear.TabIndex = 20;
-            btnclear.Text = "Clear";
-            btnclear.TipsFont = new Font("Microsoft Sans Serif", 9F);
             // 
             // Fsaleadd
             // 

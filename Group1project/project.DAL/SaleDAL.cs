@@ -1,7 +1,6 @@
 ﻿using Group1project.Model;
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Data.OleDb;
 
 namespace Group1project.project.DAL
@@ -63,37 +62,42 @@ namespace Group1project.project.DAL
 
         public List<SaleInvoiceModel> GetInvoiceDetails(int invoiceId)
         {
-            const string sql = @"SELECT D.[imei],
-                                        IIF(I.[SKUcode] IS NULL OR I.[SKUcode]='', I.[statusSKUcode], I.[SKUcode]) AS [SKUcode],
-                                        P.[SKUname],
-                                        P.[retail_price] AS [unit_price]
-                                 FROM [tblsdetail] AS D
-                                 LEFT JOIN [tblimei] AS I ON D.[imei] = I.[imei]
-                                 LEFT JOIN [tblproduct] AS P ON (I.[SKUcode] = P.[SKUcode]) OR (I.[statusSKUcode] = P.[SKUcode])
-                                 WHERE D.[invoice_id] = ?
-                                 ORDER BY D.[imei]";
-
             var result = new List<SaleInvoiceModel>();
+
+            const string detailSql = @"SELECT [imei]
+                                       FROM [tblsdetail]
+                                       WHERE [invoice_id] = ?
+                                       ORDER BY [imei]";
+
             using var conn = new OleDbConnection(GetConnectionString());
-            using var cmd = new OleDbCommand(sql, conn);
-            cmd.Parameters.AddWithValue("@invoiceId", invoiceId);
             conn.Open();
 
-            using var reader = cmd.ExecuteReader();
-            if (reader == null)
+            using var detailCmd = new OleDbCommand(detailSql, conn);
+            detailCmd.Parameters.AddWithValue("@invoiceId", invoiceId);
+            using var detailReader = detailCmd.ExecuteReader();
+            if (detailReader == null)
             {
                 return result;
             }
 
-            while (reader.Read())
+            while (detailReader.Read())
             {
-                result.Add(new SaleInvoiceModel
+                if (detailReader["imei"] == DBNull.Value)
                 {
-                    imei = reader["imei"] == DBNull.Value ? string.Empty : Convert.ToString(reader["imei"]) ?? string.Empty,
-                    SKUcode = reader["SKUcode"] == DBNull.Value ? string.Empty : Convert.ToString(reader["SKUcode"]) ?? string.Empty,
-                    SKUname = reader["SKUname"] == DBNull.Value ? string.Empty : Convert.ToString(reader["SKUname"]) ?? string.Empty,
-                    unit_price = reader["unit_price"] == DBNull.Value ? 0m : Convert.ToDecimal(reader["unit_price"])
-                });
+                    continue;
+                }
+
+                string imei = Convert.ToString(detailReader["imei"])?.Trim() ?? string.Empty;
+                if (string.IsNullOrWhiteSpace(imei))
+                {
+                    continue;
+                }
+
+                SaleInvoiceModel? item = GetInvoiceItemByImei(conn, imei);
+                if (item != null)
+                {
+                    result.Add(item);
+                }
             }
 
             return result;
@@ -101,32 +105,110 @@ namespace Group1project.project.DAL
 
         public SaleInvoiceModel? GetInvoiceItemByImei(string imei)
         {
-            const string sql = @"SELECT TOP 1 I.[imei],
-                                        IIF(I.[SKUcode] IS NULL OR I.[SKUcode]='', I.[statusSKUcode], I.[SKUcode]) AS [SKUcode],
-                                        P.[SKUname],
-                                        P.[retail_price] AS [unit_price]
-                                 FROM [tblimei] AS I
-                                 LEFT JOIN [tblproduct] AS P ON (I.[SKUcode] = P.[SKUcode]) OR (I.[statusSKUcode] = P.[SKUcode])
-                                 WHERE I.[imei] = ?";
-
-            using var conn = new OleDbConnection(GetConnectionString());
-            using var cmd = new OleDbCommand(sql, conn);
-            cmd.Parameters.AddWithValue("@imei", imei.Trim());
-            conn.Open();
-
-            using var reader = cmd.ExecuteReader();
-            if (reader == null || !reader.Read())
+            if (string.IsNullOrWhiteSpace(imei))
             {
                 return null;
             }
 
+            using var conn = new OleDbConnection(GetConnectionString());
+            conn.Open();
+            return GetInvoiceItemByImei(conn, imei.Trim());
+        }
+
+        private static SaleInvoiceModel? GetInvoiceItemByImei(OleDbConnection conn, string imei)
+        {
+            const string imeiSql = @"SELECT TOP 1 *
+                                     FROM [tblimei]
+                                     WHERE [imei] = ?";
+
+            using var imeiCmd = new OleDbCommand(imeiSql, conn);
+            imeiCmd.Parameters.AddWithValue("@imei", imei);
+            using var imeiReader = imeiCmd.ExecuteReader();
+            if (imeiReader == null || !imeiReader.Read())
+            {
+                return null;
+            }
+
+            string skuCode = GetStringSafe(imeiReader, "SKUcode");
+            string statusSkuCode = FirstNonEmpty(
+                GetStringSafe(imeiReader, "statusSKUcode"),
+                GetStringSafe(imeiReader, "StatusSKUcode"),
+                GetStringSafe(imeiReader, "status_sku_code"));
+            string resolvedSkuCode = string.IsNullOrWhiteSpace(skuCode) ? statusSkuCode : skuCode;
+
+            decimal unitPrice = 0m;
+            string skuName = string.Empty;
+
+            if (!string.IsNullOrWhiteSpace(resolvedSkuCode))
+            {
+                const string productSql = @"SELECT TOP 1 [SKUname], [retail_price]
+                                           FROM [tblproduct]
+                                           WHERE [SKUcode] = ?";
+                using var productCmd = new OleDbCommand(productSql, conn);
+                productCmd.Parameters.AddWithValue("@skuCode", resolvedSkuCode);
+                using var productReader = productCmd.ExecuteReader();
+                if (productReader != null && productReader.Read())
+                {
+                    skuName = GetStringSafe(productReader, "SKUname");
+                    unitPrice = GetDecimalSafe(productReader, "retail_price");
+                }
+            }
+
             return new SaleInvoiceModel
             {
-                imei = reader["imei"] == DBNull.Value ? string.Empty : Convert.ToString(reader["imei"]) ?? string.Empty,
-                SKUcode = reader["SKUcode"] == DBNull.Value ? string.Empty : Convert.ToString(reader["SKUcode"]) ?? string.Empty,
-                SKUname = reader["SKUname"] == DBNull.Value ? string.Empty : Convert.ToString(reader["SKUname"]) ?? string.Empty,
-                unit_price = reader["unit_price"] == DBNull.Value ? 0m : Convert.ToDecimal(reader["unit_price"])
+                imei = imei,
+                SKUcode = resolvedSkuCode,
+                SKUname = skuName,
+                unit_price = unitPrice
             };
+        }
+
+        private static string FirstNonEmpty(params string[] values)
+        {
+            foreach (string value in values)
+            {
+                if (!string.IsNullOrWhiteSpace(value))
+                {
+                    return value;
+                }
+            }
+
+            return string.Empty;
+        }
+
+        private static int GetOrdinalSafe(System.Data.IDataRecord reader, string columnName)
+        {
+            for (int i = 0; i < reader.FieldCount; i++)
+            {
+                if (string.Equals(reader.GetName(i), columnName, StringComparison.OrdinalIgnoreCase))
+                {
+                    return i;
+                }
+            }
+
+            return -1;
+        }
+
+        private static string GetStringSafe(System.Data.IDataRecord reader, string columnName)
+        {
+            int ordinal = GetOrdinalSafe(reader, columnName);
+            if (ordinal < 0 || reader.IsDBNull(ordinal))
+            {
+                return string.Empty;
+            }
+
+            return Convert.ToString(reader.GetValue(ordinal)) ?? string.Empty;
+        }
+
+        private static decimal GetDecimalSafe(System.Data.IDataRecord reader, string columnName)
+        {
+            int ordinal = GetOrdinalSafe(reader, columnName);
+            if (ordinal < 0 || reader.IsDBNull(ordinal))
+            {
+                return 0m;
+            }
+
+            return Convert.ToDecimal(reader.GetValue(ordinal));
         }
 
         public bool IsImeiInStock(string imei)
