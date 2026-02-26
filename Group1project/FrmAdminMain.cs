@@ -7,6 +7,7 @@ using System.Text;
 using System.Windows.Forms;
 using Sunny.UI;
 using Group1project.Adminchildform;
+using Group1project.project.BLL;
 
 namespace Group1project
 {
@@ -38,7 +39,7 @@ namespace Group1project
             var IMEI = uiNavMenu1.CreateNode(AddPage(new FrmAIMEI(), 1004));
             uiNavMenu1.SetNodeSymbol(IMEI, 557721, 24);
 
-            var Transaction = uiNavMenu1.CreateNode(AddPage(new FrmUsale(), 1005));
+            var Transaction = uiNavMenu1.CreateNode(AddPage(new FrmAsale(), 1005));
             uiNavMenu1.SetNodeSymbol(Transaction, 361788, 24);
 
             var Analytics = uiNavMenu1.CreateNode(AddPage(new FrmAanalysis(), 1006));
@@ -61,6 +62,7 @@ namespace Group1project
 
         private void BtnLogout_Click(object sender, EventArgs e)
         {
+            CurrentUserContext.Clear();
             var loginForm = new Frmlogin();
             loginForm.Show();
             this.Close();

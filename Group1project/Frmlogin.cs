@@ -51,6 +51,8 @@ namespace Group1project
                 return;
             }
 
+            CurrentUserContext.Set(result.UserId, result.Username, result.Role);
+
             UIForm mainForm = string.Equals(result.Role, "Admin", StringComparison.OrdinalIgnoreCase)
                 ? new FrmAdminMain()
                 : new FrmUserMain();
