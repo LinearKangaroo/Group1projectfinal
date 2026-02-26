@@ -29,7 +29,7 @@ namespace Group1project.project.BLL
                 return LoginResult.Fail("所选角色与账号角色不一致。", true);
             }
 
-            return LoginResult.Success(user.Username, user.Role);
+            return LoginResult.Success(user.UserId, user.Username, user.Role);
         }
     }
 
@@ -38,11 +38,12 @@ namespace Group1project.project.BLL
         public bool IsSuccess { get; private set; }
         public bool IsRoleMismatch { get; private set; }
         public string Message { get; private set; } = string.Empty;
+        public int UserId { get; private set; }
         public string Username { get; private set; } = string.Empty;
         public string Role { get; private set; } = string.Empty;
 
-        public static LoginResult Success(string username, string role)
-            => new LoginResult { IsSuccess = true, Username = username, Role = role, Message = "登录成功。" };
+        public static LoginResult Success(int userId, string username, string role)
+            => new LoginResult { IsSuccess = true, UserId = userId, Username = username, Role = role, Message = "登录成功。" };
 
         public static LoginResult Fail(string message, bool isRoleMismatch = false)
             => new LoginResult { IsSuccess = false, Message = message, IsRoleMismatch = isRoleMismatch };

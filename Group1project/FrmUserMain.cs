@@ -1,4 +1,5 @@
 ﻿using Group1project.Adminchildform;
+using Group1project.project.BLL;
 using Sunny.UI;
 using System;
 using System.Collections.Generic;
@@ -53,6 +54,7 @@ namespace Group1project
 
         private void BtnLogout_Click(object sender, EventArgs e)
         {
+            CurrentUserContext.Clear();
             var loginForm = new Frmlogin();
             loginForm.Show();
             this.Close();
