@@ -19,6 +19,7 @@ namespace Group1project
             this.Load += FrmUserMain_Load;
             btnlogout.Click += BtnLogout_Click;
             btnsetting.Click += BtnSetting_Click;
+            this.FormClosed += FrmAdminMain_FormClosed;
         }
 
         private void FrmUserMain_Load(object sender, EventArgs e)
@@ -43,7 +44,7 @@ namespace Group1project
             uiNavMenu1.SetNodeSymbol(Transaction, 361788, 24);
 
             var Analytics = uiNavMenu1.CreateNode(AddPage(new FrmAanalysis(), 1006));
-            uiNavMenu1.SetNodeSymbol(Analytics, 57580, 24);
+            uiNavMenu1.SetNodeSymbol(Analytics, 557931, 24);
 
             uiNavMenu1.SelectPage(1001);
         }
@@ -72,6 +73,11 @@ namespace Group1project
         {
             var settingsForm = new Fsetting();
             settingsForm.ShowDialog();
+        }
+
+        private void FrmAdminMain_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

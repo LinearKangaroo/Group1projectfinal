@@ -39,6 +39,7 @@
             btnSearch = new Sunny.UI.UISymbolButton();
             uiPanel1 = new Sunny.UI.UIPanel();
             dgvproduct = new Sunny.UI.UIDataGridView();
+            cbobrand = new Sunny.UI.UIComboBox();
             uiPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvproduct).BeginInit();
             SuspendLayout();
@@ -48,14 +49,14 @@
             txtproduct.ButtonSymbol = 361453;
             txtproduct.ButtonSymbolOffset = new Point(0, 1);
             txtproduct.Font = new Font("Microsoft Sans Serif", 12F);
-            txtproduct.Location = new Point(29, 31);
+            txtproduct.Location = new Point(14, 31);
             txtproduct.Margin = new Padding(4, 5, 4, 5);
             txtproduct.MinimumSize = new Size(1, 16);
             txtproduct.Name = "txtproduct";
             txtproduct.Padding = new Padding(5);
             txtproduct.ShowButton = true;
             txtproduct.ShowText = false;
-            txtproduct.Size = new Size(349, 34);
+            txtproduct.Size = new Size(273, 34);
             txtproduct.TabIndex = 19;
             txtproduct.TextAlignment = ContentAlignment.MiddleLeft;
             txtproduct.Watermark = "SKUname";
@@ -63,10 +64,10 @@
             // btnEdit
             // 
             btnEdit.Font = new Font("Microsoft Sans Serif", 12F);
-            btnEdit.Location = new Point(687, 31);
+            btnEdit.Location = new Point(707, 31);
             btnEdit.MinimumSize = new Size(1, 1);
             btnEdit.Name = "btnEdit";
-            btnEdit.Size = new Size(121, 34);
+            btnEdit.Size = new Size(110, 34);
             btnEdit.Symbol = 61508;
             btnEdit.TabIndex = 18;
             btnEdit.Text = "Edit";
@@ -75,10 +76,10 @@
             // btnAdd
             // 
             btnAdd.Font = new Font("Microsoft Sans Serif", 12F);
-            btnAdd.Location = new Point(543, 31);
+            btnAdd.Location = new Point(591, 31);
             btnAdd.MinimumSize = new Size(1, 1);
             btnAdd.Name = "btnAdd";
-            btnAdd.Size = new Size(121, 34);
+            btnAdd.Size = new Size(110, 34);
             btnAdd.Symbol = 61543;
             btnAdd.TabIndex = 17;
             btnAdd.Text = "Add";
@@ -87,10 +88,10 @@
             // btnSearch
             // 
             btnSearch.Font = new Font("Microsoft Sans Serif", 12F);
-            btnSearch.Location = new Point(399, 31);
+            btnSearch.Location = new Point(475, 31);
             btnSearch.MinimumSize = new Size(1, 1);
             btnSearch.Name = "btnSearch";
-            btnSearch.Size = new Size(121, 34);
+            btnSearch.Size = new Size(110, 34);
             btnSearch.Symbol = 61442;
             btnSearch.TabIndex = 16;
             btnSearch.Text = "Search";
@@ -98,6 +99,7 @@
             // 
             // uiPanel1
             // 
+            uiPanel1.Controls.Add(cbobrand);
             uiPanel1.Controls.Add(txtproduct);
             uiPanel1.Controls.Add(btnEdit);
             uiPanel1.Controls.Add(btnSearch);
@@ -161,6 +163,24 @@
             dgvproduct.StripeOddColor = Color.FromArgb(235, 243, 255);
             dgvproduct.TabIndex = 21;
             // 
+            // cbobrand
+            // 
+            cbobrand.DataSource = null;
+            cbobrand.FillColor = Color.White;
+            cbobrand.Font = new Font("Microsoft Sans Serif", 12F);
+            cbobrand.ItemHoverColor = Color.FromArgb(155, 200, 255);
+            cbobrand.ItemSelectForeColor = Color.FromArgb(235, 243, 255);
+            cbobrand.Location = new Point(295, 33);
+            cbobrand.Margin = new Padding(4, 5, 4, 5);
+            cbobrand.MinimumSize = new Size(63, 0);
+            cbobrand.Name = "cbobrand";
+            cbobrand.Padding = new Padding(0, 0, 30, 2);
+            cbobrand.Size = new Size(163, 37);
+            cbobrand.SymbolSize = 24;
+            cbobrand.TabIndex = 20;
+            cbobrand.TextAlignment = ContentAlignment.MiddleLeft;
+            cbobrand.Watermark = "Brand";
+            // 
             // FrmAproduct
             // 
             AllowShowTitle = true;
@@ -186,5 +206,6 @@
         private Sunny.UI.UISymbolButton btnSearch;
         private Sunny.UI.UIPanel uiPanel1;
         private Sunny.UI.UIDataGridView dgvproduct;
+        private Sunny.UI.UIComboBox cbobrand;
     }
 }

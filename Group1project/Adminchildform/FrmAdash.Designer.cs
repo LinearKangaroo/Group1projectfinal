@@ -29,10 +29,13 @@
         private void InitializeComponent()
         {
             uiPanel1 = new Sunny.UI.UIPanel();
+            uiSymbolLabel3 = new Sunny.UI.UISymbolLabel();
             lblso = new Sunny.UI.UILabel();
             uiPanel2 = new Sunny.UI.UIPanel();
+            uiSymbolLabel1 = new Sunny.UI.UISymbolLabel();
             lblstock = new Sunny.UI.UILabel();
             uiPanel3 = new Sunny.UI.UIPanel();
+            uiSymbolLabel2 = new Sunny.UI.UISymbolLabel();
             lblDos = new Sunny.UI.UILabel();
             uiPanel4 = new Sunny.UI.UIPanel();
             lblamount = new Sunny.UI.UILabel();
@@ -40,10 +43,9 @@
             uiPanel5 = new Sunny.UI.UIPanel();
             lblhotsell = new Sunny.UI.UILabel();
             uiLabel9 = new Sunny.UI.UILabel();
-            uiSymbolLabel1 = new Sunny.UI.UISymbolLabel();
-            uiSymbolLabel2 = new Sunny.UI.UISymbolLabel();
-            uiSymbolLabel3 = new Sunny.UI.UISymbolLabel();
             uiLine1 = new Sunny.UI.UILine();
+            pctratio = new Sunny.UI.UIPieChart();
+            bctdailyso = new Sunny.UI.UIBarChart();
             uiPanel1.SuspendLayout();
             uiPanel2.SuspendLayout();
             uiPanel3.SuspendLayout();
@@ -61,10 +63,22 @@
             uiPanel1.Margin = new Padding(4, 5, 4, 5);
             uiPanel1.MinimumSize = new Size(1, 1);
             uiPanel1.Name = "uiPanel1";
-            uiPanel1.Size = new Size(281, 200);
+            uiPanel1.Size = new Size(281, 162);
             uiPanel1.TabIndex = 0;
             uiPanel1.Text = null;
             uiPanel1.TextAlignment = ContentAlignment.MiddleCenter;
+            // 
+            // uiSymbolLabel3
+            // 
+            uiSymbolLabel3.BackColor = Color.Transparent;
+            uiSymbolLabel3.Font = new Font("Microsoft Sans Serif", 12F);
+            uiSymbolLabel3.Location = new Point(19, 14);
+            uiSymbolLabel3.MinimumSize = new Size(1, 1);
+            uiSymbolLabel3.Name = "uiSymbolLabel3";
+            uiSymbolLabel3.Size = new Size(113, 38);
+            uiSymbolLabel3.Symbol = 57586;
+            uiSymbolLabel3.TabIndex = 4;
+            uiSymbolLabel3.Text = "Sellout";
             // 
             // lblso
             // 
@@ -87,10 +101,22 @@
             uiPanel2.Margin = new Padding(4, 5, 4, 5);
             uiPanel2.MinimumSize = new Size(1, 1);
             uiPanel2.Name = "uiPanel2";
-            uiPanel2.Size = new Size(281, 200);
+            uiPanel2.Size = new Size(281, 162);
             uiPanel2.TabIndex = 2;
             uiPanel2.Text = null;
             uiPanel2.TextAlignment = ContentAlignment.MiddleCenter;
+            // 
+            // uiSymbolLabel1
+            // 
+            uiSymbolLabel1.BackColor = Color.Transparent;
+            uiSymbolLabel1.Font = new Font("Microsoft Sans Serif", 12F);
+            uiSymbolLabel1.Location = new Point(10, 14);
+            uiSymbolLabel1.MinimumSize = new Size(1, 1);
+            uiSymbolLabel1.Name = "uiSymbolLabel1";
+            uiSymbolLabel1.Size = new Size(113, 38);
+            uiSymbolLabel1.Symbol = 361831;
+            uiSymbolLabel1.TabIndex = 2;
+            uiSymbolLabel1.Text = "Stock";
             // 
             // lblstock
             // 
@@ -113,10 +139,22 @@
             uiPanel3.Margin = new Padding(4, 5, 4, 5);
             uiPanel3.MinimumSize = new Size(1, 1);
             uiPanel3.Name = "uiPanel3";
-            uiPanel3.Size = new Size(281, 200);
+            uiPanel3.Size = new Size(281, 162);
             uiPanel3.TabIndex = 3;
             uiPanel3.Text = null;
             uiPanel3.TextAlignment = ContentAlignment.MiddleCenter;
+            // 
+            // uiSymbolLabel2
+            // 
+            uiSymbolLabel2.BackColor = Color.Transparent;
+            uiSymbolLabel2.Font = new Font("Microsoft Sans Serif", 12F);
+            uiSymbolLabel2.Location = new Point(26, 14);
+            uiSymbolLabel2.MinimumSize = new Size(1, 1);
+            uiSymbolLabel2.Name = "uiSymbolLabel2";
+            uiSymbolLabel2.Size = new Size(113, 38);
+            uiSymbolLabel2.Symbol = 61473;
+            uiSymbolLabel2.TabIndex = 3;
+            uiSymbolLabel2.Text = "DOS";
             // 
             // lblDos
             // 
@@ -136,7 +174,7 @@
             uiPanel4.Controls.Add(uiLabel7);
             uiPanel4.FillColor = Color.FromArgb(0, 190, 172);
             uiPanel4.Font = new Font("Microsoft Sans Serif", 12F);
-            uiPanel4.Location = new Point(26, 331);
+            uiPanel4.Location = new Point(26, 291);
             uiPanel4.Margin = new Padding(4, 5, 4, 5);
             uiPanel4.MinimumSize = new Size(1, 1);
             uiPanel4.Name = "uiPanel4";
@@ -150,11 +188,11 @@
             lblamount.BackColor = Color.Transparent;
             lblamount.Font = new Font("Microsoft Sans Serif", 12F);
             lblamount.ForeColor = Color.FromArgb(48, 48, 48);
-            lblamount.Location = new Point(204, 17);
+            lblamount.Location = new Point(92, 17);
             lblamount.Name = "lblamount";
-            lblamount.Size = new Size(207, 35);
+            lblamount.Size = new Size(176, 35);
             lblamount.TabIndex = 1;
-            lblamount.Text = "1000000$";
+            lblamount.Text = "1000000";
             // 
             // uiLabel7
             // 
@@ -165,7 +203,7 @@
             uiLabel7.Name = "uiLabel7";
             uiLabel7.Size = new Size(166, 35);
             uiLabel7.TabIndex = 0;
-            uiLabel7.Text = "Sell Amount:";
+            uiLabel7.Text = "Profit:";
             // 
             // uiPanel5
             // 
@@ -174,11 +212,11 @@
             uiPanel5.Controls.Add(uiLabel9);
             uiPanel5.FillColor = Color.FromArgb(80, 126, 164);
             uiPanel5.Font = new Font("Microsoft Sans Serif", 12F);
-            uiPanel5.Location = new Point(482, 331);
+            uiPanel5.Location = new Point(474, 291);
             uiPanel5.Margin = new Padding(4, 5, 4, 5);
             uiPanel5.MinimumSize = new Size(1, 1);
             uiPanel5.Name = "uiPanel5";
-            uiPanel5.Size = new Size(433, 60);
+            uiPanel5.Size = new Size(439, 60);
             uiPanel5.TabIndex = 3;
             uiPanel5.Text = null;
             uiPanel5.TextAlignment = ContentAlignment.MiddleCenter;
@@ -188,9 +226,9 @@
             lblhotsell.BackColor = Color.Transparent;
             lblhotsell.Font = new Font("Microsoft Sans Serif", 12F);
             lblhotsell.ForeColor = Color.FromArgb(48, 48, 48);
-            lblhotsell.Location = new Point(152, 17);
+            lblhotsell.Location = new Point(119, 17);
             lblhotsell.Name = "lblhotsell";
-            lblhotsell.Size = new Size(265, 35);
+            lblhotsell.Size = new Size(202, 35);
             lblhotsell.TabIndex = 1;
             lblhotsell.Text = "iphone17ProMax";
             // 
@@ -204,42 +242,6 @@
             uiLabel9.Size = new Size(117, 35);
             uiLabel9.TabIndex = 0;
             uiLabel9.Text = "HotSell:";
-            // 
-            // uiSymbolLabel1
-            // 
-            uiSymbolLabel1.BackColor = Color.Transparent;
-            uiSymbolLabel1.Font = new Font("Microsoft Sans Serif", 12F);
-            uiSymbolLabel1.Location = new Point(10, 14);
-            uiSymbolLabel1.MinimumSize = new Size(1, 1);
-            uiSymbolLabel1.Name = "uiSymbolLabel1";
-            uiSymbolLabel1.Size = new Size(113, 38);
-            uiSymbolLabel1.Symbol = 361831;
-            uiSymbolLabel1.TabIndex = 2;
-            uiSymbolLabel1.Text = "Stock";
-            // 
-            // uiSymbolLabel2
-            // 
-            uiSymbolLabel2.BackColor = Color.Transparent;
-            uiSymbolLabel2.Font = new Font("Microsoft Sans Serif", 12F);
-            uiSymbolLabel2.Location = new Point(26, 14);
-            uiSymbolLabel2.MinimumSize = new Size(1, 1);
-            uiSymbolLabel2.Name = "uiSymbolLabel2";
-            uiSymbolLabel2.Size = new Size(113, 38);
-            uiSymbolLabel2.Symbol = 61473;
-            uiSymbolLabel2.TabIndex = 3;
-            uiSymbolLabel2.Text = "DOS";
-            // 
-            // uiSymbolLabel3
-            // 
-            uiSymbolLabel3.BackColor = Color.Transparent;
-            uiSymbolLabel3.Font = new Font("Microsoft Sans Serif", 12F);
-            uiSymbolLabel3.Location = new Point(19, 14);
-            uiSymbolLabel3.MinimumSize = new Size(1, 1);
-            uiSymbolLabel3.Name = "uiSymbolLabel3";
-            uiSymbolLabel3.Size = new Size(113, 38);
-            uiSymbolLabel3.Symbol = 57586;
-            uiSymbolLabel3.TabIndex = 4;
-            uiSymbolLabel3.Text = "Sellout";
             // 
             // uiLine1
             // 
@@ -257,11 +259,35 @@
             uiLine1.Text = "Welcome Back";
             uiLine1.TextAlign = ContentAlignment.MiddleLeft;
             // 
+            // pctratio
+            // 
+            pctratio.Font = new Font("Microsoft Sans Serif", 12F);
+            pctratio.LegendFont = new Font("Microsoft Sans Serif", 9F);
+            pctratio.Location = new Point(580, 373);
+            pctratio.MinimumSize = new Size(1, 1);
+            pctratio.Name = "pctratio";
+            pctratio.Size = new Size(333, 220);
+            pctratio.SubFont = new Font("Microsoft Sans Serif", 9F);
+            pctratio.TabIndex = 5;
+            // 
+            // bctdailyso
+            // 
+            bctdailyso.Font = new Font("Microsoft Sans Serif", 12F);
+            bctdailyso.LegendFont = new Font("Microsoft Sans Serif", 9F);
+            bctdailyso.Location = new Point(32, 365);
+            bctdailyso.MinimumSize = new Size(1, 1);
+            bctdailyso.Name = "bctdailyso";
+            bctdailyso.Size = new Size(522, 228);
+            bctdailyso.SubFont = new Font("Microsoft Sans Serif", 9F);
+            bctdailyso.TabIndex = 6;
+            // 
             // FrmAdash
             // 
             AllowShowTitle = true;
             AutoScaleMode = AutoScaleMode.None;
-            ClientSize = new Size(949, 484);
+            ClientSize = new Size(961, 609);
+            Controls.Add(bctdailyso);
+            Controls.Add(pctratio);
             Controls.Add(uiLine1);
             Controls.Add(uiPanel5);
             Controls.Add(uiPanel4);
@@ -299,5 +325,7 @@
         private Sunny.UI.UISymbolLabel uiSymbolLabel2;
         private Sunny.UI.UISymbolLabel uiSymbolLabel3;
         private Sunny.UI.UILine uiLine1;
+        private Sunny.UI.UIPieChart pctratio;
+        private Sunny.UI.UIBarChart bctdailyso;
     }
 }

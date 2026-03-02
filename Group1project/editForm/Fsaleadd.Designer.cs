@@ -48,6 +48,10 @@
             txtinvoice = new Sunny.UI.UITextBox();
             uiDataGridViewFooter1 = new Sunny.UI.UIDataGridViewFooter();
             dgvinvoice = new Sunny.UI.UIDataGridView();
+            txtcustomer = new Sunny.UI.UITextBox();
+            txtaddress = new Sunny.UI.UITextBox();
+            uiLabel6 = new Sunny.UI.UILabel();
+            uiLabel7 = new Sunny.UI.UILabel();
             pnlBtm.SuspendLayout();
             uiPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvinvoice).BeginInit();
@@ -72,6 +76,10 @@
             // 
             // uiPanel1
             // 
+            uiPanel1.Controls.Add(uiLabel7);
+            uiPanel1.Controls.Add(uiLabel6);
+            uiPanel1.Controls.Add(txtaddress);
+            uiPanel1.Controls.Add(txtcustomer);
             uiPanel1.Controls.Add(btnclear);
             uiPanel1.Controls.Add(cbouserid);
             uiPanel1.Controls.Add(uiDatePicker1);
@@ -90,7 +98,7 @@
             uiPanel1.Margin = new Padding(4, 5, 4, 5);
             uiPanel1.MinimumSize = new Size(1, 1);
             uiPanel1.Name = "uiPanel1";
-            uiPanel1.Size = new Size(948, 146);
+            uiPanel1.Size = new Size(948, 174);
             uiPanel1.TabIndex = 2;
             uiPanel1.Text = null;
             uiPanel1.TextAlignment = ContentAlignment.MiddleCenter;
@@ -98,7 +106,7 @@
             // btnclear
             // 
             btnclear.Font = new Font("Microsoft Sans Serif", 12F);
-            btnclear.Location = new Point(478, 87);
+            btnclear.Location = new Point(478, 120);
             btnclear.MinimumSize = new Size(1, 1);
             btnclear.Name = "btnclear";
             btnclear.Size = new Size(107, 34);
@@ -149,7 +157,7 @@
             // btnAdd
             // 
             btnAdd.Font = new Font("Microsoft Sans Serif", 12F);
-            btnAdd.Location = new Point(357, 87);
+            btnAdd.Location = new Point(357, 120);
             btnAdd.MinimumSize = new Size(1, 1);
             btnAdd.Name = "btnAdd";
             btnAdd.Size = new Size(107, 34);
@@ -165,7 +173,7 @@
             cbopayment.Font = new Font("Microsoft Sans Serif", 12F);
             cbopayment.ItemHoverColor = Color.FromArgb(155, 200, 255);
             cbopayment.ItemSelectForeColor = Color.FromArgb(235, 243, 255);
-            cbopayment.Location = new Point(721, 84);
+            cbopayment.Location = new Point(721, 117);
             cbopayment.Margin = new Padding(4, 5, 4, 5);
             cbopayment.MinimumSize = new Size(63, 0);
             cbopayment.Name = "cbopayment";
@@ -181,7 +189,7 @@
             uiLabel5.BackColor = Color.Transparent;
             uiLabel5.Font = new Font("Microsoft Sans Serif", 12F);
             uiLabel5.ForeColor = Color.FromArgb(48, 48, 48);
-            uiLabel5.Location = new Point(606, 86);
+            uiLabel5.Location = new Point(606, 119);
             uiLabel5.Name = "uiLabel5";
             uiLabel5.Size = new Size(108, 28);
             uiLabel5.TabIndex = 8;
@@ -192,7 +200,7 @@
             uiLabel4.BackColor = Color.Transparent;
             uiLabel4.Font = new Font("Microsoft Sans Serif", 12F);
             uiLabel4.ForeColor = Color.FromArgb(48, 48, 48);
-            uiLabel4.Location = new Point(3, 86);
+            uiLabel4.Location = new Point(3, 119);
             uiLabel4.Name = "uiLabel4";
             uiLabel4.Size = new Size(85, 28);
             uiLabel4.TabIndex = 7;
@@ -225,7 +233,7 @@
             uiLabel1.BackColor = Color.Transparent;
             uiLabel1.Font = new Font("Microsoft Sans Serif", 12F);
             uiLabel1.ForeColor = Color.FromArgb(48, 48, 48);
-            uiLabel1.Location = new Point(3, 23);
+            uiLabel1.Location = new Point(0, 28);
             uiLabel1.Name = "uiLabel1";
             uiLabel1.Size = new Size(103, 28);
             uiLabel1.TabIndex = 4;
@@ -234,7 +242,7 @@
             // txtimei
             // 
             txtimei.Font = new Font("Microsoft Sans Serif", 12F);
-            txtimei.Location = new Point(106, 86);
+            txtimei.Location = new Point(106, 119);
             txtimei.Margin = new Padding(4, 5, 4, 5);
             txtimei.MinimumSize = new Size(1, 16);
             txtimei.Name = "txtimei";
@@ -299,7 +307,7 @@
             dgvinvoice.EnableHeadersVisualStyles = false;
             dgvinvoice.Font = new Font("Microsoft Sans Serif", 12F);
             dgvinvoice.GridColor = Color.FromArgb(80, 160, 255);
-            dgvinvoice.Location = new Point(1, 181);
+            dgvinvoice.Location = new Point(1, 209);
             dgvinvoice.Name = "dgvinvoice";
             dgvinvoice.ReadOnly = true;
             dgvinvoice.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
@@ -316,9 +324,59 @@
             dataGridViewCellStyle5.Font = new Font("Microsoft Sans Serif", 12F);
             dgvinvoice.RowsDefaultCellStyle = dataGridViewCellStyle5;
             dgvinvoice.SelectedIndex = -1;
-            dgvinvoice.Size = new Size(948, 288);
+            dgvinvoice.Size = new Size(948, 260);
             dgvinvoice.StripeOddColor = Color.FromArgb(235, 243, 255);
             dgvinvoice.TabIndex = 5;
+            // 
+            // txtcustomer
+            // 
+            txtcustomer.Font = new Font("Microsoft Sans Serif", 12F);
+            txtcustomer.Location = new Point(223, 74);
+            txtcustomer.Margin = new Padding(4, 5, 4, 5);
+            txtcustomer.MinimumSize = new Size(1, 16);
+            txtcustomer.Name = "txtcustomer";
+            txtcustomer.Padding = new Padding(5);
+            txtcustomer.ShowText = false;
+            txtcustomer.Size = new Size(241, 35);
+            txtcustomer.TabIndex = 3;
+            txtcustomer.TextAlignment = ContentAlignment.MiddleLeft;
+            txtcustomer.Watermark = "";
+            // 
+            // txtaddress
+            // 
+            txtaddress.Font = new Font("Microsoft Sans Serif", 12F);
+            txtaddress.Location = new Point(606, 72);
+            txtaddress.Margin = new Padding(4, 5, 4, 5);
+            txtaddress.MinimumSize = new Size(1, 16);
+            txtaddress.Name = "txtaddress";
+            txtaddress.Padding = new Padding(5);
+            txtaddress.ShowText = false;
+            txtaddress.Size = new Size(288, 35);
+            txtaddress.TabIndex = 3;
+            txtaddress.TextAlignment = ContentAlignment.MiddleLeft;
+            txtaddress.Watermark = "";
+            // 
+            // uiLabel6
+            // 
+            uiLabel6.BackColor = Color.Transparent;
+            uiLabel6.Font = new Font("Microsoft Sans Serif", 12F);
+            uiLabel6.ForeColor = Color.FromArgb(48, 48, 48);
+            uiLabel6.Location = new Point(482, 81);
+            uiLabel6.Name = "uiLabel6";
+            uiLabel6.Size = new Size(103, 28);
+            uiLabel6.TabIndex = 21;
+            uiLabel6.Text = "Address";
+            // 
+            // uiLabel7
+            // 
+            uiLabel7.BackColor = Color.Transparent;
+            uiLabel7.Font = new Font("Microsoft Sans Serif", 12F);
+            uiLabel7.ForeColor = Color.FromArgb(48, 48, 48);
+            uiLabel7.Location = new Point(3, 74);
+            uiLabel7.Name = "uiLabel7";
+            uiLabel7.Size = new Size(200, 28);
+            uiLabel7.TabIndex = 22;
+            uiLabel7.Text = "Customer Name";
             // 
             // Fsaleadd
             // 
@@ -356,5 +414,9 @@
         private Sunny.UI.UIDatePicker uiDatePicker1;
         private Sunny.UI.UIDataGridView dgvinvoice;
         private Sunny.UI.UISymbolButton btnclear;
+        private Sunny.UI.UILabel uiLabel7;
+        private Sunny.UI.UILabel uiLabel6;
+        private Sunny.UI.UITextBox txtaddress;
+        private Sunny.UI.UITextBox txtcustomer;
     }
 }

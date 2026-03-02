@@ -28,17 +28,22 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle11 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle12 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle13 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle14 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle15 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
             uiDatePicker1 = new Sunny.UI.UIDatePicker();
             uiDatePicker2 = new Sunny.UI.UIDatePicker();
             uiMarkLabel1 = new Sunny.UI.UIMarkLabel();
             uiMarkLabel2 = new Sunny.UI.UIMarkLabel();
             uiMarkLabel3 = new Sunny.UI.UIMarkLabel();
             uiPanel1 = new Sunny.UI.UIPanel();
+            uiComboTreeView7 = new Sunny.UI.UIComboTreeView();
+            uiMarkLabel8 = new Sunny.UI.UIMarkLabel();
+            uiComboTreeView6 = new Sunny.UI.UIComboTreeView();
+            uiMarkLabel7 = new Sunny.UI.UIMarkLabel();
+            btnSearch = new Sunny.UI.UISymbolButton();
             btnclear = new Sunny.UI.UISymbolButton();
             uiLabel1 = new Sunny.UI.UILabel();
             uiComboTreeView5 = new Sunny.UI.UIComboTreeView();
@@ -50,11 +55,6 @@
             uiMarkLabel4 = new Sunny.UI.UIMarkLabel();
             uiComboTreeView1 = new Sunny.UI.UIComboTreeView();
             uiDataGridView1 = new Sunny.UI.UIDataGridView();
-            btnSearch = new Sunny.UI.UISymbolButton();
-            uiMarkLabel7 = new Sunny.UI.UIMarkLabel();
-            uiComboTreeView6 = new Sunny.UI.UIComboTreeView();
-            uiMarkLabel8 = new Sunny.UI.UIMarkLabel();
-            uiComboTreeView7 = new Sunny.UI.UIComboTreeView();
             uiPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)uiDataGridView1).BeginInit();
             SuspendLayout();
@@ -166,6 +166,72 @@
             uiPanel1.TabIndex = 5;
             uiPanel1.Text = null;
             uiPanel1.TextAlignment = ContentAlignment.MiddleCenter;
+            // 
+            // uiComboTreeView7
+            // 
+            uiComboTreeView7.DropDownStyle = Sunny.UI.UIDropDownStyle.DropDownList;
+            uiComboTreeView7.FillColor = Color.White;
+            uiComboTreeView7.Font = new Font("Microsoft Sans Serif", 12F);
+            uiComboTreeView7.Location = new Point(473, 116);
+            uiComboTreeView7.Margin = new Padding(4, 5, 4, 5);
+            uiComboTreeView7.MinimumSize = new Size(63, 0);
+            uiComboTreeView7.Name = "uiComboTreeView7";
+            uiComboTreeView7.Padding = new Padding(0, 0, 30, 2);
+            uiComboTreeView7.Size = new Size(130, 35);
+            uiComboTreeView7.SymbolSize = 24;
+            uiComboTreeView7.TabIndex = 7;
+            uiComboTreeView7.TextAlignment = ContentAlignment.MiddleLeft;
+            uiComboTreeView7.Watermark = "";
+            // 
+            // uiMarkLabel8
+            // 
+            uiMarkLabel8.Font = new Font("Microsoft Sans Serif", 12F);
+            uiMarkLabel8.ForeColor = Color.FromArgb(48, 48, 48);
+            uiMarkLabel8.Location = new Point(332, 118);
+            uiMarkLabel8.Name = "uiMarkLabel8";
+            uiMarkLabel8.Padding = new Padding(5, 0, 0, 0);
+            uiMarkLabel8.Size = new Size(134, 32);
+            uiMarkLabel8.TabIndex = 19;
+            uiMarkLabel8.Text = "Sequence";
+            // 
+            // uiComboTreeView6
+            // 
+            uiComboTreeView6.DropDownStyle = Sunny.UI.UIDropDownStyle.DropDownList;
+            uiComboTreeView6.FillColor = Color.White;
+            uiComboTreeView6.Font = new Font("Microsoft Sans Serif", 12F);
+            uiComboTreeView6.Location = new Point(128, 115);
+            uiComboTreeView6.Margin = new Padding(4, 5, 4, 5);
+            uiComboTreeView6.MinimumSize = new Size(63, 0);
+            uiComboTreeView6.Name = "uiComboTreeView6";
+            uiComboTreeView6.Padding = new Padding(0, 0, 30, 2);
+            uiComboTreeView6.Size = new Size(182, 35);
+            uiComboTreeView6.SymbolSize = 24;
+            uiComboTreeView6.TabIndex = 7;
+            uiComboTreeView6.TextAlignment = ContentAlignment.MiddleLeft;
+            uiComboTreeView6.Watermark = "";
+            // 
+            // uiMarkLabel7
+            // 
+            uiMarkLabel7.Font = new Font("Microsoft Sans Serif", 12F);
+            uiMarkLabel7.ForeColor = Color.FromArgb(48, 48, 48);
+            uiMarkLabel7.Location = new Point(14, 118);
+            uiMarkLabel7.Name = "uiMarkLabel7";
+            uiMarkLabel7.Padding = new Padding(5, 0, 0, 0);
+            uiMarkLabel7.Size = new Size(113, 32);
+            uiMarkLabel7.TabIndex = 18;
+            uiMarkLabel7.Text = "Sort by";
+            // 
+            // btnSearch
+            // 
+            btnSearch.Font = new Font("Microsoft Sans Serif", 12F);
+            btnSearch.Location = new Point(510, 171);
+            btnSearch.MinimumSize = new Size(1, 1);
+            btnSearch.Name = "btnSearch";
+            btnSearch.Size = new Size(121, 34);
+            btnSearch.Symbol = 61442;
+            btnSearch.TabIndex = 17;
+            btnSearch.Text = "Search";
+            btnSearch.TipsFont = new Font("Microsoft Sans Serif", 9F);
             // 
             // btnclear
             // 
@@ -304,27 +370,27 @@
             // 
             // uiDataGridView1
             // 
-            dataGridViewCellStyle11.BackColor = Color.FromArgb(235, 243, 255);
-            uiDataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(235, 243, 255);
+            uiDataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             uiDataGridView1.BackgroundColor = Color.White;
             uiDataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle12.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle12.BackColor = Color.FromArgb(80, 160, 255);
-            dataGridViewCellStyle12.Font = new Font("Microsoft Sans Serif", 12F);
-            dataGridViewCellStyle12.ForeColor = Color.White;
-            dataGridViewCellStyle12.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle12.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle12.WrapMode = DataGridViewTriState.True;
-            uiDataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(80, 160, 255);
+            dataGridViewCellStyle2.Font = new Font("Microsoft Sans Serif", 12F);
+            dataGridViewCellStyle2.ForeColor = Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            uiDataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             uiDataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle13.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle13.BackColor = SystemColors.Window;
-            dataGridViewCellStyle13.Font = new Font("Microsoft Sans Serif", 12F);
-            dataGridViewCellStyle13.ForeColor = Color.FromArgb(48, 48, 48);
-            dataGridViewCellStyle13.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle13.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle13.WrapMode = DataGridViewTriState.False;
-            uiDataGridView1.DefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = SystemColors.Window;
+            dataGridViewCellStyle3.Font = new Font("Microsoft Sans Serif", 12F);
+            dataGridViewCellStyle3.ForeColor = Color.FromArgb(48, 48, 48);
+            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
+            uiDataGridView1.DefaultCellStyle = dataGridViewCellStyle3;
             uiDataGridView1.Dock = DockStyle.Bottom;
             uiDataGridView1.EnableHeadersVisualStyles = false;
             uiDataGridView1.Font = new Font("Microsoft Sans Serif", 12F);
@@ -332,88 +398,22 @@
             uiDataGridView1.Location = new Point(0, 278);
             uiDataGridView1.Name = "uiDataGridView1";
             uiDataGridView1.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle14.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle14.BackColor = Color.FromArgb(235, 243, 255);
-            dataGridViewCellStyle14.Font = new Font("Microsoft Sans Serif", 12F);
-            dataGridViewCellStyle14.ForeColor = Color.FromArgb(48, 48, 48);
-            dataGridViewCellStyle14.SelectionBackColor = Color.FromArgb(80, 160, 255);
-            dataGridViewCellStyle14.SelectionForeColor = Color.White;
-            dataGridViewCellStyle14.WrapMode = DataGridViewTriState.True;
-            uiDataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = Color.FromArgb(235, 243, 255);
+            dataGridViewCellStyle4.Font = new Font("Microsoft Sans Serif", 12F);
+            dataGridViewCellStyle4.ForeColor = Color.FromArgb(48, 48, 48);
+            dataGridViewCellStyle4.SelectionBackColor = Color.FromArgb(80, 160, 255);
+            dataGridViewCellStyle4.SelectionForeColor = Color.White;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
+            uiDataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             uiDataGridView1.RowHeadersWidth = 57;
-            dataGridViewCellStyle15.BackColor = Color.White;
-            dataGridViewCellStyle15.Font = new Font("Microsoft Sans Serif", 12F);
-            uiDataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle5.BackColor = Color.White;
+            dataGridViewCellStyle5.Font = new Font("Microsoft Sans Serif", 12F);
+            uiDataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle5;
             uiDataGridView1.SelectedIndex = -1;
             uiDataGridView1.Size = new Size(1006, 297);
             uiDataGridView1.StripeOddColor = Color.FromArgb(235, 243, 255);
             uiDataGridView1.TabIndex = 6;
-            // 
-            // btnSearch
-            // 
-            btnSearch.Font = new Font("Microsoft Sans Serif", 12F);
-            btnSearch.Location = new Point(510, 171);
-            btnSearch.MinimumSize = new Size(1, 1);
-            btnSearch.Name = "btnSearch";
-            btnSearch.Size = new Size(121, 34);
-            btnSearch.Symbol = 61442;
-            btnSearch.TabIndex = 17;
-            btnSearch.Text = "Search";
-            btnSearch.TipsFont = new Font("Microsoft Sans Serif", 9F);
-            // 
-            // uiMarkLabel7
-            // 
-            uiMarkLabel7.Font = new Font("Microsoft Sans Serif", 12F);
-            uiMarkLabel7.ForeColor = Color.FromArgb(48, 48, 48);
-            uiMarkLabel7.Location = new Point(14, 118);
-            uiMarkLabel7.Name = "uiMarkLabel7";
-            uiMarkLabel7.Padding = new Padding(5, 0, 0, 0);
-            uiMarkLabel7.Size = new Size(113, 32);
-            uiMarkLabel7.TabIndex = 18;
-            uiMarkLabel7.Text = "Sort by";
-            // 
-            // uiComboTreeView6
-            // 
-            uiComboTreeView6.DropDownStyle = Sunny.UI.UIDropDownStyle.DropDownList;
-            uiComboTreeView6.FillColor = Color.White;
-            uiComboTreeView6.Font = new Font("Microsoft Sans Serif", 12F);
-            uiComboTreeView6.Location = new Point(128, 115);
-            uiComboTreeView6.Margin = new Padding(4, 5, 4, 5);
-            uiComboTreeView6.MinimumSize = new Size(63, 0);
-            uiComboTreeView6.Name = "uiComboTreeView6";
-            uiComboTreeView6.Padding = new Padding(0, 0, 30, 2);
-            uiComboTreeView6.Size = new Size(182, 35);
-            uiComboTreeView6.SymbolSize = 24;
-            uiComboTreeView6.TabIndex = 7;
-            uiComboTreeView6.TextAlignment = ContentAlignment.MiddleLeft;
-            uiComboTreeView6.Watermark = "";
-            // 
-            // uiMarkLabel8
-            // 
-            uiMarkLabel8.Font = new Font("Microsoft Sans Serif", 12F);
-            uiMarkLabel8.ForeColor = Color.FromArgb(48, 48, 48);
-            uiMarkLabel8.Location = new Point(332, 118);
-            uiMarkLabel8.Name = "uiMarkLabel8";
-            uiMarkLabel8.Padding = new Padding(5, 0, 0, 0);
-            uiMarkLabel8.Size = new Size(134, 32);
-            uiMarkLabel8.TabIndex = 19;
-            uiMarkLabel8.Text = "Sequence";
-            // 
-            // uiComboTreeView7
-            // 
-            uiComboTreeView7.DropDownStyle = Sunny.UI.UIDropDownStyle.DropDownList;
-            uiComboTreeView7.FillColor = Color.White;
-            uiComboTreeView7.Font = new Font("Microsoft Sans Serif", 12F);
-            uiComboTreeView7.Location = new Point(473, 116);
-            uiComboTreeView7.Margin = new Padding(4, 5, 4, 5);
-            uiComboTreeView7.MinimumSize = new Size(63, 0);
-            uiComboTreeView7.Name = "uiComboTreeView7";
-            uiComboTreeView7.Padding = new Padding(0, 0, 30, 2);
-            uiComboTreeView7.Size = new Size(130, 35);
-            uiComboTreeView7.SymbolSize = 24;
-            uiComboTreeView7.TabIndex = 7;
-            uiComboTreeView7.TextAlignment = ContentAlignment.MiddleLeft;
-            uiComboTreeView7.Watermark = "";
             // 
             // FrmAanalysis
             // 
@@ -425,7 +425,7 @@
             Name = "FrmAanalysis";
             Padding = new Padding(0, 35, 0, 0);
             ShowTitle = true;
-            Symbol = 57580;
+            Symbol = 557931;
             Text = "Analysis";
             uiPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)uiDataGridView1).EndInit();

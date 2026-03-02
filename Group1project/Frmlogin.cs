@@ -4,7 +4,7 @@ using Group1project.project.BLL;
 
 namespace Group1project
 {
-    public partial class Frmlogin : UIForm
+    public partial class Frmlogin : UIForm2
     {
         private readonly LoginService _loginService = new LoginService();
 

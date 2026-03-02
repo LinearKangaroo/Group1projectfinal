@@ -34,6 +34,7 @@ namespace Group1project.Adminchildform
             btnexport.Click += BtnExport_Click;
             txtimei.ButtonClick += Txtimei_ButtonClick;
             txtimei.TextChanged += Txtimei_TextChanged;
+            txtimei.DoEnter += BtnSearch_Click;
             uiPagination1.PageChanged += UiPagination1_PageChanged;
         }
 
@@ -99,6 +100,7 @@ namespace Group1project.Adminchildform
             dgvimei.AutoGenerateColumns = true;
             dgvimei.DataSource = null;
             dgvimei.DataSource = pageData;
+            dgvimei.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
 
             if (syncPager)
             {

@@ -14,10 +14,10 @@ namespace Group1project.Adminchildform
         public FrmAdash()
         {
             InitializeComponent();
-            //LoadData();
+            LoadData();
         }
 
-        /*private void LoadData()
+        private void LoadData()
         {
             try
             {
@@ -62,6 +62,6 @@ namespace Group1project.Adminchildform
                 // optionally log exception
                 Console.WriteLine(ex.ToString());
             }
-        }*/
+        }
     }
 }

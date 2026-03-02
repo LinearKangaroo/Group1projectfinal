@@ -31,8 +31,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmAdminMain));
             uiSmoothLabel1 = new Sunny.UI.UISmoothLabel();
             uiPanel1 = new Sunny.UI.UIPanel();
-            btnlogout = new Sunny.UI.UIButton();
-            btnsetting = new Sunny.UI.UIButton();
+            btnlogout = new Sunny.UI.UISymbolButton();
+            btnsetting = new Sunny.UI.UISymbolButton();
             uiNavMenu1 = new Sunny.UI.UINavMenu();
             uiTabControl1 = new Sunny.UI.UITabControl();
             uiPanel1.SuspendLayout();
@@ -65,23 +65,29 @@
             // 
             // btnlogout
             // 
+            btnlogout.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnlogout.Cursor = Cursors.Hand;
             btnlogout.Font = new Font("Microsoft Sans Serif", 12F);
-            btnlogout.Location = new Point(990, 21);
+            btnlogout.Location = new Point(988, 20);
             btnlogout.MinimumSize = new Size(1, 1);
             btnlogout.Name = "btnlogout";
-            btnlogout.Size = new Size(126, 40);
-            btnlogout.TabIndex = 2;
+            btnlogout.Size = new Size(122, 39);
+            btnlogout.Symbol = 559834;
+            btnlogout.TabIndex = 4;
             btnlogout.Text = "Logout";
             btnlogout.TipsFont = new Font("Microsoft Sans Serif", 9F);
             // 
             // btnsetting
             // 
+            btnsetting.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnsetting.Cursor = Cursors.Hand;
             btnsetting.Font = new Font("Microsoft Sans Serif", 12F);
-            btnsetting.Location = new Point(858, 21);
+            btnsetting.Location = new Point(846, 20);
             btnsetting.MinimumSize = new Size(1, 1);
             btnsetting.Name = "btnsetting";
-            btnsetting.Size = new Size(126, 40);
-            btnsetting.TabIndex = 1;
+            btnsetting.Size = new Size(122, 39);
+            btnsetting.Symbol = 559576;
+            btnsetting.TabIndex = 3;
             btnsetting.Text = "Setting";
             btnsetting.TipsFont = new Font("Microsoft Sans Serif", 9F);
             // 
@@ -125,6 +131,7 @@
             // 
             AutoScaleMode = AutoScaleMode.None;
             ClientSize = new Size(1132, 846);
+            CloseAskString = "Are you sure you want to exit the program?";
             Controls.Add(uiTabControl1);
             Controls.Add(uiNavMenu1);
             Controls.Add(uiPanel1);
@@ -142,9 +149,9 @@
 
         private Sunny.UI.UISmoothLabel uiSmoothLabel1;
         private Sunny.UI.UIPanel uiPanel1;
-        private Sunny.UI.UIButton btnlogout;
-        private Sunny.UI.UIButton btnsetting;
         private Sunny.UI.UINavMenu uiNavMenu1;
         private Sunny.UI.UITabControl uiTabControl1;
+        private Sunny.UI.UISymbolButton btnlogout;
+        private Sunny.UI.UISymbolButton btnsetting;
     }
 }

@@ -14,8 +14,10 @@ namespace Group1project.Adminchildform
 {
     public partial class FrmAproduct : UIPage
     {
+        private const string AllBrandText = "All Brand";
         private readonly ProductBLL _productBll = new ProductBLL();
         private List<ProductModel> _allProducts = new List<ProductModel>();
+        private UIComboBox? _brandCombo;
         public FrmAproduct()
         {
             InitializeComponent();
@@ -30,13 +32,78 @@ namespace Group1project.Adminchildform
 
         private void FrmAproduct_Load(object? sender, EventArgs e)
         {
+            EnsureBrandComboBox();
             LoadProducts();
+        }
+
+        private void EnsureBrandComboBox()
+        {
+            _brandCombo = Controls.Find("cbobrand", true).FirstOrDefault() as UIComboBox;
+            if (_brandCombo == null)
+            {
+                _brandCombo = new UIComboBox
+                {
+                    Name = "cbobrand",
+                    Font = txtproduct.Font,
+                    Location = new System.Drawing.Point(19, 373),
+                    Size = new System.Drawing.Size(180, 34),
+                    DropDownStyle = UIDropDownStyle.DropDownList
+                };
+
+                Controls.Add(_brandCombo);
+                Controls.SetChildIndex(_brandCombo, 0);
+            }
+
+            _brandCombo.SelectedIndexChanged -= Cbobrand_SelectedIndexChanged;
+            _brandCombo.SelectedIndexChanged += Cbobrand_SelectedIndexChanged;
         }
 
         private void LoadProducts()
         {
             _allProducts = _productBll.GetAllProducts();
             BindGrid(_allProducts);
+            PopulateBrandFilter();
+            ApplyFilters();
+        }
+
+        private void PopulateBrandFilter()
+        {
+            if (_brandCombo == null)
+            {
+                return;
+            }
+
+            string selected = _brandCombo.Text?.Trim() ?? string.Empty;
+            List<string> brands = _allProducts
+                .Select(p => p.brand?.Trim())
+                .Where(b => !string.IsNullOrWhiteSpace(b))
+                .Distinct(StringComparer.OrdinalIgnoreCase)
+                .OrderBy(b => b)
+                .Cast<string>()
+                .ToList();
+
+            _brandCombo.Items.Clear();
+            _brandCombo.Items.Add(AllBrandText);
+            foreach (string brand in brands)
+            {
+                _brandCombo.Items.Add(brand);
+            }
+
+            int index = 0;
+            if (!string.IsNullOrWhiteSpace(selected) && !string.Equals(selected, AllBrandText, StringComparison.OrdinalIgnoreCase))
+            {
+                int found = brands.FindIndex(b => string.Equals(b, selected, StringComparison.OrdinalIgnoreCase));
+                if (found >= 0)
+                {
+                    index = found + 1;
+                }
+            }
+
+            _brandCombo.SelectedIndex = index;
+        }
+        private void Cbobrand_SelectedIndexChanged(object? sender, EventArgs e)
+        {
+            ApplyFilters();
         }
 
         private void BindGrid(List<ProductModel> products)
@@ -44,6 +111,7 @@ namespace Group1project.Adminchildform
             dgvproduct.AutoGenerateColumns = true;
             dgvproduct.DataSource = null;
             dgvproduct.DataSource = products;
+            dgvproduct.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
         }
 
         private void BtnSearch_Click(object? sender, EventArgs e)
@@ -54,30 +122,48 @@ namespace Group1project.Adminchildform
         private void Txtproduct_ButtonClick(object? sender, EventArgs e)
         {
             txtproduct.Text = string.Empty;
-            btnSearch.PerformClick();
+            if (_brandCombo != null)
+            {
+                _brandCombo.SelectedIndex = 0;
+            }
+            ApplyFilters();
         }
 
         private void Txtproduct_TextChanged(object? sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtproduct.Text))
-            {
-                LoadProducts();
-            }
+            ApplyFilters();
         }
 
         private void SearchProducts()
         {
+            ApplyFilters(showTip: true);
+        }
+
+        private void ApplyFilters(bool showTip = false)
+        {
+            IEnumerable<ProductModel> filtered = _allProducts;
+
             string keyword = txtproduct.Text?.Trim() ?? string.Empty;
-            if (string.IsNullOrWhiteSpace(keyword))
+            if (!string.IsNullOrWhiteSpace(keyword))
             {
-                LoadProducts();
-                return;
+                filtered = filtered.Where(p => !string.IsNullOrWhiteSpace(p.SKUname)
+                                            && p.SKUname.Contains(keyword, StringComparison.OrdinalIgnoreCase));
             }
 
-            _allProducts = _productBll.GetAllProducts();
-            List<ProductModel> filteredProducts = _productBll.SearchBySKUName(_allProducts, keyword);
-            BindGrid(filteredProducts);
-            UIMessageTip.Show($"Found {filteredProducts.Count} product(s).");
+            string selectedBrand = _brandCombo?.Text?.Trim() ?? string.Empty;
+            if (!string.IsNullOrWhiteSpace(selectedBrand)
+                && !string.Equals(selectedBrand, AllBrandText, StringComparison.OrdinalIgnoreCase))
+            {
+                filtered = filtered.Where(p => string.Equals(p.brand?.Trim(), selectedBrand, StringComparison.OrdinalIgnoreCase));
+            }
+
+            List<ProductModel> result = filtered.ToList();
+            BindGrid(result);
+
+            if (showTip)
+            {
+                UIMessageTip.Show($"Found {result.Count} product(s).");
+            }
         }
 
         private void BtnAdd_Click(object? sender, EventArgs e)

@@ -13,7 +13,7 @@ namespace Group1project.project.DAL
             using var conn = new OleDbConnection(GetConnectionString());
             conn.Open();
 
-            string sql = @"SELECT S.[invoice_id], S.[sell_date], S.[userId], S.[amount], S.[payment_type], U.[username]
+            string sql = @"SELECT S.[invoice_id], S.[sell_date], S.[userId], U.[username], S.[amount], S.[payment_type], S.[customer], S.[address]
                            FROM [tblsales] AS S
                            LEFT JOIN [tbluser] AS U ON S.[userId] = U.[userId]
                            WHERE S.[sell_date] >= ? AND S.[sell_date] < ?";
@@ -53,7 +53,9 @@ namespace Group1project.project.DAL
                     userId = reader["userId"] == DBNull.Value ? 0 : Convert.ToInt32(reader["userId"]),
                     amount = reader["amount"] == DBNull.Value ? 0m : Convert.ToDecimal(reader["amount"]),
                     payment_type = reader["payment_type"] == DBNull.Value ? string.Empty : Convert.ToString(reader["payment_type"]) ?? string.Empty,
-                    username = reader["username"] == DBNull.Value ? string.Empty : Convert.ToString(reader["username"]) ?? string.Empty
+                    username = reader["username"] == DBNull.Value ? string.Empty : Convert.ToString(reader["username"]) ?? string.Empty,
+                    customer = reader["customer"] == DBNull.Value ? string.Empty : Convert.ToString(reader["customer"]) ?? string.Empty,
+                    address = reader["address"] == DBNull.Value ? string.Empty : Convert.ToString(reader["address"]) ?? string.Empty
                 });
             }
 
@@ -249,7 +251,7 @@ namespace Group1project.project.DAL
             return max + 1;
         }
 
-        public bool SaveSale(int invoiceId, DateTime sellDate, int userId, string paymentType, List<SaleInvoiceModel> items)
+        public bool SaveSale(int invoiceId, DateTime sellDate, int userId, string paymentType, string customer, string address, List<SaleInvoiceModel> items)
         {
             if (items.Count == 0)
             {
@@ -268,8 +270,8 @@ namespace Group1project.project.DAL
 
             try
             {
-                const string insertSaleSql = @"INSERT INTO [tblsales] ([invoice_id], [sell_date], [userId], [amount], [payment_type])
-                                              VALUES (?,?,?,?,?)";
+                const string insertSaleSql = @"INSERT INTO [tblsales] ([invoice_id], [sell_date], [userId], [amount], [payment_type], [customer], [address])
+                                              VALUES (?,?,?,?,?,?,?)";
                 using (var saleCmd = new OleDbCommand(insertSaleSql, conn, trans))
                 {
                     saleCmd.Parameters.AddWithValue("@invoice_id", invoiceId);
@@ -277,6 +279,8 @@ namespace Group1project.project.DAL
                     saleCmd.Parameters.AddWithValue("@userId", userId);
                     saleCmd.Parameters.AddWithValue("@amount", amount);
                     saleCmd.Parameters.AddWithValue("@payment_type", paymentType?.Trim() ?? string.Empty);
+                    saleCmd.Parameters.AddWithValue("@customer", customer);
+                    saleCmd.Parameters.AddWithValue("@address", address);
                     saleCmd.ExecuteNonQuery();
                 }
 

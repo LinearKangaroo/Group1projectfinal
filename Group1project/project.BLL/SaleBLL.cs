@@ -40,14 +40,14 @@ namespace Group1project.project.BLL
 
         public int GetNextInvoiceId() => _saleDal.GetNextInvoiceId();
 
-        public bool SaveSale(int invoiceId, DateTime sellDate, int userId, string paymentType, List<SaleInvoiceModel> items)
+        public bool SaveSale(int invoiceId, DateTime sellDate, int userId, string paymentType, string customer, string address, List<SaleInvoiceModel> items)
         {
             if (invoiceId <= 0 || userId <= 0 || string.IsNullOrWhiteSpace(paymentType) || items.Count == 0)
             {
                 return false;
             }
 
-            return _saleDal.SaveSale(invoiceId, sellDate, userId, paymentType.Trim(), items);
+            return _saleDal.SaveSale(invoiceId, sellDate, userId, paymentType.Trim(), customer, address, items);
         }
 
         public decimal SumAmount(List<SaleInvoiceModel> source)

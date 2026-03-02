@@ -141,8 +141,8 @@ namespace Group1project.editForm
         {
             int totalItems = _invoiceItems.Count;
             decimal amount = _saleBll.SumAmount(_invoiceItems);
-            string footerText = $"Items: {totalItems}    Amount: {amount:C2}";
-            //string footerText = $"Items: {totalItems}    Amount: ${amount:N2}";
+            //string footerText = $"Items: {totalItems}    Amount: {amount:C2}";
+            string footerText = $"Items: {totalItems}    Amount: {amount:N2}Ks";
             uiDataGridViewFooter1.Text = footerText;
             if (_footerLabel != null)
             {
@@ -242,13 +242,16 @@ namespace Group1project.editForm
                 return;
             }
 
+            string customer = txtcustomer.Text?.Trim() ?? string.Empty;
+            string address = txtaddress.Text?.Trim() ?? string.Empty;
+
             if (_invoiceItems.Count == 0)
             {
                 UIMessageBox.ShowWarning("Please add at least one invoice item.");
                 return;
             }
 
-            bool ok = _saleBll.SaveSale(invoiceId, uiDatePicker1.Value, userId, paymentType, _invoiceItems);
+            bool ok = _saleBll.SaveSale(invoiceId, uiDatePicker1.Value, userId, paymentType, customer, address, _invoiceItems);
             if (!ok)
             {
                 UIMessageBox.ShowError("Failed to save sale.");
@@ -276,6 +279,8 @@ namespace Group1project.editForm
                 uiDatePicker1.Value = header.sell_date;
                 cbopayment.Text = header.payment_type;
                 cbouserid.Text = $"{header.userId} - {header.username}";
+                txtcustomer.Text = header.customer;
+                txtaddress.Text = header.address;
             }
 
             RefreshGrid();
@@ -288,6 +293,8 @@ namespace Group1project.editForm
             cbouserid.Enabled = false;
             cbopayment.Enabled = false;
             uiDatePicker1.Enabled = false;
+            txtcustomer.Enabled = false;
+            txtaddress.Enabled = false;
             btnAdd.Enabled = false;
             btnclear.Enabled = false;
             btnOK.Enabled = false;

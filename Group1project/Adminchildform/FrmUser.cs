@@ -27,6 +27,7 @@ namespace Group1project.Adminchildform
             btnEdit.Click += BtnEdit_Click;
             txtuser.ButtonClick += Txtuser_ButtonClick;
             txtuser.TextChanged += Txtuser_TextChanged;
+            txtuser.DoEnter += BtnSearch_Click;
         }
 
         private void FrmUser_Load(object? sender, EventArgs e)
@@ -45,6 +46,8 @@ namespace Group1project.Adminchildform
             dgvuser.AutoGenerateColumns = true;
             dgvuser.DataSource = null;
             dgvuser.DataSource = users;
+            dgvuser.Columns["password"].Visible = false;
+            dgvuser.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
         }
 
         private void BtnSearch_Click(object? sender, EventArgs e)
