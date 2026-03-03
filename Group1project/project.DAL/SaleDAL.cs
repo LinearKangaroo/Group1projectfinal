@@ -2,11 +2,13 @@
 using System;
 using System.Collections.Generic;
 using System.Data.OleDb;
+using System.Data;
 
 namespace Group1project.project.DAL
 {
     public class SaleDAL
     {
+
         public List<SalehistoryModel> GetSaleHistory(DateTime startDate, DateTime endDate, string invoiceKeyword, string username)
         {
             var result = new List<SalehistoryModel>();
@@ -66,7 +68,7 @@ namespace Group1project.project.DAL
         {
             var result = new List<SaleInvoiceModel>();
 
-            const string detailSql = @"SELECT [imei]
+            const string detailSql = @"SELECT *
                                        FROM [tblsdetail]
                                        WHERE [invoice_id] = ?
                                        ORDER BY [imei]";
@@ -98,6 +100,15 @@ namespace Group1project.project.DAL
                 SaleInvoiceModel? item = GetInvoiceItemByImei(conn, imei);
                 if (item != null)
                 {
+                    if (GetOrdinalSafe(detailReader, "unit_price") >= 0)
+                    {
+                        decimal detailUnitPrice = GetDecimalSafe(detailReader, "unit_price");
+                        if (detailUnitPrice > 0)
+                        {
+                            item.unit_price = detailUnitPrice;
+                        }
+                    }
+
                     result.Add(item);
                 }
             }
@@ -286,11 +297,12 @@ namespace Group1project.project.DAL
 
                 foreach (SaleInvoiceModel item in items)
                 {
-                    const string insertDetailSql = "INSERT INTO [tblsdetail] ([invoice_id], [imei]) VALUES (?,?)";
+                    const string insertDetailSql = "INSERT INTO [tblsdetail] ([invoice_id], [imei], [unit_price]) VALUES (?,?,?)";
                     using (var detailCmd = new OleDbCommand(insertDetailSql, conn, trans))
                     {
                         detailCmd.Parameters.AddWithValue("@invoice_id", invoiceId);
                         detailCmd.Parameters.AddWithValue("@imei", item.imei);
+                        detailCmd.Parameters.AddWithValue("@unit_price", item.unit_price);
                         detailCmd.ExecuteNonQuery();
                     }
 
@@ -308,6 +320,146 @@ namespace Group1project.project.DAL
                 trans.Rollback();
                 return false;
             }
+        }
+
+        public int GetTodaySalesQuantity()
+        {
+            const string sql = @"SELECT COUNT(*)
+                                 FROM [tblsdetail] AS D
+                                 INNER JOIN [tblsales] AS S ON D.[invoice_id] = S.[invoice_id]
+                                 WHERE DateValue(S.[sell_date]) = Date()";
+
+            using var conn = new OleDbConnection(GetConnectionString());
+            using var cmd = new OleDbCommand(sql, conn);
+            conn.Open();
+
+            object? result = cmd.ExecuteScalar();
+            return result == null || result == DBNull.Value ? 0 : Convert.ToInt32(result);
+        }
+
+        public decimal GetTodaySalesProfit()
+        {
+            const string sql = @"SELECT [unit_price], [purchase_price]
+                                 FROM [Qtodaysale]";
+
+            using var conn = new OleDbConnection(GetConnectionString());
+            using var cmd = new OleDbCommand(sql, conn);
+            conn.Open();
+
+            decimal profit = 0m;
+            using var reader = cmd.ExecuteReader();
+            if (reader == null)
+            {
+                return 0m;
+            }
+
+            while (reader.Read())
+            {
+                decimal retail = GetDecimalSafe(reader, "unit_price");
+                decimal purchase = GetDecimalSafe(reader, "purchase_price");
+                profit += retail - purchase;
+            }
+
+            return profit;
+        }
+
+        public string GetTodayHotSellSpuName()
+        {
+            const string sql = @"SELECT TOP 1 
+                                    SPUname, 
+                                    COUNT(*) AS saleCount
+                                FROM 
+                                    Qtodaysale
+                                WHERE 
+                                    SPUname IS NOT NULL
+                                GROUP BY 
+                                    SPUname
+                                ORDER BY 
+                                    COUNT(*) DESC";
+
+            using var conn = new OleDbConnection(GetConnectionString());
+            using var cmd = new OleDbCommand(sql, conn);
+            conn.Open();
+
+            using var reader = cmd.ExecuteReader();
+            if (reader == null || !reader.Read())
+            {
+                return string.Empty;
+            }
+
+            return GetStringSafe(reader, "SPUname");
+        }
+
+        public List<DailySalesPointModel> GetRecent7DaySales()
+        {
+            const string sql = @"SELECT DateValue(S.[sell_date]) AS SellDay, COUNT(*) AS Qty
+                                 FROM [tblsdetail] AS D
+                                 INNER JOIN [tblsales] AS S ON D.[invoice_id] = S.[invoice_id]
+                                 WHERE DateValue(S.[sell_date]) >= Date()-6 AND DateValue(S.[sell_date]) <= Date()
+                                 GROUP BY DateValue(S.[sell_date])";
+
+            DateTime startDate = DateTime.Today.AddDays(-6);
+            var resultMap = new Dictionary<DateTime, int>();
+
+            using var conn = new OleDbConnection(GetConnectionString());
+            using var cmd = new OleDbCommand(sql, conn);
+            conn.Open();
+
+            using (var reader = cmd.ExecuteReader())
+            {
+                if (reader != null)
+                {
+                    while (reader.Read())
+                    {
+                        DateTime date = Convert.ToDateTime(reader[0]).Date;
+                        int qty = reader[1] == DBNull.Value ? 0 : Convert.ToInt32(reader[1]);
+                        resultMap[date] = qty;
+                    }
+                }
+            }
+
+            var points = new List<DailySalesPointModel>();
+            for (int i = 0; i < 7; i++)
+            {
+                DateTime date = startDate.AddDays(i).Date;
+                points.Add(new DailySalesPointModel
+                {
+                    Date = date,
+                    Quantity = resultMap.TryGetValue(date, out int qty) ? qty : 0
+                });
+            }
+
+            return points;
+        }
+
+        public List<BrandSalesRatioModel> GetTodayBrandSalesRatios()
+        {
+            const string sql = @"SELECT [brand], COUNT(*) AS Qty
+                                 FROM [Qtodaysale]
+                                 GROUP BY [brand]";
+
+            using var conn = new OleDbConnection(GetConnectionString());
+            using var cmd = new OleDbCommand(sql, conn);
+            conn.Open();
+
+            var ratios = new List<BrandSalesRatioModel>();
+            using var reader = cmd.ExecuteReader();
+            if (reader == null)
+            {
+                return ratios;
+            }
+
+            while (reader.Read())
+            {
+                string brand = GetStringSafe(reader, "brand");
+                ratios.Add(new BrandSalesRatioModel
+                {
+                    Brand = string.IsNullOrWhiteSpace(brand) ? "Unknown" : brand,
+                    Quantity = reader[1] == DBNull.Value ? 0 : Convert.ToInt32(reader[1])
+                });
+            }
+
+            return ratios;
         }
 
         private static string GetConnectionString()

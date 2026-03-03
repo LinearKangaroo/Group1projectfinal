@@ -192,7 +192,6 @@
             lblamount.Name = "lblamount";
             lblamount.Size = new Size(176, 35);
             lblamount.TabIndex = 1;
-            lblamount.Text = "1000000";
             // 
             // uiLabel7
             // 
@@ -230,7 +229,6 @@
             lblhotsell.Name = "lblhotsell";
             lblhotsell.Size = new Size(202, 35);
             lblhotsell.TabIndex = 1;
-            lblhotsell.Text = "iphone17ProMax";
             // 
             // uiLabel9
             // 
@@ -266,7 +264,7 @@
             pctratio.Location = new Point(580, 373);
             pctratio.MinimumSize = new Size(1, 1);
             pctratio.Name = "pctratio";
-            pctratio.Size = new Size(333, 220);
+            pctratio.Size = new Size(333, 294);
             pctratio.SubFont = new Font("Microsoft Sans Serif", 9F);
             pctratio.TabIndex = 5;
             // 
@@ -277,7 +275,7 @@
             bctdailyso.Location = new Point(32, 365);
             bctdailyso.MinimumSize = new Size(1, 1);
             bctdailyso.Name = "bctdailyso";
-            bctdailyso.Size = new Size(522, 228);
+            bctdailyso.Size = new Size(522, 302);
             bctdailyso.SubFont = new Font("Microsoft Sans Serif", 9F);
             bctdailyso.TabIndex = 6;
             // 
@@ -285,7 +283,7 @@
             // 
             AllowShowTitle = true;
             AutoScaleMode = AutoScaleMode.None;
-            ClientSize = new Size(961, 609);
+            ClientSize = new Size(961, 686);
             Controls.Add(bctdailyso);
             Controls.Add(pctratio);
             Controls.Add(uiLine1);

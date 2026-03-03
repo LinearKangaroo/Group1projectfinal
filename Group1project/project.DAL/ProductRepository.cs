@@ -11,9 +11,7 @@ namespace Group1project.project.DAL
         {
             using var conn = DBHelper.GetConnection();
             conn.Open();
-            // Stock is inferred from tblimei rows where imei status indicates available (assuming status null or 0 means available)
-            // Adjust condition if your status uses a specific value for sold.
-            var sql = "SELECT COUNT(*) FROM tblimei WHERE Nz([status], 0) = 0";
+            var sql = "SELECT SUM(stockQTY) FROM QstockQTY";
             var res = conn.ExecuteScalar(sql);
             return res == null || res == System.DBNull.Value ? 0 : System.Convert.ToInt32(res);
         }
