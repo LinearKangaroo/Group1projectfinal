@@ -3,6 +3,7 @@ using Group1project.project.BLL;
 using Sunny.UI;
 using System;
 using System.Collections.Generic;
+using System.Drawing.Printing;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -16,6 +17,8 @@ namespace Group1project.editForm
         private readonly int? _viewInvoiceId;
         private readonly Dictionary<int, string> _userMap = new Dictionary<int, string>();
         private UILabel? _footerLabel;
+        private readonly PrintDocument _invoicePrintDocument = new PrintDocument();
+        private int _printItemIndex;
 
         public Fsaleadd()
         {
@@ -39,6 +42,7 @@ namespace Group1project.editForm
             btnclear.Click += Btnclear_Click;
             txtimei.KeyDown += Txtimei_KeyDown;
             btnOK.Click += BtnOK_Click;
+            _invoicePrintDocument.PrintPage += InvoicePrintDocument_PrintPage;
         }
 
         private void Fsaleadd_Load(object? sender, EventArgs e)
@@ -84,6 +88,7 @@ namespace Group1project.editForm
         {
             cbopayment.Items.Clear();
             cbopayment.Items.Add("Cash");
+            cbopayment.Items.Add("Credit");
             cbopayment.Items.Add("Card");
             cbopayment.Items.Add("Transfer");
             cbopayment.SelectedIndex = 0;
@@ -242,8 +247,8 @@ namespace Group1project.editForm
                 return;
             }
 
-            string customer = txtcustomer.Text?.Trim() ?? string.Empty;
-            string address = txtaddress.Text?.Trim() ?? string.Empty;
+            //string customer = txtcustomer.Text?.Trim() ?? string.Empty;
+            //string address = txtaddress.Text?.Trim() ?? string.Empty;
 
             if (_invoiceItems.Count == 0)
             {
@@ -251,16 +256,97 @@ namespace Group1project.editForm
                 return;
             }
 
-            bool ok = _saleBll.SaveSale(invoiceId, uiDatePicker1.Value, userId, paymentType, customer, address, _invoiceItems);
+            bool ok = _saleBll.SaveSale(
+                invoiceId,
+                uiDatePicker1.Value,
+                userId,
+                paymentType,
+                txtcustomer.Text?.Trim() ?? string.Empty,
+                txtaddress.Text?.Trim() ?? string.Empty,
+                _invoiceItems);
             if (!ok)
             {
                 UIMessageBox.ShowError("Failed to save sale.");
                 return;
             }
 
-            UIMessageTip.ShowOk("Sale saved successfully.");
+            try
+            {
+                PrintInvoice();
+            }
+            catch (Exception ex)
+            {
+                UIMessageBox.ShowWarning($"Sale saved, but print failed: {ex.Message}");
+            }
+
             DialogResult = DialogResult.OK;
             Close();
+        }
+
+        private void PrintInvoice()
+        {
+            _printItemIndex = 0;
+            _invoicePrintDocument.DocumentName = $"Invoice-{txtinvoice.Text}";
+            _invoicePrintDocument.Print();
+        }
+
+        private void InvoicePrintDocument_PrintPage(object? sender, PrintPageEventArgs e)
+        {
+            using Font titleFont = new Font("Arial", 14, FontStyle.Bold);
+            using Font bodyFont = new Font("Arial", 10, FontStyle.Regular);
+            float y = e.MarginBounds.Top;
+            float left = e.MarginBounds.Left;
+            float right = e.MarginBounds.Right;
+            float lineHeight = bodyFont.GetHeight(e.Graphics) + 6;
+
+            e.Graphics.DrawString("SALES INVOICE", titleFont, Brushes.Black, left, y);
+            y += lineHeight + 10;
+            e.Graphics.DrawString($"Invoice: {txtinvoice.Text}", bodyFont, Brushes.Black, left, y);
+            y += lineHeight;
+            e.Graphics.DrawString($"Date: {uiDatePicker1.Value:yyyy-MM-dd}", bodyFont, Brushes.Black, left, y);
+            y += lineHeight;
+            e.Graphics.DrawString($"Sales: {cbouserid.Text}", bodyFont, Brushes.Black, left, y);
+            y += lineHeight;
+            e.Graphics.DrawString($"Payment: {cbopayment.Text}", bodyFont, Brushes.Black, left, y);
+            y += lineHeight;
+            e.Graphics.DrawString($"Customer: {txtcustomer.Text}", bodyFont, Brushes.Black, left, y);
+            y += lineHeight;
+            e.Graphics.DrawString($"Address: {txtaddress.Text}", bodyFont, Brushes.Black, left, y);
+            y += lineHeight + 8;
+
+            e.Graphics.DrawString("IMEI", bodyFont, Brushes.Black, left, y);
+            e.Graphics.DrawString("Product", bodyFont, Brushes.Black, left + 190, y);
+            e.Graphics.DrawString("Price", bodyFont, Brushes.Black, right - 120, y);
+            y += lineHeight;
+            e.Graphics.DrawLine(Pens.Black, left, y, right, y);
+            y += 6;
+
+            while (_printItemIndex < _invoiceItems.Count)
+            {
+                SaleInvoiceModel item = _invoiceItems[_printItemIndex];
+
+                if (y + lineHeight > e.MarginBounds.Bottom - 40)
+                {
+                    e.HasMorePages = true;
+                    return;
+                }
+
+                e.Graphics.DrawString(item.imei ?? string.Empty, bodyFont, Brushes.Black, left, y);
+                e.Graphics.DrawString(item.SKUname ?? string.Empty, bodyFont, Brushes.Black, left + 190, y);
+                e.Graphics.DrawString(item.unit_price.ToString("0.00"), bodyFont, Brushes.Black, right - 120, y);
+
+                y += lineHeight;
+                _printItemIndex++;
+            }
+
+            y += 10;
+            e.Graphics.DrawLine(Pens.Black, left, y, right, y);
+            y += lineHeight;
+            decimal totalAmount = _saleBll.SumAmount(_invoiceItems);
+            e.Graphics.DrawString($"Total items: {_invoiceItems.Count}", bodyFont, Brushes.Black, left, y);
+            e.Graphics.DrawString($"Total amount: {totalAmount:0.00}", bodyFont, Brushes.Black, right - 180, y);
+
+            e.HasMorePages = false;
         }
 
         private void LoadReadOnlyInvoice(int invoiceId)
@@ -293,8 +379,8 @@ namespace Group1project.editForm
             cbouserid.Enabled = false;
             cbopayment.Enabled = false;
             uiDatePicker1.Enabled = false;
-            txtcustomer.Enabled = false;
-            txtaddress.Enabled = false;
+            txtcustomer.ReadOnly = true;
+            txtaddress.ReadOnly = true;
             btnAdd.Enabled = false;
             btnclear.Enabled = false;
             btnOK.Enabled = false;

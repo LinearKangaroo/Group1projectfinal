@@ -19,6 +19,7 @@ namespace Group1project.Adminchildform
             LoadData();
         }
 
+
         private void LoadData()
         {
             var salesSvc = new project.BLL.SalesService();
@@ -76,59 +77,72 @@ namespace Group1project.Adminchildform
 
         private void BindDailySalesChart(List<DailySalesPointModel> series)
         {
-            string[] labels = series.Select(x => x.Date.ToString("MM-dd")).ToArray();
-            double[] values = series.Select(x => (double)x.Quantity).ToArray();
+            // 1. 创建 Option
+            UIBarOption option = new UIBarOption();
+            option.Title = new UITitle { Text = "Recent 7days Sellout" };
 
-            dynamic chart = bctdailyso;
-            chart.Clear();
+            option.YAxis.AxisLabel.DecimalPlaces = 0; // 设置坐标轴标签小数位为 0
 
-            // 直接用 SunnyUI API（先走 SetData，再回退 AddSeries+SetCategories）
-            try
+            // 2. 创建 Series (注意是 UIBarSeries)
+            var barSeries = new UIBarSeries();
+            barSeries.Name = "Sellout";
+
+            // 3. 填充数据
+            foreach (var item in series)
             {
-                chart.SetData("销量", labels, values);
-            }
-            catch
-            {
-                chart.AddSeries("销量", values);
-                chart.SetCategories(labels);
+                // 添加 X 轴标签
+                option.XAxis.Data.Add(item.Date.ToString("MM-dd"));
+                // 添加 Y 轴数值
+                barSeries.AddData((int)item.Quantity);
             }
 
-            chart.Refresh();
+            // 4. 将 Series 添加到 Option
+            option.Series.Add(barSeries);
+
+            // 5. 设置并刷新
+            bctdailyso.SetOption(option);
         }
 
         private void BindBrandRatioChart(List<BrandSalesRatioModel> ratios)
         {
-            dynamic chart = pctratio;
-            chart.Clear();
+            // 1. 创建 Option
+            UIPieOption option = new UIPieOption();
+            option.Title = new UITitle { Text = "Today Sellout Ratio", Left = UILeftAlignment.Center };
+            option.ToolTip.Visible = true;
 
-            string[] names;
-            double[] values;
+            // --- 添加图例 (Legend) 配置 ---
+            option.Legend = new UILegend();
+            option.Legend.Orient = UIOrient.Vertical;   // 垂直排列
+            option.Legend.Left = UILeftAlignment.Left;  // 靠左显示
+            option.Legend.Top = UITopAlignment.Top;     // 靠上显示
 
-            if (ratios.Count == 0)
+            option.ToolTip.Visible = true;
+
+            // 2. 创建 Series (注意是 UIPieSeries)
+            var pieSeries = new UIPieSeries();
+            pieSeries.Name = "Ratio";
+            pieSeries.Radius = 70;             // 调整圆环大小以留出图例空间
+            pieSeries.Center = new UICenter(60, 50); // 将圆心稍向右移动
+
+            if (ratios == null || ratios.Count == 0)
             {
-                names = new[] { "无销售" };
-                values = new[] { 1d };
+                string name = "No sell";
+                pieSeries.AddData(name, 1);
+                option.Legend.AddData(name);   // 图例必须手动添加对应的数据名称
             }
             else
             {
-                names = ratios.Select(x => x.Brand).ToArray();
-                values = ratios.Select(x => (double)x.Quantity).ToArray();
-            }
-
-            // 直接用 SunnyUI API（先走 SetData，再回退 AddData）
-            try
-            {
-                chart.SetData(names, values);
-            }
-            catch
-            {
-                for (int i = 0; i < names.Length && i < values.Length; i++)
+                foreach (var item in ratios)
                 {
-                    chart.AddData(names[i], values[i]);
+                    string brandName = item.Brand ?? "Unknown";
+                    pieSeries.AddData(brandName, (double)item.Quantity);
+                    option.Legend.AddData(brandName); // 将品牌名加入图例列表
                 }
             }
 
-            chart.Refresh();
+            option.Series.Clear();
+            option.Series.Add(pieSeries);
+            pctratio.SetOption(option);
         }
     }
 }

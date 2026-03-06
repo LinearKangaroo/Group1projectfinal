@@ -290,8 +290,8 @@ namespace Group1project.project.DAL
                     saleCmd.Parameters.AddWithValue("@userId", userId);
                     saleCmd.Parameters.AddWithValue("@amount", amount);
                     saleCmd.Parameters.AddWithValue("@payment_type", paymentType?.Trim() ?? string.Empty);
-                    saleCmd.Parameters.AddWithValue("@customer", customer);
-                    saleCmd.Parameters.AddWithValue("@address", address);
+                    saleCmd.Parameters.AddWithValue("@customer", customer?.Trim() ?? string.Empty);
+                    saleCmd.Parameters.AddWithValue("@address", address?.Trim() ?? string.Empty);
                     saleCmd.ExecuteNonQuery();
                 }
 
