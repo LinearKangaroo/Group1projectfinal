@@ -10,23 +10,23 @@ namespace Group1project.project.BLL
         {
             if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
             {
-                return LoginResult.Fail("用户名和密码不能为空。");
+                return LoginResult.Fail("The username and password cannot be empty.");
             }
 
             if (string.IsNullOrWhiteSpace(selectedRole))
             {
-                return LoginResult.Fail("请选择角色。", true);
+                return LoginResult.Fail("Please select your role.", true);
             }
 
             var user = _userRepository.GetActiveUser(username.Trim(), password.Trim());
             if (user is null)
             {
-                return LoginResult.Fail("账号/密码错误，或账号未激活。");
+                return LoginResult.Fail("Username or password is incorrect, or the account is not activated.");
             }
 
             if (!string.Equals(user.Role?.Trim(), selectedRole.Trim(), System.StringComparison.OrdinalIgnoreCase))
             {
-                return LoginResult.Fail("所选角色与账号角色不一致。", true);
+                return LoginResult.Fail("Selected role is incorrect.", true);
             }
 
             return LoginResult.Success(user.UserId, user.Username, user.Role);

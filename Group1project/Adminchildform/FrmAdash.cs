@@ -17,6 +17,11 @@ namespace Group1project.Adminchildform
         {
             InitializeComponent();
             LoadData();
+            uiToolTip1.SetToolTip(uiPanel1, "Today Sell Quantity");
+            uiToolTip1.SetToolTip(uiPanel2, "Stock");
+            uiToolTip1.SetToolTip(uiPanel3, "Days of Turnover = Stock/Average Daily Selllout of recent 7days");
+            uiToolTip1.SetToolTip(uiPanel4, "Today Profit");
+            uiToolTip1.SetToolTip(uiPanel1, "Today Hot Sell Product");
         }
 
 

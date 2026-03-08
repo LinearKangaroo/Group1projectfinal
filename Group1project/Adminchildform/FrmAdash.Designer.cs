@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             uiPanel1 = new Sunny.UI.UIPanel();
             uiSymbolLabel3 = new Sunny.UI.UISymbolLabel();
             lblso = new Sunny.UI.UILabel();
@@ -46,6 +47,7 @@
             uiLine1 = new Sunny.UI.UILine();
             pctratio = new Sunny.UI.UIPieChart();
             bctdailyso = new Sunny.UI.UIBarChart();
+            uiToolTip1 = new Sunny.UI.UIToolTip(components);
             uiPanel1.SuspendLayout();
             uiPanel2.SuspendLayout();
             uiPanel3.SuspendLayout();
@@ -290,6 +292,13 @@
             bctdailyso.SubFont = new Font("Microsoft Sans Serif", 9F);
             bctdailyso.TabIndex = 6;
             // 
+            // uiToolTip1
+            // 
+            uiToolTip1.BackColor = Color.FromArgb(54, 54, 54);
+            uiToolTip1.ForeColor = Color.FromArgb(239, 239, 239);
+            uiToolTip1.OwnerDraw = true;
+            uiToolTip1.ToolTipTitle = "Today Sellout";
+            // 
             // FrmAdash
             // 
             AllowShowTitle = true;
@@ -336,5 +345,6 @@
         private Sunny.UI.UILine uiLine1;
         private Sunny.UI.UIPieChart pctratio;
         private Sunny.UI.UIBarChart bctdailyso;
+        private Sunny.UI.UIToolTip uiToolTip1;
     }
 }

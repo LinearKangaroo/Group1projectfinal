@@ -173,7 +173,7 @@
             rdouser.Name = "rdouser";
             rdouser.Size = new Size(90, 28);
             rdouser.TabIndex = 1;
-            rdouser.Text = "User";
+            rdouser.Text = "Staff";
             // 
             // rdoadmin
             // 

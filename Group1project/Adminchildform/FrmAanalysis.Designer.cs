@@ -28,11 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle9 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle10 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
             uiDatePicker1 = new Sunny.UI.UIDatePicker();
             uiDatePicker2 = new Sunny.UI.UIDatePicker();
             uiMarkLabel1 = new Sunny.UI.UIMarkLabel();
@@ -42,8 +42,8 @@
             cboview = new Sunny.UI.UIComboBox();
             cbosort = new Sunny.UI.UIComboBox();
             uiGroupBox1 = new Sunny.UI.UIGroupBox();
-            this.btnyear = new Sunny.UI.UIButton();
-            this.btnmonth = new Sunny.UI.UIButton();
+            btnyear = new Sunny.UI.UIButton();
+            btnmonth = new Sunny.UI.UIButton();
             btnweek = new Sunny.UI.UIButton();
             uiMarkLabel8 = new Sunny.UI.UIMarkLabel();
             uiMarkLabel7 = new Sunny.UI.UIMarkLabel();
@@ -207,8 +207,8 @@
             // 
             // uiGroupBox1
             // 
-            uiGroupBox1.Controls.Add(this.btnyear);
-            uiGroupBox1.Controls.Add(this.btnmonth);
+            uiGroupBox1.Controls.Add(btnyear);
+            uiGroupBox1.Controls.Add(btnmonth);
             uiGroupBox1.Controls.Add(btnweek);
             uiGroupBox1.Font = new Font("Microsoft Sans Serif", 12F);
             uiGroupBox1.Location = new Point(692, 5);
@@ -223,25 +223,25 @@
             // 
             // btnyear
             // 
-            this.btnyear.Font = new Font("Microsoft Sans Serif", 12F);
-            this.btnyear.Location = new Point(18, 115);
-            this.btnyear.MinimumSize = new Size(1, 1);
-            this.btnyear.Name = "btnyear";
-            this.btnyear.Size = new Size(121, 36);
-            this.btnyear.TabIndex = 2;
-            this.btnyear.Text = "This year";
-            this.btnyear.TipsFont = new Font("Microsoft Sans Serif", 9F);
+            btnyear.Font = new Font("Microsoft Sans Serif", 12F);
+            btnyear.Location = new Point(18, 115);
+            btnyear.MinimumSize = new Size(1, 1);
+            btnyear.Name = "btnyear";
+            btnyear.Size = new Size(121, 36);
+            btnyear.TabIndex = 2;
+            btnyear.Text = "Year";
+            btnyear.TipsFont = new Font("Microsoft Sans Serif", 9F);
             // 
             // btnmonth
             // 
-            this.btnmonth.Font = new Font("Microsoft Sans Serif", 12F);
-            this.btnmonth.Location = new Point(18, 73);
-            this.btnmonth.MinimumSize = new Size(1, 1);
-            this.btnmonth.Name = "btnmonth";
-            this.btnmonth.Size = new Size(121, 36);
-            this.btnmonth.TabIndex = 1;
-            this.btnmonth.Text = "This month";
-            this.btnmonth.TipsFont = new Font("Microsoft Sans Serif", 9F);
+            btnmonth.Font = new Font("Microsoft Sans Serif", 12F);
+            btnmonth.Location = new Point(18, 73);
+            btnmonth.MinimumSize = new Size(1, 1);
+            btnmonth.Name = "btnmonth";
+            btnmonth.Size = new Size(121, 36);
+            btnmonth.TabIndex = 1;
+            btnmonth.Text = "Month";
+            btnmonth.TipsFont = new Font("Microsoft Sans Serif", 9F);
             // 
             // btnweek
             // 
@@ -251,7 +251,7 @@
             btnweek.Name = "btnweek";
             btnweek.Size = new Size(121, 36);
             btnweek.TabIndex = 0;
-            btnweek.Text = "This week";
+            btnweek.Text = "Week";
             btnweek.TipsFont = new Font("Microsoft Sans Serif", 9F);
             // 
             // uiMarkLabel8
@@ -352,27 +352,27 @@
             // 
             // dgvanal
             // 
-            dataGridViewCellStyle6.BackColor = Color.FromArgb(235, 243, 255);
-            dgvanal.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(235, 243, 255);
+            dgvanal.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             dgvanal.BackgroundColor = Color.White;
             dgvanal.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle7.BackColor = Color.FromArgb(80, 160, 255);
-            dataGridViewCellStyle7.Font = new Font("Microsoft Sans Serif", 12F);
-            dataGridViewCellStyle7.ForeColor = Color.White;
-            dataGridViewCellStyle7.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.True;
-            dgvanal.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(80, 160, 255);
+            dataGridViewCellStyle2.Font = new Font("Microsoft Sans Serif", 12F);
+            dataGridViewCellStyle2.ForeColor = Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            dgvanal.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             dgvanal.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = SystemColors.Window;
-            dataGridViewCellStyle8.Font = new Font("Microsoft Sans Serif", 12F);
-            dataGridViewCellStyle8.ForeColor = Color.FromArgb(48, 48, 48);
-            dataGridViewCellStyle8.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = DataGridViewTriState.False;
-            dgvanal.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = SystemColors.Window;
+            dataGridViewCellStyle3.Font = new Font("Microsoft Sans Serif", 12F);
+            dataGridViewCellStyle3.ForeColor = Color.FromArgb(48, 48, 48);
+            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
+            dgvanal.DefaultCellStyle = dataGridViewCellStyle3;
             dgvanal.Dock = DockStyle.Fill;
             dgvanal.EnableHeadersVisualStyles = false;
             dgvanal.Font = new Font("Microsoft Sans Serif", 12F);
@@ -380,18 +380,18 @@
             dgvanal.Location = new Point(0, 205);
             dgvanal.Name = "dgvanal";
             dgvanal.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle9.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = Color.FromArgb(235, 243, 255);
-            dataGridViewCellStyle9.Font = new Font("Microsoft Sans Serif", 12F);
-            dataGridViewCellStyle9.ForeColor = Color.FromArgb(48, 48, 48);
-            dataGridViewCellStyle9.SelectionBackColor = Color.FromArgb(80, 160, 255);
-            dataGridViewCellStyle9.SelectionForeColor = Color.White;
-            dataGridViewCellStyle9.WrapMode = DataGridViewTriState.True;
-            dgvanal.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = Color.FromArgb(235, 243, 255);
+            dataGridViewCellStyle4.Font = new Font("Microsoft Sans Serif", 12F);
+            dataGridViewCellStyle4.ForeColor = Color.FromArgb(48, 48, 48);
+            dataGridViewCellStyle4.SelectionBackColor = Color.FromArgb(80, 160, 255);
+            dataGridViewCellStyle4.SelectionForeColor = Color.White;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
+            dgvanal.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             dgvanal.RowHeadersWidth = 57;
-            dataGridViewCellStyle10.BackColor = Color.White;
-            dataGridViewCellStyle10.Font = new Font("Microsoft Sans Serif", 12F);
-            dgvanal.RowsDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle5.BackColor = Color.White;
+            dataGridViewCellStyle5.Font = new Font("Microsoft Sans Serif", 12F);
+            dgvanal.RowsDefaultCellStyle = dataGridViewCellStyle5;
             dgvanal.SelectedIndex = -1;
             dgvanal.Size = new Size(1006, 329);
             dgvanal.StripeOddColor = Color.FromArgb(235, 243, 255);
@@ -427,13 +427,12 @@
         private Sunny.UI.UIMarkLabel uiMarkLabel5;
         private Sunny.UI.UILabel uiLabel1;
         private Sunny.UI.UISymbolButton btnclear;
-        private Sunny.UI.UIDataGridView uiDataGridView1;
-        private Sunny.UI.UISymbolButton btnSearch;
+       private Sunny.UI.UISymbolButton btnSearch;
         private Sunny.UI.UIMarkLabel uiMarkLabel8;
         private Sunny.UI.UIMarkLabel uiMarkLabel7;
         private Sunny.UI.UIGroupBox uiGroupBox1;
-        private Sunny.UI.UIButton uiButton3;
-        private Sunny.UI.UIButton uiButton2;
+        private Sunny.UI.UIButton btnyear;
+        private Sunny.UI.UIButton btnmonth;
         private Sunny.UI.UIButton btnweek;
         private Sunny.UI.UIComboBox cboorder;
         private Sunny.UI.UIComboBox cboview;
