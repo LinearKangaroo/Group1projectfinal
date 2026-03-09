@@ -31,11 +31,11 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmUserMain));
             uiSmoothLabel1 = new Sunny.UI.UISmoothLabel();
             uiPanel1 = new Sunny.UI.UIPanel();
-            uiNavMenu1 = new Sunny.UI.UINavMenu();
-            uiTabControl1 = new Sunny.UI.UITabControl();
             btnprofile = new Sunny.UI.UISymbolButton();
             btnlogout = new Sunny.UI.UISymbolButton();
             btnsetting = new Sunny.UI.UISymbolButton();
+            uiNavMenu1 = new Sunny.UI.UINavMenu();
+            uiTabControl1 = new Sunny.UI.UITabControl();
             uiPanel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -64,42 +64,6 @@
             uiPanel1.TabIndex = 1;
             uiPanel1.Text = null;
             uiPanel1.TextAlignment = ContentAlignment.MiddleCenter;
-            // 
-            // uiNavMenu1
-            // 
-            uiNavMenu1.BorderStyle = BorderStyle.None;
-            uiNavMenu1.Dock = DockStyle.Left;
-            uiNavMenu1.DrawMode = TreeViewDrawMode.OwnerDrawAll;
-            uiNavMenu1.Font = new Font("Microsoft Sans Serif", 12F);
-            uiNavMenu1.FullRowSelect = true;
-            uiNavMenu1.HotTracking = true;
-            uiNavMenu1.ItemHeight = 50;
-            uiNavMenu1.Location = new Point(2, 116);
-            uiNavMenu1.Name = "uiNavMenu1";
-            uiNavMenu1.ShowLines = false;
-            uiNavMenu1.ShowPlusMinus = false;
-            uiNavMenu1.ShowRootLines = false;
-            uiNavMenu1.Size = new Size(210, 728);
-            uiNavMenu1.TabIndex = 2;
-            uiNavMenu1.TipsFont = new Font("Microsoft Sans Serif", 9F);
-            // 
-            // uiTabControl1
-            // 
-            uiTabControl1.Dock = DockStyle.Fill;
-            uiTabControl1.DrawMode = TabDrawMode.OwnerDrawFixed;
-            uiTabControl1.Font = new Font("Microsoft Sans Serif", 12F);
-            uiTabControl1.Frame = this;
-            uiTabControl1.ItemSize = new Size(0, 1);
-            uiTabControl1.Location = new Point(212, 116);
-            uiTabControl1.MainPage = "";
-            uiTabControl1.Name = "uiTabControl1";
-            uiTabControl1.SelectedIndex = 0;
-            uiTabControl1.Size = new Size(918, 728);
-            uiTabControl1.SizeMode = TabSizeMode.Fixed;
-            uiTabControl1.TabIndex = 3;
-            uiTabControl1.TabUnSelectedForeColor = Color.FromArgb(240, 240, 240);
-            uiTabControl1.TabVisible = false;
-            uiTabControl1.TipsFont = new Font("Microsoft Sans Serif", 9F);
             // 
             // btnprofile
             // 
@@ -143,10 +107,47 @@
             btnsetting.Text = "Setting";
             btnsetting.TipsFont = new Font("Microsoft Sans Serif", 9F);
             // 
+            // uiNavMenu1
+            // 
+            uiNavMenu1.BorderStyle = BorderStyle.None;
+            uiNavMenu1.Dock = DockStyle.Left;
+            uiNavMenu1.DrawMode = TreeViewDrawMode.OwnerDrawAll;
+            uiNavMenu1.Font = new Font("Microsoft Sans Serif", 12F);
+            uiNavMenu1.FullRowSelect = true;
+            uiNavMenu1.HotTracking = true;
+            uiNavMenu1.ItemHeight = 50;
+            uiNavMenu1.Location = new Point(2, 116);
+            uiNavMenu1.Name = "uiNavMenu1";
+            uiNavMenu1.ShowLines = false;
+            uiNavMenu1.ShowPlusMinus = false;
+            uiNavMenu1.ShowRootLines = false;
+            uiNavMenu1.Size = new Size(210, 728);
+            uiNavMenu1.TabIndex = 2;
+            uiNavMenu1.TipsFont = new Font("Microsoft Sans Serif", 9F);
+            // 
+            // uiTabControl1
+            // 
+            uiTabControl1.Dock = DockStyle.Fill;
+            uiTabControl1.DrawMode = TabDrawMode.OwnerDrawFixed;
+            uiTabControl1.Font = new Font("Microsoft Sans Serif", 12F);
+            uiTabControl1.Frame = this;
+            uiTabControl1.ItemSize = new Size(0, 1);
+            uiTabControl1.Location = new Point(212, 116);
+            uiTabControl1.MainPage = "";
+            uiTabControl1.Name = "uiTabControl1";
+            uiTabControl1.SelectedIndex = 0;
+            uiTabControl1.Size = new Size(918, 728);
+            uiTabControl1.SizeMode = TabSizeMode.Fixed;
+            uiTabControl1.TabIndex = 3;
+            uiTabControl1.TabUnSelectedForeColor = Color.FromArgb(240, 240, 240);
+            uiTabControl1.TabVisible = false;
+            uiTabControl1.TipsFont = new Font("Microsoft Sans Serif", 9F);
+            // 
             // FrmUserMain
             // 
             AutoScaleMode = AutoScaleMode.None;
             ClientSize = new Size(1132, 846);
+            CloseAskString = "Are you sure you want to exit the program?";
             Controls.Add(uiTabControl1);
             Controls.Add(uiNavMenu1);
             Controls.Add(uiPanel1);

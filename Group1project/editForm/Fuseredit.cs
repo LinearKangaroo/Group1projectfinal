@@ -11,9 +11,9 @@ using System.Windows.Forms;
 
 namespace Group1project.editForm
 {
-    
     public partial class Fuseredit : UIEditForm
     {
+        private readonly bool _profileEditMode;
         public UserModel UserData { get; private set; } = new UserModel();
 
         public Fuseredit()
@@ -23,9 +23,15 @@ namespace Group1project.editForm
             btnOK.Click += BtnOK_Click;
         }
 
-        public Fuseredit(UserModel user) : this()
+        public Fuseredit(UserModel user, bool profileEditMode = false) : this()
         {
+            _profileEditMode = profileEditMode;
             LoadUser(user);
+
+            if (_profileEditMode)
+            {
+                ApplyProfileEditMode();
+            }
         }
 
         private void InitState()
@@ -36,6 +42,17 @@ namespace Group1project.editForm
             {
                 cboposition.SelectedIndex = 0;
             }
+        }
+
+        private void ApplyProfileEditMode()
+        {
+            txtusername.ReadOnly = true;
+            rdoenable.Enabled = false;
+            rdodisable.Enabled = false;
+            rdoadmin.Enabled = false;
+            rdouser.Enabled = false;
+            cboposition.Enabled = false;
+            Text = "Profile";
         }
 
         private void LoadUser(UserModel user)
@@ -55,6 +72,7 @@ namespace Group1project.editForm
             {
                 cboposition.Text = user.position;
             }
+            UserData = user;
         }
 
         private void BtnOK_Click(object? sender, EventArgs e)
@@ -68,6 +86,8 @@ namespace Group1project.editForm
 
             UserData = new UserModel
             {
+                userId = UserData.userId,
+                create_time = UserData.create_time,
                 username = txtusername.Text.Trim(),
                 password = txtpassword.Text.Trim(),
                 phone = txtphone.Text.Trim(),

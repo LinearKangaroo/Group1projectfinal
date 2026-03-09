@@ -41,5 +41,26 @@ namespace Group1project.project.BLL
             user.edit_time = DateTime.Now;
             return _userDal.UpdateUser(user);
         }
+
+        public UserModel? GetUserById(int userId)
+        {
+            return _userDal.GetUserById(userId);
+        }
+
+        public bool VerifyCurrentPassword(int userId, string password)
+        {
+            if (userId <= 0 || string.IsNullOrWhiteSpace(password))
+            {
+                return false;
+            }
+
+            return _userDal.VerifyUserPassword(userId, password);
+        }
+
+        public int UpdateUserProfile(UserModel user)
+        {
+            user.edit_time = DateTime.Now;
+            return _userDal.UpdateUserProfile(user);
+        }
     }
 }
