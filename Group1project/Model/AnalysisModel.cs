@@ -13,7 +13,8 @@ namespace Group1project.Model
         Sellout = 0,
         Stock = 1,
         DOS = 2,
-        DemandStock = 3
+        DemandStock = 3,
+        Profit = 4
     }
 
     public enum TrendRange
@@ -30,6 +31,7 @@ namespace Group1project.Model
         public int Stock { get; set; }
         public decimal DOS { get; set; }
         public decimal DemandStock { get; set; }
+        public decimal Profit { get; set; }
     }
 
     public class SalesTrendPointModel

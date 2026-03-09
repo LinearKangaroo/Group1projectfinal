@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Reflection;
 using System.Text;
 using System.Windows.Forms;
 namespace Group1project.Adminchildform
@@ -15,6 +16,8 @@ namespace Group1project.Adminchildform
     {
         private const string AllBrandsText = "All Brands";
         private readonly AnalysisBLL _analysisBll = new AnalysisBLL();
+        private UILabel? _footerLabel;
+
 
         public FrmAanalysis()
         {
@@ -51,6 +54,7 @@ namespace Group1project.Adminchildform
             cbosort.Items.Add("Stock");
             cbosort.Items.Add("DOS");
             cbosort.Items.Add("Demand Stock");
+            cbosort.Items.Add("Profit");
             cbosort.SelectedIndex = 0;
 
             cboorder.Items.Clear();
@@ -62,36 +66,84 @@ namespace Group1project.Adminchildform
             dgvanal.ReadOnly = true;
             dgvanal.AllowUserToAddRows = false;
             dgvanal.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvanal.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             uiDataGridViewFooter1.DataGridView = dgvanal;
+
+            EnsureFooterLabel();
+
+            SetControlProperty(cbotvbrand, "CheckBoxes", true);
+            SetControlProperty(cbotvbrand, "ShowCheckAll", true);
+            SetControlProperty(cbotvbrand, "ShowButtons", true);
         }
 
-        private void LoadBrands()
+        private void EnsureFooterLabel()
         {
-            TreeView? tree = GetBrandTreeView();
-            if (tree == null)
+            if (_footerLabel != null)
             {
                 return;
             }
 
-            tree.Nodes.Clear();
-            tree.CheckBoxes = true;
-
-            TreeNode allNode = new TreeNode(AllBrandsText) { Checked = true };
-            tree.Nodes.Add(allNode);
-
-            foreach (string brand in _analysisBll.GetBrands())
+            _footerLabel = new UILabel
             {
-                tree.Nodes.Add(new TreeNode(brand) { Checked = true });
+                Dock = DockStyle.Fill,
+                TextAlign = ContentAlignment.MiddleLeft,
+                Font = uiDataGridViewFooter1.Font
+            };
+
+            uiDataGridViewFooter1.Controls.Add(_footerLabel);
+        }
+
+        private static void SetControlProperty(object target, string propertyName, object value)
+        {
+            PropertyInfo? propertyInfo = target.GetType().GetProperty(propertyName);
+            if (propertyInfo != null && propertyInfo.CanWrite)
+            {
+                propertyInfo.SetValue(target, value);
+            }
+        }
+
+        private void LoadBrands()
+        {
+            TreeNodeCollection? nodes = GetBrandNodeCollection();
+            if (nodes == null)
+            {
+                return;
             }
 
-            tree.AfterCheck -= Cbotvbrand_AfterCheck;
-            tree.AfterCheck += Cbotvbrand_AfterCheck;
+            nodes.Clear();
+            nodes.Add(new TreeNode(AllBrandsText) { Checked = true });
+            foreach (string brand in _analysisBll.GetBrands())
+            {
+                nodes.Add(new TreeNode(brand) { Checked = true });
+            }
+
+            TreeView? tree = GetBrandTreeView();
+            if (tree != null)
+            {
+                tree.CheckBoxes = true;
+                tree.AfterCheck -= Cbotvbrand_AfterCheck;
+                tree.AfterCheck += Cbotvbrand_AfterCheck;
+            }
+
             cbotvbrand.Text = AllBrandsText;
+            UpdateFooterSummary(new List<AnalysisRowModel>());
+        }
+
+        private TreeNodeCollection? GetBrandNodeCollection()
+        {
+            PropertyInfo? nodesProp = cbotvbrand.GetType().GetProperty("Nodes");
+            if (nodesProp?.GetValue(cbotvbrand) is TreeNodeCollection nodes)
+            {
+                return nodes;
+            }
+
+            TreeView? tree = GetBrandTreeView();
+            return tree?.Nodes;
         }
 
         private TreeView? GetBrandTreeView()
         {
-            var treeProp = cbotvbrand.GetType().GetProperty("TreeView");
+            PropertyInfo? treeProp = cbotvbrand.GetType().GetProperty("TreeView");
             if (treeProp?.GetValue(cbotvbrand) is TreeView tv)
             {
                 return tv;
@@ -136,19 +188,19 @@ namespace Group1project.Adminchildform
 
         private List<string> GetSelectedBrands()
         {
-            TreeView? tree = GetBrandTreeView();
-            if (tree == null || tree.Nodes.Count == 0)
+            TreeNodeCollection? nodes = GetBrandNodeCollection();
+            if (nodes == null || nodes.Count == 0)
             {
                 return new List<string>();
             }
 
-            TreeNode? allNode = tree.Nodes.Cast<TreeNode>().FirstOrDefault(n => string.Equals(n.Text, AllBrandsText, StringComparison.OrdinalIgnoreCase));
+            TreeNode? allNode = nodes.Cast<TreeNode>().FirstOrDefault(n => string.Equals(n.Text, AllBrandsText, StringComparison.OrdinalIgnoreCase));
             if (allNode != null && allNode.Checked)
             {
                 return new List<string>();
             }
 
-            return tree.Nodes.Cast<TreeNode>()
+            return nodes.Cast<TreeNode>()
                 .Where(n => !string.Equals(n.Text, AllBrandsText, StringComparison.OrdinalIgnoreCase) && n.Checked)
                 .Select(n => n.Text)
                 .ToList();
@@ -179,6 +231,7 @@ namespace Group1project.Adminchildform
                 "Stock" => AnalysisSortType.Stock,
                 "DOS" => AnalysisSortType.DOS,
                 "Demand Stock" => AnalysisSortType.DemandStock,
+                "Profit" => AnalysisSortType.Profit,
                 _ => AnalysisSortType.Sellout
             };
             bool ascending = cboorder.Text == "Ascending";
@@ -190,6 +243,36 @@ namespace Group1project.Adminchildform
             if (dgvanal.Columns.Contains(nameof(AnalysisRowModel.Name)))
             {
                 dgvanal.Columns[nameof(AnalysisRowModel.Name)].HeaderText = viewType == AnalysisViewType.SKU ? "SKUname" : "SPUname";
+                dgvanal.Columns[nameof(AnalysisRowModel.Name)].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            }
+
+            if (dgvanal.Columns.Contains(nameof(AnalysisRowModel.Profit)))
+            {
+                dgvanal.Columns[nameof(AnalysisRowModel.Profit)].DefaultCellStyle.Format = "N2";
+            }
+
+            UpdateFooterSummary(rows);
+        }
+
+
+        private void UpdateFooterSummary(List<AnalysisRowModel> rows)
+        {
+            EnsureFooterLabel();
+
+            int itemCount = rows.Count;
+            int selloutTotal = rows.Sum(x => x.Sellout);
+            int stockTotal = rows.Sum(x => x.Stock);
+            decimal profitTotal = rows.Sum(x => x.Profit);
+
+            decimal avgDaily = selloutTotal / 7m;
+            decimal totalDos = avgDaily > 0 ? Math.Round(stockTotal / avgDaily, 2) : 0m;
+            decimal totalDemand = Math.Round(avgDaily * 20m - stockTotal, 2);
+
+            string text = $"Items: {itemCount}    Sellout: {selloutTotal}    Stock: {stockTotal}    DOS: {totalDos:0.##}    Demand: {totalDemand:0.##}    Profit: {profitTotal:0.00}";
+            uiDataGridViewFooter1.Text = text;
+            if (_footerLabel != null)
+            {
+                _footerLabel.Text = text;
             }
         }
 
@@ -199,9 +282,7 @@ namespace Group1project.Adminchildform
 
         private void ShowTrendChart(TrendRange range)
         {
-            List<SalesTrendPointModel> points = _analysisBll.GetTrendData(range, GetSelectedBrands());
-            var chart = new Fchart();
-            chart.BindSalesTrend(points, range);
+            var chart = new Fchart(GetSelectedBrands(), range);
             chart.ShowDialog();
         }
     }

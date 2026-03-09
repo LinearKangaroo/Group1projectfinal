@@ -24,6 +24,7 @@ namespace Group1project.project.BLL
                 AnalysisSortType.Stock => x => x.Stock,
                 AnalysisSortType.DOS => x => x.DOS,
                 AnalysisSortType.DemandStock => x => x.DemandStock,
+                AnalysisSortType.Profit => x => x.Profit,
                 _ => x => x.Sellout
             };
 
@@ -34,9 +35,14 @@ namespace Group1project.project.BLL
             return rows;
         }
 
-        public List<SalesTrendPointModel> GetTrendData(TrendRange range, List<string> brands)
+        public List<SalesTrendPointModel> GetTrendData(TrendRange range, List<string> brands, int? year = null, int? month = null)
         {
-            return _analysisDal.GetTrendData(range, brands);
+            return _analysisDal.GetTrendData(range, brands, year, month);
+        }
+
+        public List<int> GetAvailableYears()
+        {
+            return _analysisDal.GetAvailableYears();
         }
     }
 }

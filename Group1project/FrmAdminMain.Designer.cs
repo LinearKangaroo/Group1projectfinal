@@ -35,6 +35,7 @@
             btnsetting = new Sunny.UI.UISymbolButton();
             uiNavMenu1 = new Sunny.UI.UINavMenu();
             uiTabControl1 = new Sunny.UI.UITabControl();
+            btnprofile = new Sunny.UI.UISymbolButton();
             uiPanel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -49,6 +50,7 @@
             // 
             // uiPanel1
             // 
+            uiPanel1.Controls.Add(btnprofile);
             uiPanel1.Controls.Add(btnlogout);
             uiPanel1.Controls.Add(btnsetting);
             uiPanel1.Controls.Add(uiSmoothLabel1);
@@ -127,6 +129,20 @@
             uiTabControl1.TabVisible = false;
             uiTabControl1.TipsFont = new Font("Microsoft Sans Serif", 9F);
             // 
+            // btnprofile
+            // 
+            btnprofile.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnprofile.Cursor = Cursors.Hand;
+            btnprofile.Font = new Font("Microsoft Sans Serif", 12F);
+            btnprofile.Location = new Point(707, 20);
+            btnprofile.MinimumSize = new Size(1, 1);
+            btnprofile.Name = "btnprofile";
+            btnprofile.Size = new Size(122, 39);
+            btnprofile.Symbol = 57482;
+            btnprofile.TabIndex = 5;
+            btnprofile.Text = "Profile";
+            btnprofile.TipsFont = new Font("Microsoft Sans Serif", 9F);
+            // 
             // FrmAdminMain
             // 
             AutoScaleMode = AutoScaleMode.None;
@@ -153,5 +169,6 @@
         private Sunny.UI.UITabControl uiTabControl1;
         private Sunny.UI.UISymbolButton btnlogout;
         private Sunny.UI.UISymbolButton btnsetting;
+        private Sunny.UI.UISymbolButton btnprofile;
     }
 }

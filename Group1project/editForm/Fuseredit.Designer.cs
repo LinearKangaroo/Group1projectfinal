@@ -64,7 +64,7 @@
             // 
             // btnOK
             // 
-            btnOK.Location = new Point(239, 12);
+            btnOK.Location = new Point(286, 12);
             btnOK.Size = new Size(136, 35);
             btnOK.Text = "Confrim";
             // 
@@ -140,6 +140,7 @@
             txtpassword.MinimumSize = new Size(1, 16);
             txtpassword.Name = "txtpassword";
             txtpassword.Padding = new Padding(5);
+            txtpassword.PasswordChar = '*';
             txtpassword.ShowText = false;
             txtpassword.Size = new Size(254, 35);
             txtpassword.TabIndex = 8;
@@ -265,6 +266,7 @@
             uiRadioButtonGroup1.Padding = new Padding(0, 32, 0, 0);
             uiRadioButtonGroup1.Size = new Size(267, 62);
             uiRadioButtonGroup1.TabIndex = 15;
+            uiRadioButtonGroup1.Text = null;
             uiRadioButtonGroup1.TextAlignment = ContentAlignment.MiddleLeft;
             // 
             // uiRadioButtonGroup2
@@ -279,6 +281,7 @@
             uiRadioButtonGroup2.Padding = new Padding(0, 32, 0, 0);
             uiRadioButtonGroup2.Size = new Size(267, 62);
             uiRadioButtonGroup2.TabIndex = 16;
+            uiRadioButtonGroup2.Text = null;
             uiRadioButtonGroup2.TextAlignment = ContentAlignment.MiddleLeft;
             // 
             // Fuseredit
