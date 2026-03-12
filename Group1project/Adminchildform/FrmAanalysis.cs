@@ -1,6 +1,7 @@
 ﻿using Group1project.editForm;
 using Group1project.Model;
 using Group1project.project.BLL;
+using MiniExcelLibs;
 using Sunny.UI;
 using System;
 using System.Collections.Generic;
@@ -14,7 +15,7 @@ namespace Group1project.Adminchildform
 {
     public partial class FrmAanalysis : UIPage
     {
-        private const string AllBrandsText = "All Brands";
+        private const string AllSelectedText = "All Selected";
         private readonly AnalysisBLL _analysisBll = new AnalysisBLL();
         private UILabel? _footerLabel;
 
@@ -29,6 +30,7 @@ namespace Group1project.Adminchildform
             btnweek.Click += Btnweek_Click;
             btnmonth.Click += Btnmonth_Click;
             btnyear.Click += Btnyear_Click;
+            btnexport.Click += Btnexport_Click;
         }
 
         private void FrmAanalysis_Load(object? sender, EventArgs e)
@@ -111,7 +113,6 @@ namespace Group1project.Adminchildform
             }
 
             nodes.Clear();
-            nodes.Add(new TreeNode(AllBrandsText) { Checked = true });
             foreach (string brand in _analysisBll.GetBrands())
             {
                 nodes.Add(new TreeNode(brand) { Checked = true });
@@ -125,7 +126,7 @@ namespace Group1project.Adminchildform
                 tree.AfterCheck += Cbotvbrand_AfterCheck;
             }
 
-            cbotvbrand.Text = AllBrandsText;
+            cbotvbrand.Text = AllSelectedText;
             UpdateFooterSummary(new List<AnalysisRowModel>());
         }
 
@@ -154,36 +155,10 @@ namespace Group1project.Adminchildform
 
         private void Cbotvbrand_AfterCheck(object? sender, TreeViewEventArgs e)
         {
-            if (sender is not TreeView tree || e.Node == null)
-            {
-                return;
-            }
-
-            tree.AfterCheck -= Cbotvbrand_AfterCheck;
-
-            if (string.Equals(e.Node.Text, AllBrandsText, StringComparison.OrdinalIgnoreCase))
-            {
-                foreach (TreeNode node in tree.Nodes)
-                {
-                    if (!ReferenceEquals(node, e.Node))
-                    {
-                        node.Checked = e.Node.Checked;
-                    }
-                }
-            }
-            else
-            {
-                TreeNode? allNode = tree.Nodes.Cast<TreeNode>().FirstOrDefault(n => string.Equals(n.Text, AllBrandsText, StringComparison.OrdinalIgnoreCase));
-                if (allNode != null)
-                {
-                    bool allChecked = tree.Nodes.Cast<TreeNode>().Where(n => !ReferenceEquals(n, allNode)).All(n => n.Checked);
-                    allNode.Checked = allChecked;
-                }
-            }
-
-            tree.AfterCheck += Cbotvbrand_AfterCheck;
             List<string> selected = GetSelectedBrands();
-            cbotvbrand.Text = selected.Count == 0 ? AllBrandsText : string.Join(",", selected);
+            TreeNodeCollection? nodes = GetBrandNodeCollection();
+            int total = nodes?.Count ?? 0;
+            cbotvbrand.Text = total > 0 && selected.Count == total ? AllSelectedText : string.Join(",", selected);
         }
 
         private List<string> GetSelectedBrands()
@@ -194,14 +169,9 @@ namespace Group1project.Adminchildform
                 return new List<string>();
             }
 
-            TreeNode? allNode = nodes.Cast<TreeNode>().FirstOrDefault(n => string.Equals(n.Text, AllBrandsText, StringComparison.OrdinalIgnoreCase));
-            if (allNode != null && allNode.Checked)
-            {
-                return new List<string>();
-            }
 
             return nodes.Cast<TreeNode>()
-                .Where(n => !string.Equals(n.Text, AllBrandsText, StringComparison.OrdinalIgnoreCase) && n.Checked)
+                .Where(n => n.Checked)
                 .Select(n => n.Text)
                 .ToList();
         }
@@ -274,6 +244,52 @@ namespace Group1project.Adminchildform
             {
                 _footerLabel.Text = text;
             }
+        }
+
+        private void Btnexport_Click(object? sender, EventArgs e)
+        {
+            if (dgvanal.Rows.Count == 0)
+            {
+                UIMessageTip.ShowWarning("No data to export.");
+                return;
+            }
+
+            using SaveFileDialog saveDialog = new SaveFileDialog
+            {
+                Filter = "Excel Files (*.xlsx)|*.xlsx",
+                FileName = $"Analysis_{DateTime.Now:yyyyMMdd_HHmmss}.xlsx"
+            };
+
+            if (saveDialog.ShowDialog() != DialogResult.OK)
+            {
+                return;
+            }
+
+            List<Dictionary<string, object?>> exportRows = new List<Dictionary<string, object?>>();
+            List<DataGridViewColumn> columns = dgvanal.Columns.Cast<DataGridViewColumn>()
+                .Where(c => c.Visible)
+                .OrderBy(c => c.DisplayIndex)
+                .ToList();
+
+            foreach (DataGridViewRow row in dgvanal.Rows)
+            {
+                if (row.IsNewRow)
+                {
+                    continue;
+                }
+
+                var data = new Dictionary<string, object?>();
+                foreach (DataGridViewColumn col in columns)
+                {
+                    string header = string.IsNullOrWhiteSpace(col.HeaderText) ? col.Name : col.HeaderText;
+                    data[header] = row.Cells[col.Index].Value;
+                }
+
+                exportRows.Add(data);
+            }
+
+            MiniExcel.SaveAs(saveDialog.FileName, exportRows);
+            UIMessageTip.ShowOk($"Exported successfully: {saveDialog.FileName}");
         }
 
         private void Btnweek_Click(object? sender, EventArgs e) => ShowTrendChart(TrendRange.Week);

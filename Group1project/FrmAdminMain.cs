@@ -111,7 +111,6 @@ namespace Group1project
             UIMessageBox.ShowError("The save failed. Please try again later.");
         }
 
-
         private void BtnLogout_Click(object sender, EventArgs e)
         {
             _isLoggingOut = true;

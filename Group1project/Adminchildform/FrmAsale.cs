@@ -1,6 +1,7 @@
 ﻿using Group1project.editForm;
 using Group1project.Model;
 using Group1project.project.BLL;
+using MiniExcelLibs;
 using Sunny.UI;
 using System;
 using System.Collections.Generic;
@@ -24,10 +25,12 @@ namespace Group1project.Adminchildform
             btnSearch.Click += BtnSearch_Click;
             btnclear.Click += Btnclear_Click;
             btnAdd.Click += BtnAdd_Click;
+            btnexport.Click += Btnexport_Click;
             uiPagination1.PageChanged += UiPagination1_PageChanged;
             dgvsale.CellDoubleClick += Dgvsale_CellDoubleClick;
             txtinvoice.ButtonClick += Txtinvoice_ButtonClick;
             txtuser.ButtonClick += Txtuser_ButtonClick;
+            txtcustomer.ButtonClick += Txtcustomer_ButtonClick;
         }
 
         private void FrmAsale_Load(object? sender, EventArgs e)
@@ -55,8 +58,9 @@ namespace Group1project.Adminchildform
 
             string invoiceKeyword = txtinvoice.Text?.Trim() ?? string.Empty;
             string username = txtuser.Text?.Trim() ?? string.Empty;
+            string customer = txtcustomer.Text?.Trim() ?? string.Empty;
 
-            _filteredSales = _saleBll.GetSaleHistory(startDate, endDate, invoiceKeyword, username);
+            _filteredSales = _saleBll.GetSaleHistory(startDate, endDate, invoiceKeyword, username, customer);
             BindPage(1);
         }
 
@@ -121,6 +125,7 @@ namespace Group1project.Adminchildform
         {
             txtinvoice.Text = string.Empty;
             txtuser.Text = string.Empty;
+            txtcustomer.Text = string.Empty;
             SetDefaultDateRange();
             LoadSales();
         }
@@ -134,6 +139,37 @@ namespace Group1project.Adminchildform
             }
 
             LoadSales();
+        }
+
+        private void Btnexport_Click(object? sender, EventArgs e)
+        {
+            List<SalehistoryModel> rows = _filteredSales.ToList();
+            if (rows.Count == 0)
+            {
+                UIMessageTip.ShowWarning("No sale data to export.");
+                return;
+            }
+
+            using SaveFileDialog dialog = new SaveFileDialog
+            {
+                Filter = "Excel Workbook (*.xlsx)|*.xlsx",
+                FileName = $"sale-export-{DateTime.Now:yyyyMMdd-HHmmss}.xlsx"
+            };
+
+            if (dialog.ShowDialog() != DialogResult.OK)
+            {
+                return;
+            }
+
+            try
+            {
+                MiniExcel.SaveAs(dialog.FileName, rows);
+                UIMessageTip.ShowOk($"Exported {rows.Count} row(s) to {Path.GetFileName(dialog.FileName)}.");
+            }
+            catch (Exception ex)
+            {
+                UIMessageBox.ShowError($"Export failed: {ex.Message}");
+            }
         }
 
         private void Dgvsale_CellDoubleClick(object? sender, DataGridViewCellEventArgs e)
@@ -170,6 +206,11 @@ namespace Group1project.Adminchildform
         private void Txtuser_ButtonClick(object? sender, EventArgs e)
         {
             txtuser.Text = string.Empty;
+        }
+
+        private void Txtcustomer_ButtonClick(object? sender, EventArgs e)
+        {
+            txtcustomer.Text = string.Empty;
         }
     }
 }

@@ -3,6 +3,7 @@ using Group1project.project.BLL;
 using Sunny.UI;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing.Printing;
 using System.Linq;
 using System.Windows.Forms;
@@ -19,6 +20,10 @@ namespace Group1project.editForm
         private UILabel? _footerLabel;
         private readonly PrintDocument _invoicePrintDocument = new PrintDocument();
         private int _printItemIndex;
+        private bool _suppressPaymentNavigation;
+
+        private const string CreditSiteUrl = "https://r2omm.com/";
+        private const string TransferPagePath = @"D:\group1project\Group1beta\Group1project\Group1project\bin\payment.html";
 
         public Fsaleadd()
         {
@@ -42,6 +47,7 @@ namespace Group1project.editForm
             btnclear.Click += Btnclear_Click;
             txtimei.KeyDown += Txtimei_KeyDown;
             btnOK.Click += BtnOK_Click;
+            cbopayment.SelectedIndexChanged += Cbopayment_SelectedIndexChanged;
             _invoicePrintDocument.PrintPage += InvoicePrintDocument_PrintPage;
         }
 
@@ -86,6 +92,7 @@ namespace Group1project.editForm
 
         private void InitStaticData()
         {
+            _suppressPaymentNavigation = true;
             cbopayment.Items.Clear();
             cbopayment.Items.Add("Cash");
             cbopayment.Items.Add("Credit");
@@ -103,6 +110,7 @@ namespace Group1project.editForm
             }
 
             SelectDefaultLoginUser();
+            _suppressPaymentNavigation = false;
         }
 
         private void SelectDefaultLoginUser()
@@ -285,6 +293,49 @@ namespace Group1project.editForm
             Close();
         }
 
+        private void Cbopayment_SelectedIndexChanged(object? sender, EventArgs e)
+        {
+            if (_readOnlyMode || _suppressPaymentNavigation)
+            {
+                return;
+            }
+
+            string paymentType = cbopayment.Text?.Trim() ?? string.Empty;
+            if (paymentType.Equals("Credit", StringComparison.OrdinalIgnoreCase))
+            {
+                OpenExternalTarget(CreditSiteUrl);
+                return;
+            }
+
+            if (paymentType.Equals("Transfer", StringComparison.OrdinalIgnoreCase))
+            {
+                if (!File.Exists(TransferPagePath))
+                {
+                    UIMessageBox.ShowWarning($"Transfer payment page not found:\n{TransferPagePath}");
+                    return;
+                }
+
+                OpenExternalTarget(TransferPagePath);
+            }
+        }
+
+        private static void OpenExternalTarget(string target)
+        {
+            try
+            {
+                Process.Start(new ProcessStartInfo
+                {
+                    FileName = target,
+                    UseShellExecute = true
+                });
+            }
+            catch (Exception ex)
+            {
+                UIMessageBox.ShowWarning($"Cannot open: {target}\n{ex.Message}");
+            }
+        }
+
+
         private void PrintInvoice()
         {
             _printItemIndex = 0;
@@ -360,7 +411,7 @@ namespace Group1project.editForm
             txtinvoice.ReadOnly = true;
 
             SalehistoryModel? header = _saleBll
-                .GetSaleHistory(DateTime.Today.AddYears(-20), DateTime.Today.AddYears(20), invoiceId.ToString(), string.Empty)
+                .GetSaleHistory(DateTime.Today.AddYears(-20), DateTime.Today.AddYears(20), invoiceId.ToString(), string.Empty, string.Empty)
                 .FirstOrDefault();
             if (header != null)
             {

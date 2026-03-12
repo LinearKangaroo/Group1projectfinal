@@ -9,7 +9,7 @@ namespace Group1project.project.DAL
     public class SaleDAL
     {
 
-        public List<SalehistoryModel> GetSaleHistory(DateTime startDate, DateTime endDate, string invoiceKeyword, string username)
+        public List<SalehistoryModel> GetSaleHistory(DateTime startDate, DateTime endDate, string invoiceKeyword, string username, string customer)
         {
             var result = new List<SalehistoryModel>();
             using var conn = new OleDbConnection(GetConnectionString());
@@ -36,6 +36,12 @@ namespace Group1project.project.DAL
             {
                 cmd.CommandText += " AND U.[username] LIKE ?";
                 cmd.Parameters.AddWithValue("@username", $"%{username.Trim()}%");
+            }
+
+            if (!string.IsNullOrWhiteSpace(customer))
+            {
+                cmd.CommandText += " AND S.[customer] LIKE ?";
+                cmd.Parameters.AddWithValue("@customer", $"%{customer.Trim()}%");
             }
 
             cmd.CommandText += " ORDER BY S.[sell_date] DESC, S.[invoice_id] DESC";

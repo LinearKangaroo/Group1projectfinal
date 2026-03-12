@@ -39,7 +39,7 @@ namespace Group1project
             var Inventory = uiNavMenu1.CreateNode(AddPage(new FrmUproduct(), 1002));
             uiNavMenu1.SetNodeSymbol(Inventory, 558149, 24);
 
-            var Sale = uiNavMenu1.CreateNode(AddPage(new FrmAsale(), 1003));
+            var Sale = uiNavMenu1.CreateNode(AddPage(new FrmUsale(), 1003));
             uiNavMenu1.SetNodeSymbol(Sale, 361788, 24);
 
             uiNavMenu1.SelectPage(1001);

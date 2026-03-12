@@ -33,10 +33,12 @@
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
-            uiDataGridView1 = new Sunny.UI.UIDataGridView();
+            dgvsale = new Sunny.UI.UIDataGridView();
+            uiPagination1 = new Sunny.UI.UIPagination();
             uiPanel1 = new Sunny.UI.UIPanel();
+            txtcustomer = new Sunny.UI.UITextBox();
             btnclear = new Sunny.UI.UISymbolButton();
-            uiTextBox1 = new Sunny.UI.UITextBox();
+            txtuser = new Sunny.UI.UITextBox();
             txtinvoice = new Sunny.UI.UITextBox();
             btnAdd = new Sunny.UI.UISymbolButton();
             btnSearch = new Sunny.UI.UISymbolButton();
@@ -44,16 +46,16 @@
             uiMarkLabel5 = new Sunny.UI.UIMarkLabel();
             uiDatePicker2 = new Sunny.UI.UIDatePicker();
             uiDatePicker1 = new Sunny.UI.UIDatePicker();
-            ((System.ComponentModel.ISupportInitialize)uiDataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvsale).BeginInit();
             uiPanel1.SuspendLayout();
             SuspendLayout();
             // 
-            // uiDataGridView1
+            // dgvsale
             // 
             dataGridViewCellStyle1.BackColor = Color.FromArgb(235, 243, 255);
-            uiDataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            uiDataGridView1.BackgroundColor = Color.White;
-            uiDataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
+            dgvsale.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dgvsale.BackgroundColor = Color.White;
+            dgvsale.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = Color.FromArgb(80, 160, 255);
             dataGridViewCellStyle2.Font = new Font("Microsoft Sans Serif", 12F);
@@ -61,8 +63,8 @@
             dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
             dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
-            uiDataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            uiDataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvsale.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dgvsale.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = SystemColors.Window;
             dataGridViewCellStyle3.Font = new Font("Microsoft Sans Serif", 12F);
@@ -70,14 +72,15 @@
             dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
             dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
-            uiDataGridView1.DefaultCellStyle = dataGridViewCellStyle3;
-            uiDataGridView1.Dock = DockStyle.Bottom;
-            uiDataGridView1.EnableHeadersVisualStyles = false;
-            uiDataGridView1.Font = new Font("Microsoft Sans Serif", 12F);
-            uiDataGridView1.GridColor = Color.FromArgb(80, 160, 255);
-            uiDataGridView1.Location = new Point(0, 173);
-            uiDataGridView1.Name = "uiDataGridView1";
-            uiDataGridView1.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
+            dgvsale.DefaultCellStyle = dataGridViewCellStyle3;
+            dgvsale.Dock = DockStyle.Fill;
+            dgvsale.EnableHeadersVisualStyles = false;
+            dgvsale.Font = new Font("Microsoft Sans Serif", 12F);
+            dgvsale.GridColor = Color.FromArgb(80, 160, 255);
+            dgvsale.Location = new Point(0, 154);
+            dgvsale.Name = "dgvsale";
+            dgvsale.ReadOnly = true;
+            dgvsale.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
             dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle4.BackColor = Color.FromArgb(235, 243, 255);
             dataGridViewCellStyle4.Font = new Font("Microsoft Sans Serif", 12F);
@@ -85,20 +88,38 @@
             dataGridViewCellStyle4.SelectionBackColor = Color.FromArgb(80, 160, 255);
             dataGridViewCellStyle4.SelectionForeColor = Color.White;
             dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
-            uiDataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
-            uiDataGridView1.RowHeadersWidth = 57;
+            dgvsale.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dgvsale.RowHeadersWidth = 57;
             dataGridViewCellStyle5.BackColor = Color.White;
             dataGridViewCellStyle5.Font = new Font("Microsoft Sans Serif", 12F);
-            uiDataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle5;
-            uiDataGridView1.SelectedIndex = -1;
-            uiDataGridView1.Size = new Size(889, 378);
-            uiDataGridView1.StripeOddColor = Color.FromArgb(235, 243, 255);
-            uiDataGridView1.TabIndex = 10;
+            dgvsale.RowsDefaultCellStyle = dataGridViewCellStyle5;
+            dgvsale.SelectedIndex = -1;
+            dgvsale.Size = new Size(889, 355);
+            dgvsale.StripeOddColor = Color.FromArgb(235, 243, 255);
+            dgvsale.TabIndex = 12;
+            // 
+            // uiPagination1
+            // 
+            uiPagination1.ButtonFillSelectedColor = Color.FromArgb(64, 128, 204);
+            uiPagination1.ButtonStyleInherited = false;
+            uiPagination1.Dock = DockStyle.Bottom;
+            uiPagination1.Font = new Font("Microsoft Sans Serif", 12F);
+            uiPagination1.Location = new Point(0, 509);
+            uiPagination1.Margin = new Padding(4, 5, 4, 5);
+            uiPagination1.MinimumSize = new Size(1, 1);
+            uiPagination1.Name = "uiPagination1";
+            uiPagination1.RectSides = ToolStripStatusLabelBorderSides.None;
+            uiPagination1.ShowText = false;
+            uiPagination1.Size = new Size(889, 42);
+            uiPagination1.TabIndex = 11;
+            uiPagination1.Text = "uiPagination1";
+            uiPagination1.TextAlignment = ContentAlignment.MiddleCenter;
             // 
             // uiPanel1
             // 
+            uiPanel1.Controls.Add(txtcustomer);
             uiPanel1.Controls.Add(btnclear);
-            uiPanel1.Controls.Add(uiTextBox1);
+            uiPanel1.Controls.Add(txtuser);
             uiPanel1.Controls.Add(txtinvoice);
             uiPanel1.Controls.Add(btnAdd);
             uiPanel1.Controls.Add(btnSearch);
@@ -113,14 +134,31 @@
             uiPanel1.MinimumSize = new Size(1, 1);
             uiPanel1.Name = "uiPanel1";
             uiPanel1.Size = new Size(889, 119);
-            uiPanel1.TabIndex = 9;
+            uiPanel1.TabIndex = 10;
             uiPanel1.Text = null;
             uiPanel1.TextAlignment = ContentAlignment.MiddleCenter;
+            // 
+            // txtcustomer
+            // 
+            txtcustomer.ButtonSymbol = 361453;
+            txtcustomer.ButtonSymbolOffset = new Point(0, 1);
+            txtcustomer.Font = new Font("Microsoft Sans Serif", 12F);
+            txtcustomer.Location = new Point(449, 12);
+            txtcustomer.Margin = new Padding(4, 5, 4, 5);
+            txtcustomer.MinimumSize = new Size(1, 16);
+            txtcustomer.Name = "txtcustomer";
+            txtcustomer.Padding = new Padding(5);
+            txtcustomer.ShowButton = true;
+            txtcustomer.ShowText = false;
+            txtcustomer.Size = new Size(248, 34);
+            txtcustomer.TabIndex = 22;
+            txtcustomer.TextAlignment = ContentAlignment.MiddleLeft;
+            txtcustomer.Watermark = "customer";
             // 
             // btnclear
             // 
             btnclear.Font = new Font("Microsoft Sans Serif", 12F);
-            btnclear.Location = new Point(509, 12);
+            btnclear.Location = new Point(576, 54);
             btnclear.MinimumSize = new Size(1, 1);
             btnclear.Name = "btnclear";
             btnclear.Size = new Size(121, 34);
@@ -129,22 +167,22 @@
             btnclear.Text = "Clear";
             btnclear.TipsFont = new Font("Microsoft Sans Serif", 9F);
             // 
-            // uiTextBox1
+            // txtuser
             // 
-            uiTextBox1.ButtonSymbol = 361453;
-            uiTextBox1.ButtonSymbolOffset = new Point(0, 1);
-            uiTextBox1.Font = new Font("Microsoft Sans Serif", 12F);
-            uiTextBox1.Location = new Point(260, 12);
-            uiTextBox1.Margin = new Padding(4, 5, 4, 5);
-            uiTextBox1.MinimumSize = new Size(1, 16);
-            uiTextBox1.Name = "uiTextBox1";
-            uiTextBox1.Padding = new Padding(5);
-            uiTextBox1.ShowButton = true;
-            uiTextBox1.ShowText = false;
-            uiTextBox1.Size = new Size(227, 34);
-            uiTextBox1.TabIndex = 21;
-            uiTextBox1.TextAlignment = ContentAlignment.MiddleLeft;
-            uiTextBox1.Watermark = "keyword";
+            txtuser.ButtonSymbol = 361453;
+            txtuser.ButtonSymbolOffset = new Point(0, 1);
+            txtuser.Font = new Font("Microsoft Sans Serif", 12F);
+            txtuser.Location = new Point(200, 12);
+            txtuser.Margin = new Padding(4, 5, 4, 5);
+            txtuser.MinimumSize = new Size(1, 16);
+            txtuser.Name = "txtuser";
+            txtuser.Padding = new Padding(5);
+            txtuser.ShowButton = true;
+            txtuser.ShowText = false;
+            txtuser.Size = new Size(238, 34);
+            txtuser.TabIndex = 21;
+            txtuser.TextAlignment = ContentAlignment.MiddleLeft;
+            txtuser.Watermark = "username";
             // 
             // txtinvoice
             // 
@@ -158,7 +196,7 @@
             txtinvoice.Padding = new Padding(5);
             txtinvoice.ShowButton = true;
             txtinvoice.ShowText = false;
-            txtinvoice.Size = new Size(227, 34);
+            txtinvoice.Size = new Size(179, 34);
             txtinvoice.TabIndex = 20;
             txtinvoice.TextAlignment = ContentAlignment.MiddleLeft;
             txtinvoice.Watermark = "Invoice ID";
@@ -173,13 +211,13 @@
             btnAdd.Size = new Size(121, 78);
             btnAdd.Symbol = 61543;
             btnAdd.TabIndex = 18;
-            btnAdd.Text = "Add";
+            btnAdd.Text = "Sale";
             btnAdd.TipsFont = new Font("Microsoft Sans Serif", 9F);
             // 
             // btnSearch
             // 
             btnSearch.Font = new Font("Microsoft Sans Serif", 12F);
-            btnSearch.Location = new Point(509, 56);
+            btnSearch.Location = new Point(449, 53);
             btnSearch.MinimumSize = new Size(1, 1);
             btnSearch.Name = "btnSearch";
             btnSearch.Size = new Size(121, 34);
@@ -192,7 +230,7 @@
             // 
             uiLabel1.Font = new Font("Microsoft Sans Serif", 12F);
             uiLabel1.ForeColor = Color.FromArgb(48, 48, 48);
-            uiLabel1.Location = new Point(273, 56);
+            uiLabel1.Location = new Point(246, 56);
             uiLabel1.Name = "uiLabel1";
             uiLabel1.Size = new Size(36, 29);
             uiLabel1.TabIndex = 9;
@@ -214,13 +252,13 @@
             uiDatePicker2.DateCultureInfo = new System.Globalization.CultureInfo("");
             uiDatePicker2.FillColor = Color.White;
             uiDatePicker2.Font = new Font("Microsoft Sans Serif", 12F);
-            uiDatePicker2.Location = new Point(311, 56);
+            uiDatePicker2.Location = new Point(289, 57);
             uiDatePicker2.Margin = new Padding(4, 5, 4, 5);
             uiDatePicker2.MaxLength = 10;
             uiDatePicker2.MinimumSize = new Size(63, 0);
             uiDatePicker2.Name = "uiDatePicker2";
             uiDatePicker2.Padding = new Padding(0, 0, 30, 2);
-            uiDatePicker2.Size = new Size(176, 31);
+            uiDatePicker2.Size = new Size(149, 31);
             uiDatePicker2.SymbolDropDown = 61555;
             uiDatePicker2.SymbolNormal = 61555;
             uiDatePicker2.SymbolSize = 24;
@@ -241,7 +279,7 @@
             uiDatePicker1.MinimumSize = new Size(63, 0);
             uiDatePicker1.Name = "uiDatePicker1";
             uiDatePicker1.Padding = new Padding(0, 0, 30, 2);
-            uiDatePicker1.Size = new Size(176, 31);
+            uiDatePicker1.Size = new Size(144, 31);
             uiDatePicker1.SymbolDropDown = 61555;
             uiDatePicker1.SymbolNormal = 61555;
             uiDatePicker1.SymbolSize = 24;
@@ -256,24 +294,27 @@
             AllowShowTitle = true;
             AutoScaleMode = AutoScaleMode.None;
             ClientSize = new Size(889, 551);
-            Controls.Add(uiDataGridView1);
+            Controls.Add(dgvsale);
+            Controls.Add(uiPagination1);
             Controls.Add(uiPanel1);
             Name = "FrmUsale";
             Padding = new Padding(0, 35, 0, 0);
             ShowTitle = true;
             Symbol = 361788;
             Text = "Transaction";
-            ((System.ComponentModel.ISupportInitialize)uiDataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvsale).EndInit();
             uiPanel1.ResumeLayout(false);
             ResumeLayout(false);
         }
 
         #endregion
 
-        private Sunny.UI.UIDataGridView uiDataGridView1;
+        private Sunny.UI.UIDataGridView dgvsale;
+        private Sunny.UI.UIPagination uiPagination1;
         private Sunny.UI.UIPanel uiPanel1;
+        private Sunny.UI.UITextBox txtcustomer;
         private Sunny.UI.UISymbolButton btnclear;
-        private Sunny.UI.UITextBox uiTextBox1;
+        private Sunny.UI.UITextBox txtuser;
         private Sunny.UI.UITextBox txtinvoice;
         private Sunny.UI.UISymbolButton btnAdd;
         private Sunny.UI.UISymbolButton btnSearch;

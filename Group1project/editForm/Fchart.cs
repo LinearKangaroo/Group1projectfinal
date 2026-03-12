@@ -2,9 +2,7 @@
 using Group1project.project.BLL;
 using Sunny.UI;
 using System;
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -103,29 +101,38 @@ namespace Group1project.editForm
             };
 
             UILineOption option = new UILineOption();
+            option.ToolTip.Visible = true;
             option.Title = new UITitle { Text = title };
 
-            // 确保清除旧数据
-            option.XAxis.Data.Clear();
-            option.Series.Clear();
+            // 1. 设置轴名称（对应 Demo 中的用法）
+            option.XAxis.Name = "Time";
+            option.YAxis.Name = "Qty";
 
-            UILineSeries series = new UILineSeries("Sellout");
+            // 2. 核心修复：3.9.2 使用 CustomLabels 来处理 X 轴的自定义字符串标签
+            // 参数说明：起始值, 步长, 标签总数
+            option.XAxis.CustomLabels = new CustomLabels(0, 1, points.Count);
 
-            // 3.9.2 版本的关键：使用双参数 Add
+            // 3. 创建系列
+            var series = option.AddSeries(new UILineSeries("Sellout"));
+            series.Symbol = UILinePointSymbol.Square; // 设置点形状
+            series.Smooth = true; // 平滑曲线
+
             for (int i = 0; i < points.Count; i++)
             {
-                // 添加底部日期/品牌标签
-                option.XAxis.Data.Add(points[i].Label);
+                // 4. 将 Label 添加到自定义标签集合中
+                option.XAxis.CustomLabels.AddLabel(points[i].Label);
 
-                // 添加数据点：索引为 i，值为数量
+                // 5. 对应 Demo：Add(double x, double y)
                 series.Add(i, Convert.ToDouble(points[i].Quantity));
             }
 
-            option.AddSeries(series);
+            // 6. Y 轴小数位数设置
+            option.YAxis.AxisLabel.DecimalPlaces = 0;
 
-            // 优化：如果数值较小（如你截图中的 1 或 2），开启缩放防止刻度重叠
+            // 7. 自动缩放 Y 轴，防止 1-2 个数据时刻度太挤
             option.YAxis.Scale = true;
 
+            // 8. 渲染
             uiLineChart1.SetOption(option);
             uiLineChart1.Refresh();
         }

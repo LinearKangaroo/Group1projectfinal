@@ -34,6 +34,10 @@
             DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
             uiPanel1 = new Sunny.UI.UIPanel();
+            uiLabel7 = new Sunny.UI.UILabel();
+            uiLabel6 = new Sunny.UI.UILabel();
+            txtaddress = new Sunny.UI.UITextBox();
+            txtcustomer = new Sunny.UI.UITextBox();
             btnclear = new Sunny.UI.UISymbolButton();
             cbouserid = new Sunny.UI.UIComboBox();
             uiDatePicker1 = new Sunny.UI.UIDatePicker();
@@ -48,10 +52,6 @@
             txtinvoice = new Sunny.UI.UITextBox();
             uiDataGridViewFooter1 = new Sunny.UI.UIDataGridViewFooter();
             dgvinvoice = new Sunny.UI.UIDataGridView();
-            txtcustomer = new Sunny.UI.UITextBox();
-            txtaddress = new Sunny.UI.UITextBox();
-            uiLabel6 = new Sunny.UI.UILabel();
-            uiLabel7 = new Sunny.UI.UILabel();
             pnlBtm.SuspendLayout();
             uiPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvinvoice).BeginInit();
@@ -103,6 +103,56 @@
             uiPanel1.Text = null;
             uiPanel1.TextAlignment = ContentAlignment.MiddleCenter;
             // 
+            // uiLabel7
+            // 
+            uiLabel7.BackColor = Color.Transparent;
+            uiLabel7.Font = new Font("Microsoft Sans Serif", 12F);
+            uiLabel7.ForeColor = Color.FromArgb(48, 48, 48);
+            uiLabel7.Location = new Point(3, 74);
+            uiLabel7.Name = "uiLabel7";
+            uiLabel7.Size = new Size(200, 28);
+            uiLabel7.TabIndex = 22;
+            uiLabel7.Text = "Customer Name";
+            // 
+            // uiLabel6
+            // 
+            uiLabel6.BackColor = Color.Transparent;
+            uiLabel6.Font = new Font("Microsoft Sans Serif", 12F);
+            uiLabel6.ForeColor = Color.FromArgb(48, 48, 48);
+            uiLabel6.Location = new Point(482, 81);
+            uiLabel6.Name = "uiLabel6";
+            uiLabel6.Size = new Size(103, 28);
+            uiLabel6.TabIndex = 21;
+            uiLabel6.Text = "Address";
+            // 
+            // txtaddress
+            // 
+            txtaddress.Font = new Font("Microsoft Sans Serif", 12F);
+            txtaddress.Location = new Point(606, 72);
+            txtaddress.Margin = new Padding(4, 5, 4, 5);
+            txtaddress.MinimumSize = new Size(1, 16);
+            txtaddress.Name = "txtaddress";
+            txtaddress.Padding = new Padding(5);
+            txtaddress.ShowText = false;
+            txtaddress.Size = new Size(288, 35);
+            txtaddress.TabIndex = 3;
+            txtaddress.TextAlignment = ContentAlignment.MiddleLeft;
+            txtaddress.Watermark = "";
+            // 
+            // txtcustomer
+            // 
+            txtcustomer.Font = new Font("Microsoft Sans Serif", 12F);
+            txtcustomer.Location = new Point(223, 74);
+            txtcustomer.Margin = new Padding(4, 5, 4, 5);
+            txtcustomer.MinimumSize = new Size(1, 16);
+            txtcustomer.Name = "txtcustomer";
+            txtcustomer.Padding = new Padding(5);
+            txtcustomer.ShowText = false;
+            txtcustomer.Size = new Size(241, 35);
+            txtcustomer.TabIndex = 3;
+            txtcustomer.TextAlignment = ContentAlignment.MiddleLeft;
+            txtcustomer.Watermark = "";
+            // 
             // btnclear
             // 
             btnclear.Font = new Font("Microsoft Sans Serif", 12F);
@@ -137,7 +187,7 @@
             // 
             uiDatePicker1.DateCultureInfo = new System.Globalization.CultureInfo("");
             uiDatePicker1.FillColor = Color.White;
-            uiDatePicker1.Font = new Font("Microsoft Sans Serif", 12F);
+            uiDatePicker1.Font = new Font("Microsoft Sans Serif", 11.8208952F, FontStyle.Regular, GraphicsUnit.Point, 0);
             uiDatePicker1.Location = new Point(380, 23);
             uiDatePicker1.Margin = new Padding(4, 5, 4, 5);
             uiDatePicker1.MaxLength = 10;
@@ -148,7 +198,7 @@
             uiDatePicker1.SymbolDropDown = 61555;
             uiDatePicker1.SymbolNormal = 61555;
             uiDatePicker1.SymbolSize = 24;
-            uiDatePicker1.TabIndex = 19;
+            uiDatePicker1.TabIndex = 72;
             uiDatePicker1.Text = "2026-02-26";
             uiDatePicker1.TextAlignment = ContentAlignment.MiddleLeft;
             uiDatePicker1.Value = new DateTime(2026, 2, 26, 1, 20, 37, 0);
@@ -327,56 +377,6 @@
             dgvinvoice.Size = new Size(948, 260);
             dgvinvoice.StripeOddColor = Color.FromArgb(235, 243, 255);
             dgvinvoice.TabIndex = 5;
-            // 
-            // txtcustomer
-            // 
-            txtcustomer.Font = new Font("Microsoft Sans Serif", 12F);
-            txtcustomer.Location = new Point(223, 74);
-            txtcustomer.Margin = new Padding(4, 5, 4, 5);
-            txtcustomer.MinimumSize = new Size(1, 16);
-            txtcustomer.Name = "txtcustomer";
-            txtcustomer.Padding = new Padding(5);
-            txtcustomer.ShowText = false;
-            txtcustomer.Size = new Size(241, 35);
-            txtcustomer.TabIndex = 3;
-            txtcustomer.TextAlignment = ContentAlignment.MiddleLeft;
-            txtcustomer.Watermark = "";
-            // 
-            // txtaddress
-            // 
-            txtaddress.Font = new Font("Microsoft Sans Serif", 12F);
-            txtaddress.Location = new Point(606, 72);
-            txtaddress.Margin = new Padding(4, 5, 4, 5);
-            txtaddress.MinimumSize = new Size(1, 16);
-            txtaddress.Name = "txtaddress";
-            txtaddress.Padding = new Padding(5);
-            txtaddress.ShowText = false;
-            txtaddress.Size = new Size(288, 35);
-            txtaddress.TabIndex = 3;
-            txtaddress.TextAlignment = ContentAlignment.MiddleLeft;
-            txtaddress.Watermark = "";
-            // 
-            // uiLabel6
-            // 
-            uiLabel6.BackColor = Color.Transparent;
-            uiLabel6.Font = new Font("Microsoft Sans Serif", 12F);
-            uiLabel6.ForeColor = Color.FromArgb(48, 48, 48);
-            uiLabel6.Location = new Point(482, 81);
-            uiLabel6.Name = "uiLabel6";
-            uiLabel6.Size = new Size(103, 28);
-            uiLabel6.TabIndex = 21;
-            uiLabel6.Text = "Address";
-            // 
-            // uiLabel7
-            // 
-            uiLabel7.BackColor = Color.Transparent;
-            uiLabel7.Font = new Font("Microsoft Sans Serif", 12F);
-            uiLabel7.ForeColor = Color.FromArgb(48, 48, 48);
-            uiLabel7.Location = new Point(3, 74);
-            uiLabel7.Name = "uiLabel7";
-            uiLabel7.Size = new Size(200, 28);
-            uiLabel7.TabIndex = 22;
-            uiLabel7.Text = "Customer Name";
             // 
             // Fsaleadd
             // 

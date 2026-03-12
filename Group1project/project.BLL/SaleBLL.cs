@@ -10,8 +10,8 @@ namespace Group1project.project.BLL
     {
         private readonly SaleDAL _saleDal = new SaleDAL();
 
-        public List<SalehistoryModel> GetSaleHistory(DateTime startDate, DateTime endDate, string invoiceKeyword, string username)
-            => _saleDal.GetSaleHistory(startDate, endDate, invoiceKeyword, username);
+        public List<SalehistoryModel> GetSaleHistory(DateTime startDate, DateTime endDate, string invoiceKeyword, string username, string customer ="")
+            => _saleDal.GetSaleHistory(startDate, endDate, invoiceKeyword, username, customer);
 
         public List<SaleInvoiceModel> GetInvoiceDetails(int invoiceId)
             => _saleDal.GetInvoiceDetails(invoiceId);

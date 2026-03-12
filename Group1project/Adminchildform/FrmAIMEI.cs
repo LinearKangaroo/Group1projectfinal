@@ -1,12 +1,14 @@
 ﻿using Group1project.editForm;
 using Group1project.Model;
 using Group1project.project.BLL;
+using MiniExcelLibs;
 using Sunny.UI;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Reflection;
 using System.Text;
 using System.Windows.Forms;
 
@@ -21,6 +23,7 @@ namespace Group1project.Adminchildform
         private const int PageSize = 20;
         private bool _isPagerUpdating;
         private UILabel? _footerLabel;
+        private bool _isStatusUpdating;
 
         public FrmAIMEI()
         {
@@ -41,8 +44,124 @@ namespace Group1project.Adminchildform
         private void FrmAIMEI_Load(object? sender, EventArgs e)
         {
             InitFooter();
+            InitStatusFilter();
             _skuOptions = _imeiBll.GetSkuOptions();
             LoadImei();
+        }
+
+        private void InitStatusFilter()
+        {
+            SetControlProperty(cbotvstatus, "CheckBoxes", true);
+            SetControlProperty(cbotvstatus, "ShowButtons", true);
+            SetControlProperty(cbotvstatus, "ShowCheckAll", false);
+
+            TreeNodeCollection? nodes = GetStatusNodeCollection();
+            if (nodes == null)
+            {
+                return;
+            }
+
+            nodes.Clear();
+            nodes.Add(new TreeNode("sold") { Checked = true });
+            nodes.Add(new TreeNode("instock") { Checked = true });
+
+            TreeView? tree = GetStatusTreeView();
+            if (tree != null)
+            {
+                tree.CheckBoxes = true;
+                tree.AfterCheck -= Cbotvstatus_AfterCheck;
+                tree.AfterCheck += Cbotvstatus_AfterCheck;
+            }
+
+            cbotvstatus.Text = "sold,instock";
+        }
+
+        private static void SetControlProperty(object target, string propertyName, object value)
+        {
+            PropertyInfo? propertyInfo = target.GetType().GetProperty(propertyName);
+            if (propertyInfo != null && propertyInfo.CanWrite)
+            {
+                propertyInfo.SetValue(target, value);
+            }
+        }
+
+        private TreeNodeCollection? GetStatusNodeCollection()
+        {
+            PropertyInfo? nodesProp = cbotvstatus.GetType().GetProperty("Nodes");
+            if (nodesProp?.GetValue(cbotvstatus) is TreeNodeCollection nodes)
+            {
+                return nodes;
+            }
+
+            TreeView? tree = GetStatusTreeView();
+            return tree?.Nodes;
+        }
+
+        private TreeView? GetStatusTreeView()
+        {
+            PropertyInfo? treeProp = cbotvstatus.GetType().GetProperty("TreeView");
+            return treeProp?.GetValue(cbotvstatus) as TreeView;
+        }
+
+        private void Cbotvstatus_AfterCheck(object? sender, TreeViewEventArgs e)
+        {
+            if (_isStatusUpdating || sender is not TreeView || e.Node == null)
+            {
+                return;
+            }
+
+            UpdateStatusFilterText();
+            ApplyFilters(true);
+        }
+
+        private List<string> GetSelectedStatuses()
+        {
+            TreeNodeCollection? nodes = GetStatusNodeCollection();
+            if (nodes == null)
+            {
+                return new List<string> { "sold", "instock" };
+            }
+
+            return nodes.Cast<TreeNode>()
+                .Where(n => n.Checked)
+                .Select(n => n.Text.Trim().ToLowerInvariant())
+                .Where(x => x == "sold" || x == "instock")
+                .Distinct()
+                .ToList();
+        }
+
+        private void EnsureStatusSelection()
+        {
+            if (GetSelectedStatuses().Count > 0)
+            {
+                return;
+            }
+
+            TreeNodeCollection? nodes = GetStatusNodeCollection();
+            if (nodes == null)
+            {
+                return;
+            }
+
+            _isStatusUpdating = true;
+            try
+            {
+                foreach (TreeNode node in nodes)
+                {
+                    node.Checked = true;
+                }
+            }
+            finally
+            {
+                _isStatusUpdating = false;
+            }
+        }
+
+        private void UpdateStatusFilterText()
+        {
+            EnsureStatusSelection();
+            List<string> selected = GetSelectedStatuses();
+            cbotvstatus.Text = selected.Count == 2 ? "sold,instock" : string.Join(",", selected);
         }
 
         private void InitFooter()
@@ -68,7 +187,25 @@ namespace Group1project.Adminchildform
         private void LoadImei()
         {
             _allImei = _imeiBll.GetAllImei();
-            _filteredImei = _allImei;
+            ApplyFilters(false);
+        }
+
+        private void ApplyFilters(bool showTip)
+        {
+            EnsureStatusSelection();
+            string keyword = txtimei.Text?.Trim() ?? string.Empty;
+            HashSet<string> selectedStatuses = GetSelectedStatuses().ToHashSet(StringComparer.OrdinalIgnoreCase);
+
+            IEnumerable<imeiModel> query = _allImei;
+            query = query.Where(x => selectedStatuses.Contains((x.status ?? string.Empty).Trim()));
+
+            if (!string.IsNullOrWhiteSpace(keyword))
+            {
+                query = query.Where(x => !string.IsNullOrWhiteSpace(x.imei)
+                    && x.imei.Contains(keyword, StringComparison.OrdinalIgnoreCase));
+            }
+
+            _filteredImei = query.ToList();
             BindPage(1);
             RefreshFooter(_filteredImei);
         }
@@ -142,11 +279,8 @@ namespace Group1project.Adminchildform
 
         private void BtnSearch_Click(object? sender, EventArgs e)
         {
-            string keyword = txtimei.Text?.Trim() ?? string.Empty;
-            _filteredImei = _imeiBll.SearchByImei(_allImei, keyword);
-            BindPage(1);
-            RefreshFooter(_filteredImei);
-            UIMessageTip.Show($"Found {_filteredImei.Count} IMEI record(s).");
+            UpdateStatusFilterText();
+            ApplyFilters(true);
         }
 
         private void Txtimei_ButtonClick(object? sender, EventArgs e)
@@ -159,9 +293,7 @@ namespace Group1project.Adminchildform
         {
             if (string.IsNullOrWhiteSpace(txtimei.Text))
             {
-                _filteredImei = _allImei;
-                BindPage(1);
-                RefreshFooter(_filteredImei);
+                ApplyFilters(false);
             }
         }
 
@@ -183,6 +315,7 @@ namespace Group1project.Adminchildform
             {
                 UIMessageTip.ShowOk("IMEI added successfully.");
                 LoadImei();
+                UpdateStatusFilterText();
                 return;
             }
 
@@ -208,6 +341,7 @@ namespace Group1project.Adminchildform
             {
                 UIMessageTip.ShowOk("IMEI updated successfully.");
                 LoadImei();
+                UpdateStatusFilterText();
                 return;
             }
 
@@ -230,6 +364,7 @@ namespace Group1project.Adminchildform
             var result = _imeiBll.Import(ofd.FileName);
             UIMessageTip.ShowOk($"Import completed. {result.insertedCount} row(s) inserted, {result.duplicateCount} duplicate row(s) skipped.");
             LoadImei();
+            UpdateStatusFilterText();
         }
 
         private void BtnExport_Click(object? sender, EventArgs e)
@@ -246,7 +381,24 @@ namespace Group1project.Adminchildform
                 return;
             }
 
-            _imeiBll.Export(sfd.FileName);
+            List<imeiModel> exportData = _filteredImei.ToList();
+            if (exportData.Count == 0)
+            {
+                UIMessageTip.ShowWarning("No IMEI data to export.");
+                return;
+            }
+
+            MiniExcel.SaveAs(sfd.FileName, exportData.Select(x => new
+            {
+                x.imei,
+                x.status,
+                x.SKUcode,
+                x.SPUcode,
+                x.SPUname,
+                x.brand,
+                x.SKUspec,
+                x.SKUname
+            }).ToList());
             UIMessageTip.ShowOk("Export completed.");
         }
 

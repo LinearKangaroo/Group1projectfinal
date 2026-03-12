@@ -16,13 +16,53 @@ namespace Group1project.Adminchildform
         public FrmUdash()
         {
             InitializeComponent();
+            Load += FrmUdash_Load;
+            SizeChanged += FrmUdash_SizeChanged;
             LoadData();
             uiToolTip1.SetToolTip(uiPanel1, "Today Sell Quantity");
             uiToolTip1.SetToolTip(uiPanel2, "Stock");
             uiToolTip1.SetToolTip(uiPanel3, "Days of Supply = Stock/Average Daily Selllout of recent 7days");
-            uiToolTip1.SetToolTip(uiPanel1, "Today Hot Sell Product");
+            uiToolTip1.SetToolTip(uiPanel5, "Today Hot Sell Product");
         }
 
+        private void FrmUdash_Load(object? sender, EventArgs e)
+        {
+            ArrangeDashboardLayout();
+        }
+
+        private void FrmUdash_SizeChanged(object? sender, EventArgs e)
+        {
+            ArrangeDashboardLayout();
+        }
+
+        private void ArrangeDashboardLayout()
+        {
+            int sideMargin = 16;
+            int topGap = 12;
+            int rowGap = 10;
+            int columnGap = 22;
+
+            int cardTop = uiLine1.Bottom + topGap;
+            int cardHeight = 162;
+            int cardTotalWidth = Math.Max(450, ClientSize.Width - sideMargin * 2 - columnGap * 2);
+            int cardWidth = Math.Max(140, cardTotalWidth / 3);
+
+            uiPanel1.Location = new Point(sideMargin, cardTop);
+            uiPanel1.Size = new Size(cardWidth, cardHeight);
+            uiPanel2.Location = new Point(uiPanel1.Right + columnGap, cardTop);
+            uiPanel2.Size = new Size(cardWidth, cardHeight);
+            uiPanel3.Location = new Point(uiPanel2.Right + columnGap, cardTop);
+            uiPanel3.Size = new Size(cardWidth, cardHeight);
+
+            int summaryTop = cardTop + cardHeight + rowGap;
+            uiPanel5.Location = new Point(sideMargin, summaryTop);
+            uiPanel5.Size = new Size(Math.Max(320, ClientSize.Width - sideMargin * 2), 60);
+
+            int chartTop = uiPanel5.Bottom + rowGap;
+            int chartHeight = Math.Max(220, ClientSize.Height - chartTop - 12);
+            bctdailyso.Location = new Point(sideMargin, chartTop);
+            bctdailyso.Size = new Size(Math.Max(320, ClientSize.Width - sideMargin * 2), chartHeight);
+        }
 
         private void LoadData()
         {
