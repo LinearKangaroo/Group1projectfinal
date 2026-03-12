@@ -50,14 +50,15 @@
             // btnOK
             // 
             btnOK.Location = new Point(251, 12);
-            btnOK.Size = new Size(125, 35);
-            btnOK.Text = "Confrim";
+            btnOK.Size = new Size(98, 35);
+            btnOK.Text = "OK";
             // 
             // txtimei
             // 
             txtimei.Font = new Font("Microsoft Sans Serif", 12F);
             txtimei.Location = new Point(187, 61);
             txtimei.Margin = new Padding(4, 5, 4, 5);
+            txtimei.MaxLength = 15;
             txtimei.MinimumSize = new Size(1, 16);
             txtimei.Name = "txtimei";
             txtimei.Padding = new Padding(5);

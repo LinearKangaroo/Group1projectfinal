@@ -68,6 +68,7 @@
             uiPanel1.Radius = 15;
             uiPanel1.RectColor = Color.FromArgb(84, 112, 198);
             uiPanel1.Size = new Size(281, 162);
+            uiPanel1.Style = Sunny.UI.UIStyle.Custom;
             uiPanel1.TabIndex = 0;
             uiPanel1.Text = null;
             uiPanel1.TextAlignment = ContentAlignment.MiddleCenter;
@@ -75,11 +76,12 @@
             // uiSymbolLabel3
             // 
             uiSymbolLabel3.BackColor = Color.Transparent;
+            uiSymbolLabel3.Dock = DockStyle.Top;
             uiSymbolLabel3.Font = new Font("Microsoft YaHei", 11.8208952F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            uiSymbolLabel3.Location = new Point(19, 14);
+            uiSymbolLabel3.Location = new Point(0, 0);
             uiSymbolLabel3.MinimumSize = new Size(1, 1);
             uiSymbolLabel3.Name = "uiSymbolLabel3";
-            uiSymbolLabel3.Size = new Size(113, 38);
+            uiSymbolLabel3.Size = new Size(281, 38);
             uiSymbolLabel3.Symbol = 57586;
             uiSymbolLabel3.TabIndex = 4;
             uiSymbolLabel3.Text = "Sellout";
@@ -87,13 +89,15 @@
             // lblso
             // 
             lblso.BackColor = Color.Transparent;
+            lblso.Dock = DockStyle.Bottom;
             lblso.Font = new Font("Arial", 36F);
             lblso.ForeColor = Color.FromArgb(48, 48, 48);
-            lblso.Location = new Point(74, 83);
+            lblso.Location = new Point(0, 41);
             lblso.Name = "lblso";
-            lblso.Size = new Size(170, 62);
+            lblso.Size = new Size(281, 121);
             lblso.TabIndex = 1;
             lblso.Text = "0";
+            lblso.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // uiPanel2
             // 
@@ -108,6 +112,7 @@
             uiPanel2.Radius = 15;
             uiPanel2.RectColor = Color.FromArgb(145, 204, 117);
             uiPanel2.Size = new Size(281, 162);
+            uiPanel2.Style = Sunny.UI.UIStyle.Custom;
             uiPanel2.TabIndex = 2;
             uiPanel2.Text = null;
             uiPanel2.TextAlignment = ContentAlignment.MiddleCenter;
@@ -115,11 +120,12 @@
             // uiSymbolLabel1
             // 
             uiSymbolLabel1.BackColor = Color.Transparent;
+            uiSymbolLabel1.Dock = DockStyle.Top;
             uiSymbolLabel1.Font = new Font("Microsoft YaHei", 11.8208952F);
-            uiSymbolLabel1.Location = new Point(10, 14);
+            uiSymbolLabel1.Location = new Point(0, 0);
             uiSymbolLabel1.MinimumSize = new Size(1, 1);
             uiSymbolLabel1.Name = "uiSymbolLabel1";
-            uiSymbolLabel1.Size = new Size(113, 38);
+            uiSymbolLabel1.Size = new Size(281, 38);
             uiSymbolLabel1.Symbol = 361831;
             uiSymbolLabel1.TabIndex = 2;
             uiSymbolLabel1.Text = "Stock";
@@ -127,13 +133,15 @@
             // lblstock
             // 
             lblstock.BackColor = Color.Transparent;
+            lblstock.Dock = DockStyle.Bottom;
             lblstock.Font = new Font("Arial", 36F);
             lblstock.ForeColor = Color.FromArgb(48, 48, 48);
-            lblstock.Location = new Point(69, 83);
+            lblstock.Location = new Point(0, 41);
             lblstock.Name = "lblstock";
-            lblstock.Size = new Size(167, 62);
+            lblstock.Size = new Size(281, 121);
             lblstock.TabIndex = 1;
             lblstock.Text = "0";
+            lblstock.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // uiPanel3
             // 
@@ -148,6 +156,7 @@
             uiPanel3.Radius = 15;
             uiPanel3.RectColor = Color.FromArgb(250, 200, 88);
             uiPanel3.Size = new Size(281, 162);
+            uiPanel3.Style = Sunny.UI.UIStyle.Custom;
             uiPanel3.TabIndex = 3;
             uiPanel3.Text = null;
             uiPanel3.TextAlignment = ContentAlignment.MiddleCenter;
@@ -155,11 +164,12 @@
             // uiSymbolLabel2
             // 
             uiSymbolLabel2.BackColor = Color.Transparent;
+            uiSymbolLabel2.Dock = DockStyle.Top;
             uiSymbolLabel2.Font = new Font("Microsoft YaHei", 11.8208952F);
-            uiSymbolLabel2.Location = new Point(26, 14);
+            uiSymbolLabel2.Location = new Point(0, 0);
             uiSymbolLabel2.MinimumSize = new Size(1, 1);
             uiSymbolLabel2.Name = "uiSymbolLabel2";
-            uiSymbolLabel2.Size = new Size(113, 38);
+            uiSymbolLabel2.Size = new Size(281, 38);
             uiSymbolLabel2.Symbol = 61473;
             uiSymbolLabel2.TabIndex = 3;
             uiSymbolLabel2.Text = "DOS";
@@ -167,13 +177,15 @@
             // lblDos
             // 
             lblDos.BackColor = Color.Transparent;
+            lblDos.Dock = DockStyle.Bottom;
             lblDos.Font = new Font("Arial", 36F);
             lblDos.ForeColor = Color.FromArgb(48, 48, 48);
-            lblDos.Location = new Point(89, 83);
+            lblDos.Location = new Point(0, 41);
             lblDos.Name = "lblDos";
-            lblDos.Size = new Size(113, 79);
+            lblDos.Size = new Size(281, 121);
             lblDos.TabIndex = 1;
             lblDos.Text = "0";
+            lblDos.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // uiPanel4
             // 
@@ -189,6 +201,7 @@
             uiPanel4.Radius = 15;
             uiPanel4.RectColor = Color.FromArgb(238, 102, 102);
             uiPanel4.Size = new Size(426, 60);
+            uiPanel4.Style = Sunny.UI.UIStyle.Custom;
             uiPanel4.TabIndex = 2;
             uiPanel4.Text = null;
             uiPanel4.TextAlignment = ContentAlignment.MiddleCenter;
@@ -196,24 +209,28 @@
             // lblamount
             // 
             lblamount.BackColor = Color.Transparent;
+            lblamount.Dock = DockStyle.Right;
             lblamount.Font = new Font("Arial", 19.8805962F);
             lblamount.ForeColor = Color.FromArgb(48, 48, 48);
-            lblamount.Location = new Point(105, 7);
+            lblamount.Location = new Point(100, 0);
             lblamount.Name = "lblamount";
-            lblamount.Size = new Size(280, 35);
+            lblamount.Size = new Size(326, 60);
             lblamount.TabIndex = 1;
             lblamount.Text = "0";
+            lblamount.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // uiLabel7
             // 
             uiLabel7.BackColor = Color.Transparent;
+            uiLabel7.Dock = DockStyle.Left;
             uiLabel7.Font = new Font("Microsoft YaHei", 11.8208952F);
             uiLabel7.ForeColor = Color.FromArgb(48, 48, 48);
-            uiLabel7.Location = new Point(19, 17);
+            uiLabel7.Location = new Point(0, 0);
             uiLabel7.Name = "uiLabel7";
-            uiLabel7.Size = new Size(166, 35);
+            uiLabel7.Size = new Size(94, 60);
             uiLabel7.TabIndex = 0;
             uiLabel7.Text = "Profit:";
+            uiLabel7.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // uiPanel5
             // 
@@ -228,6 +245,7 @@
             uiPanel5.Name = "uiPanel5";
             uiPanel5.Radius = 15;
             uiPanel5.Size = new Size(439, 60);
+            uiPanel5.Style = Sunny.UI.UIStyle.Custom;
             uiPanel5.TabIndex = 3;
             uiPanel5.Text = null;
             uiPanel5.TextAlignment = ContentAlignment.MiddleCenter;
@@ -235,37 +253,42 @@
             // lblhotsell
             // 
             lblhotsell.BackColor = Color.Transparent;
+            lblhotsell.Dock = DockStyle.Right;
             lblhotsell.Font = new Font("Arial", 13.970149F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblhotsell.ForeColor = Color.FromArgb(48, 48, 48);
-            lblhotsell.Location = new Point(119, 7);
+            lblhotsell.Location = new Point(118, 0);
             lblhotsell.Name = "lblhotsell";
-            lblhotsell.Size = new Size(317, 35);
+            lblhotsell.Size = new Size(321, 60);
             lblhotsell.TabIndex = 1;
             lblhotsell.Text = "-";
+            lblhotsell.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // uiLabel9
             // 
             uiLabel9.BackColor = Color.Transparent;
+            uiLabel9.Dock = DockStyle.Left;
             uiLabel9.Font = new Font("Microsoft YaHei", 11.8208952F);
             uiLabel9.ForeColor = Color.FromArgb(48, 48, 48);
-            uiLabel9.Location = new Point(19, 17);
+            uiLabel9.Location = new Point(0, 0);
             uiLabel9.Name = "uiLabel9";
-            uiLabel9.Size = new Size(117, 35);
+            uiLabel9.Size = new Size(112, 60);
             uiLabel9.TabIndex = 0;
             uiLabel9.Text = "HotSell:";
+            uiLabel9.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // uiLine1
             // 
             uiLine1.BackColor = Color.Transparent;
+            uiLine1.Dock = DockStyle.Top;
             uiLine1.Font = new Font("Microsoft Sans Serif", 12F);
             uiLine1.ForeColor = Color.FromArgb(48, 48, 48);
             uiLine1.LineColorGradient = true;
             uiLine1.LineDashStyle = Sunny.UI.UILineDashStyle.Dot;
             uiLine1.LineSize = 2;
-            uiLine1.Location = new Point(26, 48);
+            uiLine1.Location = new Point(0, 35);
             uiLine1.MinimumSize = new Size(16, 16);
             uiLine1.Name = "uiLine1";
-            uiLine1.Size = new Size(889, 51);
+            uiLine1.Size = new Size(961, 51);
             uiLine1.TabIndex = 4;
             uiLine1.Text = "Welcome Back";
             uiLine1.TextAlign = ContentAlignment.MiddleLeft;

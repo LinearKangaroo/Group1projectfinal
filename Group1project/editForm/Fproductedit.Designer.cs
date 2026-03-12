@@ -57,14 +57,13 @@
             // 
             // btnOK
             // 
-            btnOK.Location = new Point(331, 12);
-            btnOK.Size = new Size(130, 35);
-            btnOK.Text = "Confrim";
+            btnOK.Size = new Size(102, 35);
+            btnOK.Text = "OK";
             // 
             // txtspucode
             // 
             txtspucode.Font = new Font("Microsoft Sans Serif", 12F);
-            txtspucode.Location = new Point(304, 106);
+            txtspucode.Location = new Point(304, 111);
             txtspucode.Margin = new Padding(4, 5, 4, 5);
             txtspucode.MinimumSize = new Size(1, 16);
             txtspucode.Name = "txtspucode";
@@ -93,7 +92,7 @@
             // 
             uiLabel2.Font = new Font("Microsoft Sans Serif", 12F);
             uiLabel2.ForeColor = Color.FromArgb(48, 48, 48);
-            uiLabel2.Location = new Point(53, 111);
+            uiLabel2.Location = new Point(53, 108);
             uiLabel2.Name = "uiLabel2";
             uiLabel2.Size = new Size(126, 39);
             uiLabel2.TabIndex = 10;
@@ -112,7 +111,7 @@
             // txtbrand
             // 
             txtbrand.Font = new Font("Microsoft Sans Serif", 12F);
-            txtbrand.Location = new Point(304, 206);
+            txtbrand.Location = new Point(304, 211);
             txtbrand.Margin = new Padding(4, 5, 4, 5);
             txtbrand.MinimumSize = new Size(1, 16);
             txtbrand.Name = "txtbrand";
@@ -141,7 +140,7 @@
             // 
             uiLabel3.Font = new Font("Microsoft Sans Serif", 12F);
             uiLabel3.ForeColor = Color.FromArgb(48, 48, 48);
-            uiLabel3.Location = new Point(53, 211);
+            uiLabel3.Location = new Point(53, 210);
             uiLabel3.Name = "uiLabel3";
             uiLabel3.Size = new Size(126, 39);
             uiLabel3.TabIndex = 10;
@@ -151,7 +150,7 @@
             // 
             uiLabel4.Font = new Font("Microsoft Sans Serif", 12F);
             uiLabel4.ForeColor = Color.FromArgb(48, 48, 48);
-            uiLabel4.Location = new Point(53, 157);
+            uiLabel4.Location = new Point(53, 159);
             uiLabel4.Name = "uiLabel4";
             uiLabel4.Size = new Size(126, 39);
             uiLabel4.TabIndex = 9;
@@ -160,7 +159,7 @@
             // txtskuname
             // 
             txtskuname.Font = new Font("Microsoft Sans Serif", 12F);
-            txtskuname.Location = new Point(304, 310);
+            txtskuname.Location = new Point(304, 311);
             txtskuname.Margin = new Padding(4, 5, 4, 5);
             txtskuname.MinimumSize = new Size(1, 16);
             txtskuname.Name = "txtskuname";
@@ -174,7 +173,7 @@
             // txtskuspec
             // 
             txtskuspec.Font = new Font("Microsoft Sans Serif", 12F);
-            txtskuspec.Location = new Point(304, 265);
+            txtskuspec.Location = new Point(304, 261);
             txtskuspec.Margin = new Padding(4, 5, 4, 5);
             txtskuspec.MinimumSize = new Size(1, 16);
             txtskuspec.Name = "txtskuspec";
@@ -189,7 +188,7 @@
             // 
             uiLabel5.Font = new Font("Microsoft Sans Serif", 12F);
             uiLabel5.ForeColor = Color.FromArgb(48, 48, 48);
-            uiLabel5.Location = new Point(53, 315);
+            uiLabel5.Location = new Point(53, 312);
             uiLabel5.Name = "uiLabel5";
             uiLabel5.Size = new Size(126, 39);
             uiLabel5.TabIndex = 14;
@@ -222,7 +221,7 @@
             // txtpprice
             // 
             txtpprice.Font = new Font("Microsoft Sans Serif", 12F);
-            txtpprice.Location = new Point(304, 366);
+            txtpprice.Location = new Point(304, 361);
             txtpprice.Margin = new Padding(4, 5, 4, 5);
             txtpprice.MinimumSize = new Size(1, 16);
             txtpprice.Name = "txtpprice";
@@ -237,7 +236,7 @@
             // 
             uiLabel7.Font = new Font("Microsoft Sans Serif", 12F);
             uiLabel7.ForeColor = Color.FromArgb(48, 48, 48);
-            uiLabel7.Location = new Point(53, 416);
+            uiLabel7.Location = new Point(53, 414);
             uiLabel7.Name = "uiLabel7";
             uiLabel7.Size = new Size(169, 39);
             uiLabel7.TabIndex = 10;
@@ -247,7 +246,7 @@
             // 
             uiLabel8.Font = new Font("Microsoft Sans Serif", 12F);
             uiLabel8.ForeColor = Color.FromArgb(48, 48, 48);
-            uiLabel8.Location = new Point(53, 362);
+            uiLabel8.Location = new Point(53, 363);
             uiLabel8.Name = "uiLabel8";
             uiLabel8.Size = new Size(195, 39);
             uiLabel8.TabIndex = 9;

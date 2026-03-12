@@ -132,6 +132,7 @@ namespace Group1project.editForm
             dgvinvoice.AutoGenerateColumns = true;
             dgvinvoice.DataSource = null;
             dgvinvoice.DataSource = _invoiceItems;
+            dgvinvoice.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             RefreshFooter();
         }
 
@@ -139,6 +140,7 @@ namespace Group1project.editForm
         {
             dgvinvoice.DataSource = null;
             dgvinvoice.DataSource = _invoiceItems.ToList();
+            dgvinvoice.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             RefreshFooter();
         }
 
@@ -381,9 +383,9 @@ namespace Group1project.editForm
             uiDatePicker1.Enabled = false;
             txtcustomer.ReadOnly = true;
             txtaddress.ReadOnly = true;
-            btnAdd.Enabled = false;
-            btnclear.Enabled = false;
-            btnOK.Enabled = false;
+            btnAdd.Visible = false;
+            btnclear.Visible = false;
+            btnOK.Visible = false;
         }
 
         private static int ParseUserIdFromCombo(string comboText)

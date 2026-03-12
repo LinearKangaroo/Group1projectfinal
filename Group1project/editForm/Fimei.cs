@@ -23,6 +23,31 @@ namespace Group1project.editForm
             _skuOptions = skuOptions ?? new List<ProductModel>();
             InitControls();
             btnOK.Click += BtnOK_Click;
+            txtimei.KeyPress += Txtimei_KeyPress;
+            txtimei.TextChanged += Txtimei_TextChanged;
+        }
+
+        private void Txtimei_KeyPress(object? sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar !=(char)Keys.Back)
+            {
+                e.Handled = true; // 阻止非数字和控制字符的输入
+            }
+        }
+
+        private void Txtimei_TextChanged(object? sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtimei.Text))
+            {
+                return;
+            }
+            string pureDigits = new string(txtimei.Text.Where(char.IsDigit).ToArray());
+            if (pureDigits != txtimei.Text)
+            {
+                txtimei.Text = pureDigits;
+                txtimei.SelectionStart = txtimei.Text.Length;
+                UIMessageTip.ShowWarning("IMEI can only contain digits. Non-digit characters have been removed.");
+            }
         }
 
         public Fimei(imeiModel model, List<ProductModel> skuOptions) : this(skuOptions)

@@ -32,6 +32,7 @@ namespace Group1project.editForm
             _isEditMode = true;
             LoadProduct(product);
             txtskucode.ReadOnly = true;
+            AutoBuildSkuName(null, EventArgs.Empty);
         }
 
         private void InitInputHints()
@@ -76,10 +77,6 @@ namespace Group1project.editForm
 
         private void AutoBuildSkuName(object? sender, EventArgs e)
         {
-            if (_isEditMode)
-            {
-                return;
-            }
 
             string brand = txtbrand.Text?.Trim() ?? string.Empty;
             string spuName = txtspuname.Text?.Trim() ?? string.Empty;

@@ -28,11 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle9 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle10 = new DataGridViewCellStyle();
             uiPanel1 = new Sunny.UI.UIPanel();
             btnclear = new Sunny.UI.UISymbolButton();
             txtuser = new Sunny.UI.UITextBox();
@@ -45,12 +45,16 @@
             uiDatePicker1 = new Sunny.UI.UIDatePicker();
             uiPagination1 = new Sunny.UI.UIPagination();
             dgvsale = new Sunny.UI.UIDataGridView();
+            txtcustomer = new Sunny.UI.UITextBox();
+            btnexport = new Sunny.UI.UISymbolButton();
             uiPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvsale).BeginInit();
             SuspendLayout();
             // 
             // uiPanel1
             // 
+            uiPanel1.Controls.Add(btnexport);
+            uiPanel1.Controls.Add(txtcustomer);
             uiPanel1.Controls.Add(btnclear);
             uiPanel1.Controls.Add(txtuser);
             uiPanel1.Controls.Add(txtinvoice);
@@ -74,7 +78,7 @@
             // btnclear
             // 
             btnclear.Font = new Font("Microsoft Sans Serif", 12F);
-            btnclear.Location = new Point(509, 12);
+            btnclear.Location = new Point(576, 54);
             btnclear.MinimumSize = new Size(1, 1);
             btnclear.Name = "btnclear";
             btnclear.Size = new Size(121, 34);
@@ -88,14 +92,14 @@
             txtuser.ButtonSymbol = 361453;
             txtuser.ButtonSymbolOffset = new Point(0, 1);
             txtuser.Font = new Font("Microsoft Sans Serif", 12F);
-            txtuser.Location = new Point(260, 12);
+            txtuser.Location = new Point(200, 12);
             txtuser.Margin = new Padding(4, 5, 4, 5);
             txtuser.MinimumSize = new Size(1, 16);
             txtuser.Name = "txtuser";
             txtuser.Padding = new Padding(5);
             txtuser.ShowButton = true;
             txtuser.ShowText = false;
-            txtuser.Size = new Size(227, 34);
+            txtuser.Size = new Size(188, 34);
             txtuser.TabIndex = 21;
             txtuser.TextAlignment = ContentAlignment.MiddleLeft;
             txtuser.Watermark = "username";
@@ -112,7 +116,7 @@
             txtinvoice.Padding = new Padding(5);
             txtinvoice.ShowButton = true;
             txtinvoice.ShowText = false;
-            txtinvoice.Size = new Size(227, 34);
+            txtinvoice.Size = new Size(179, 34);
             txtinvoice.TabIndex = 20;
             txtinvoice.TextAlignment = ContentAlignment.MiddleLeft;
             txtinvoice.Watermark = "Invoice ID";
@@ -133,7 +137,7 @@
             // btnSearch
             // 
             btnSearch.Font = new Font("Microsoft Sans Serif", 12F);
-            btnSearch.Location = new Point(509, 56);
+            btnSearch.Location = new Point(449, 53);
             btnSearch.MinimumSize = new Size(1, 1);
             btnSearch.Name = "btnSearch";
             btnSearch.Size = new Size(121, 34);
@@ -146,7 +150,7 @@
             // 
             uiLabel1.Font = new Font("Microsoft Sans Serif", 12F);
             uiLabel1.ForeColor = Color.FromArgb(48, 48, 48);
-            uiLabel1.Location = new Point(273, 56);
+            uiLabel1.Location = new Point(246, 56);
             uiLabel1.Name = "uiLabel1";
             uiLabel1.Size = new Size(36, 29);
             uiLabel1.TabIndex = 9;
@@ -168,13 +172,13 @@
             uiDatePicker2.DateCultureInfo = new System.Globalization.CultureInfo("");
             uiDatePicker2.FillColor = Color.White;
             uiDatePicker2.Font = new Font("Microsoft Sans Serif", 12F);
-            uiDatePicker2.Location = new Point(311, 56);
+            uiDatePicker2.Location = new Point(289, 57);
             uiDatePicker2.Margin = new Padding(4, 5, 4, 5);
             uiDatePicker2.MaxLength = 10;
             uiDatePicker2.MinimumSize = new Size(63, 0);
             uiDatePicker2.Name = "uiDatePicker2";
             uiDatePicker2.Padding = new Padding(0, 0, 30, 2);
-            uiDatePicker2.Size = new Size(176, 31);
+            uiDatePicker2.Size = new Size(149, 31);
             uiDatePicker2.SymbolDropDown = 61555;
             uiDatePicker2.SymbolNormal = 61555;
             uiDatePicker2.SymbolSize = 24;
@@ -195,7 +199,7 @@
             uiDatePicker1.MinimumSize = new Size(63, 0);
             uiDatePicker1.Name = "uiDatePicker1";
             uiDatePicker1.Padding = new Padding(0, 0, 30, 2);
-            uiDatePicker1.Size = new Size(176, 31);
+            uiDatePicker1.Size = new Size(144, 31);
             uiDatePicker1.SymbolDropDown = 61555;
             uiDatePicker1.SymbolNormal = 61555;
             uiDatePicker1.SymbolSize = 24;
@@ -224,27 +228,27 @@
             // 
             // dgvsale
             // 
-            dataGridViewCellStyle1.BackColor = Color.FromArgb(235, 243, 255);
-            dgvsale.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle6.BackColor = Color.FromArgb(235, 243, 255);
+            dgvsale.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle6;
             dgvsale.BackgroundColor = Color.White;
             dgvsale.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = Color.FromArgb(80, 160, 255);
-            dataGridViewCellStyle2.Font = new Font("Microsoft Sans Serif", 12F);
-            dataGridViewCellStyle2.ForeColor = Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
-            dgvsale.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.BackColor = Color.FromArgb(80, 160, 255);
+            dataGridViewCellStyle7.Font = new Font("Microsoft Sans Serif", 12F);
+            dataGridViewCellStyle7.ForeColor = Color.White;
+            dataGridViewCellStyle7.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.True;
+            dgvsale.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             dgvsale.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = SystemColors.Window;
-            dataGridViewCellStyle3.Font = new Font("Microsoft Sans Serif", 12F);
-            dataGridViewCellStyle3.ForeColor = Color.FromArgb(48, 48, 48);
-            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
-            dgvsale.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = SystemColors.Window;
+            dataGridViewCellStyle8.Font = new Font("Microsoft Sans Serif", 12F);
+            dataGridViewCellStyle8.ForeColor = Color.FromArgb(48, 48, 48);
+            dataGridViewCellStyle8.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = DataGridViewTriState.False;
+            dgvsale.DefaultCellStyle = dataGridViewCellStyle8;
             dgvsale.Dock = DockStyle.Fill;
             dgvsale.EnableHeadersVisualStyles = false;
             dgvsale.Font = new Font("Microsoft Sans Serif", 12F);
@@ -253,22 +257,51 @@
             dgvsale.Name = "dgvsale";
             dgvsale.ReadOnly = true;
             dgvsale.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = Color.FromArgb(235, 243, 255);
-            dataGridViewCellStyle4.Font = new Font("Microsoft Sans Serif", 12F);
-            dataGridViewCellStyle4.ForeColor = Color.FromArgb(48, 48, 48);
-            dataGridViewCellStyle4.SelectionBackColor = Color.FromArgb(80, 160, 255);
-            dataGridViewCellStyle4.SelectionForeColor = Color.White;
-            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
-            dgvsale.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle9.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = Color.FromArgb(235, 243, 255);
+            dataGridViewCellStyle9.Font = new Font("Microsoft Sans Serif", 12F);
+            dataGridViewCellStyle9.ForeColor = Color.FromArgb(48, 48, 48);
+            dataGridViewCellStyle9.SelectionBackColor = Color.FromArgb(80, 160, 255);
+            dataGridViewCellStyle9.SelectionForeColor = Color.White;
+            dataGridViewCellStyle9.WrapMode = DataGridViewTriState.True;
+            dgvsale.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
             dgvsale.RowHeadersWidth = 57;
-            dataGridViewCellStyle5.BackColor = Color.White;
-            dataGridViewCellStyle5.Font = new Font("Microsoft Sans Serif", 12F);
-            dgvsale.RowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle10.BackColor = Color.White;
+            dataGridViewCellStyle10.Font = new Font("Microsoft Sans Serif", 12F);
+            dgvsale.RowsDefaultCellStyle = dataGridViewCellStyle10;
             dgvsale.SelectedIndex = -1;
             dgvsale.Size = new Size(859, 369);
             dgvsale.StripeOddColor = Color.FromArgb(235, 243, 255);
             dgvsale.TabIndex = 9;
+            // 
+            // txtcustomer
+            // 
+            txtcustomer.ButtonSymbol = 361453;
+            txtcustomer.ButtonSymbolOffset = new Point(0, 1);
+            txtcustomer.Font = new Font("Microsoft Sans Serif", 12F);
+            txtcustomer.Location = new Point(396, 12);
+            txtcustomer.Margin = new Padding(4, 5, 4, 5);
+            txtcustomer.MinimumSize = new Size(1, 16);
+            txtcustomer.Name = "txtcustomer";
+            txtcustomer.Padding = new Padding(5);
+            txtcustomer.ShowButton = true;
+            txtcustomer.ShowText = false;
+            txtcustomer.Size = new Size(174, 34);
+            txtcustomer.TabIndex = 22;
+            txtcustomer.TextAlignment = ContentAlignment.MiddleLeft;
+            txtcustomer.Watermark = "customer";
+            // 
+            // btnexport
+            // 
+            btnexport.Font = new Font("Microsoft Sans Serif", 12F);
+            btnexport.Location = new Point(577, 11);
+            btnexport.MinimumSize = new Size(1, 1);
+            btnexport.Name = "btnexport";
+            btnexport.Size = new Size(120, 34);
+            btnexport.Symbol = 362830;
+            btnexport.TabIndex = 23;
+            btnexport.Text = "Export";
+            btnexport.TipsFont = new Font("Microsoft Sans Serif", 9F);
             // 
             // FrmAsale
             // 
@@ -282,7 +315,7 @@
             Padding = new Padding(0, 35, 0, 0);
             ShowTitle = true;
             Symbol = 361788;
-            Text = "Transcation";
+            Text = "Transaction";
             uiPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgvsale).EndInit();
             ResumeLayout(false);
@@ -301,5 +334,7 @@
         private Sunny.UI.UISymbolButton btnclear;
         private Sunny.UI.UIPagination uiPagination1;
         private Sunny.UI.UIDataGridView dgvsale;
+        private Sunny.UI.UITextBox txtcustomer;
+        private Sunny.UI.UISymbolButton btnexport;
     }
 }

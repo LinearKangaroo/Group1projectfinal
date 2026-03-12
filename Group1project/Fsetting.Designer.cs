@@ -113,7 +113,7 @@
             uiPanel2.FillColor = Color.FromArgb(255, 87, 34);
             uiPanel2.Font = new Font("Microsoft Sans Serif", 12F);
             uiPanel2.ForeColor = Color.White;
-            uiPanel2.Location = new Point(210, 101);
+            uiPanel2.Location = new Point(203, 101);
             uiPanel2.Margin = new Padding(4, 5, 4, 5);
             uiPanel2.MinimumSize = new Size(1, 1);
             uiPanel2.Name = "uiPanel2";
@@ -130,7 +130,7 @@
             uiPanel3.FillColor = Color.FromArgb(121, 190, 60);
             uiPanel3.Font = new Font("Microsoft Sans Serif", 12F);
             uiPanel3.ForeColor = Color.White;
-            uiPanel3.Location = new Point(388, 101);
+            uiPanel3.Location = new Point(383, 101);
             uiPanel3.Margin = new Padding(4, 5, 4, 5);
             uiPanel3.MinimumSize = new Size(1, 1);
             uiPanel3.Name = "uiPanel3";
@@ -147,7 +147,7 @@
             uiPanel4.FillColor = Color.FromArgb(130, 58, 183);
             uiPanel4.Font = new Font("Microsoft Sans Serif", 12F);
             uiPanel4.ForeColor = Color.White;
-            uiPanel4.Location = new Point(566, 101);
+            uiPanel4.Location = new Point(563, 101);
             uiPanel4.Margin = new Padding(4, 5, 4, 5);
             uiPanel4.MinimumSize = new Size(1, 1);
             uiPanel4.Name = "uiPanel4";
@@ -164,7 +164,7 @@
             uiPanel5.FillColor = Color.FromArgb(140, 100, 80);
             uiPanel5.Font = new Font("Microsoft Sans Serif", 12F);
             uiPanel5.ForeColor = Color.White;
-            uiPanel5.Location = new Point(744, 101);
+            uiPanel5.Location = new Point(743, 101);
             uiPanel5.Margin = new Padding(4, 5, 4, 5);
             uiPanel5.MinimumSize = new Size(1, 1);
             uiPanel5.Name = "uiPanel5";
@@ -181,7 +181,7 @@
             uiPanel11.FillColor = Color.FromArgb(80, 160, 255);
             uiPanel11.Font = new Font("Microsoft Sans Serif", 12F);
             uiPanel11.ForeColor = Color.White;
-            uiPanel11.Location = new Point(744, 203);
+            uiPanel11.Location = new Point(743, 203);
             uiPanel11.Margin = new Padding(4, 5, 4, 5);
             uiPanel11.MinimumSize = new Size(1, 1);
             uiPanel11.Name = "uiPanel11";
@@ -269,7 +269,7 @@
             uiPanel7.FillColor = Color.FromArgb(80, 126, 164);
             uiPanel7.Font = new Font("Microsoft Sans Serif", 12F);
             uiPanel7.ForeColor = Color.White;
-            uiPanel7.Location = new Point(566, 203);
+            uiPanel7.Location = new Point(563, 203);
             uiPanel7.Margin = new Padding(4, 5, 4, 5);
             uiPanel7.MinimumSize = new Size(1, 1);
             uiPanel7.Name = "uiPanel7";
@@ -286,7 +286,7 @@
             uiPanel8.FillColor = Color.FromArgb(20, 80, 158);
             uiPanel8.Font = new Font("Microsoft Sans Serif", 12F);
             uiPanel8.ForeColor = Color.White;
-            uiPanel8.Location = new Point(388, 203);
+            uiPanel8.Location = new Point(383, 203);
             uiPanel8.Margin = new Padding(4, 5, 4, 5);
             uiPanel8.MinimumSize = new Size(1, 1);
             uiPanel8.Name = "uiPanel8";
@@ -303,7 +303,7 @@
             uiPanel9.FillColor = Color.FromArgb(0, 190, 172);
             uiPanel9.Font = new Font("Microsoft Sans Serif", 12F);
             uiPanel9.ForeColor = Color.White;
-            uiPanel9.Location = new Point(210, 203);
+            uiPanel9.Location = new Point(203, 203);
             uiPanel9.Margin = new Padding(4, 5, 4, 5);
             uiPanel9.MinimumSize = new Size(1, 1);
             uiPanel9.Name = "uiPanel9";

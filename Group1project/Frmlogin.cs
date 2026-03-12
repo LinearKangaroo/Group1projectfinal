@@ -15,6 +15,7 @@ namespace Group1project
             btnClear.Click += BtnClear_Click;
             txtPassword.KeyDown += TxtPassword_KeyDown;
             rdoadmin.Checked = true;
+            this.FormClosed += Frmlogin_FormClosed;
         }
 
         private void TxtPassword_KeyDown(object? sender, KeyEventArgs e)
@@ -59,6 +60,11 @@ namespace Group1project
 
             Hide();
             mainForm.Show();
+        }
+
+        private void Frmlogin_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

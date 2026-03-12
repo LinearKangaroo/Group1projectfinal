@@ -28,11 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle11 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle12 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle13 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle14 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle15 = new DataGridViewCellStyle();
             uiDatePicker1 = new Sunny.UI.UIDatePicker();
             uiDatePicker2 = new Sunny.UI.UIDatePicker();
             uiMarkLabel1 = new Sunny.UI.UIMarkLabel();
@@ -54,6 +54,7 @@
             cbotvbrand = new Sunny.UI.UIComboTreeView();
             uiDataGridViewFooter1 = new Sunny.UI.UIDataGridViewFooter();
             dgvanal = new Sunny.UI.UIDataGridView();
+            btnexport = new Sunny.UI.UISymbolButton();
             uiPanel1.SuspendLayout();
             uiGroupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvanal).BeginInit();
@@ -116,7 +117,7 @@
             // 
             uiMarkLabel3.Font = new Font("Microsoft Sans Serif", 12F);
             uiMarkLabel3.ForeColor = Color.FromArgb(48, 48, 48);
-            uiMarkLabel3.Location = new Point(335, 18);
+            uiMarkLabel3.Location = new Point(295, 18);
             uiMarkLabel3.Name = "uiMarkLabel3";
             uiMarkLabel3.Padding = new Padding(5, 0, 0, 0);
             uiMarkLabel3.Size = new Size(113, 32);
@@ -125,6 +126,7 @@
             // 
             // uiPanel1
             // 
+            uiPanel1.Controls.Add(btnexport);
             uiPanel1.Controls.Add(cboorder);
             uiPanel1.Controls.Add(cboview);
             uiPanel1.Controls.Add(cbosort);
@@ -158,12 +160,12 @@
             cboorder.Font = new Font("Microsoft Sans Serif", 12F);
             cboorder.ItemHoverColor = Color.FromArgb(155, 200, 255);
             cboorder.ItemSelectForeColor = Color.FromArgb(235, 243, 255);
-            cboorder.Location = new Point(473, 61);
+            cboorder.Location = new Point(405, 61);
             cboorder.Margin = new Padding(4, 5, 4, 5);
             cboorder.MinimumSize = new Size(63, 0);
             cboorder.Name = "cboorder";
             cboorder.Padding = new Padding(0, 0, 30, 2);
-            cboorder.Size = new Size(177, 37);
+            cboorder.Size = new Size(165, 37);
             cboorder.SymbolSize = 24;
             cboorder.TabIndex = 23;
             cboorder.TextAlignment = ContentAlignment.MiddleLeft;
@@ -176,12 +178,12 @@
             cboview.Font = new Font("Microsoft Sans Serif", 12F);
             cboview.ItemHoverColor = Color.FromArgb(155, 200, 255);
             cboview.ItemSelectForeColor = Color.FromArgb(235, 243, 255);
-            cboview.Location = new Point(472, 18);
+            cboview.Location = new Point(404, 18);
             cboview.Margin = new Padding(4, 5, 4, 5);
             cboview.MinimumSize = new Size(63, 0);
             cboview.Name = "cboview";
             cboview.Padding = new Padding(0, 0, 30, 2);
-            cboview.Size = new Size(177, 37);
+            cboview.Size = new Size(165, 37);
             cboview.SymbolSize = 24;
             cboview.TabIndex = 23;
             cboview.TextAlignment = ContentAlignment.MiddleLeft;
@@ -194,7 +196,7 @@
             cbosort.Font = new Font("Microsoft Sans Serif", 12F);
             cbosort.ItemHoverColor = Color.FromArgb(155, 200, 255);
             cbosort.ItemSelectForeColor = Color.FromArgb(235, 243, 255);
-            cbosort.Location = new Point(128, 66);
+            cbosort.Location = new Point(111, 66);
             cbosort.Margin = new Padding(4, 5, 4, 5);
             cbosort.MinimumSize = new Size(63, 0);
             cbosort.Name = "cbosort";
@@ -216,7 +218,7 @@
             uiGroupBox1.MinimumSize = new Size(1, 1);
             uiGroupBox1.Name = "uiGroupBox1";
             uiGroupBox1.Padding = new Padding(0, 32, 0, 0);
-            uiGroupBox1.Size = new Size(189, 160);
+            uiGroupBox1.Size = new Size(186, 160);
             uiGroupBox1.TabIndex = 21;
             uiGroupBox1.Text = "Sales Volume";
             uiGroupBox1.TextAlignment = ContentAlignment.MiddleLeft;
@@ -224,7 +226,7 @@
             // btnyear
             // 
             btnyear.Font = new Font("Microsoft Sans Serif", 12F);
-            btnyear.Location = new Point(18, 115);
+            btnyear.Location = new Point(33, 116);
             btnyear.MinimumSize = new Size(1, 1);
             btnyear.Name = "btnyear";
             btnyear.Size = new Size(121, 36);
@@ -235,7 +237,7 @@
             // btnmonth
             // 
             btnmonth.Font = new Font("Microsoft Sans Serif", 12F);
-            btnmonth.Location = new Point(18, 73);
+            btnmonth.Location = new Point(33, 76);
             btnmonth.MinimumSize = new Size(1, 1);
             btnmonth.Name = "btnmonth";
             btnmonth.Size = new Size(121, 36);
@@ -246,7 +248,7 @@
             // btnweek
             // 
             btnweek.Font = new Font("Microsoft Sans Serif", 12F);
-            btnweek.Location = new Point(18, 35);
+            btnweek.Location = new Point(33, 36);
             btnweek.MinimumSize = new Size(1, 1);
             btnweek.Name = "btnweek";
             btnweek.Size = new Size(121, 36);
@@ -258,10 +260,10 @@
             // 
             uiMarkLabel8.Font = new Font("Microsoft Sans Serif", 12F);
             uiMarkLabel8.ForeColor = Color.FromArgb(48, 48, 48);
-            uiMarkLabel8.Location = new Point(332, 66);
+            uiMarkLabel8.Location = new Point(295, 66);
             uiMarkLabel8.Name = "uiMarkLabel8";
             uiMarkLabel8.Padding = new Padding(5, 0, 0, 0);
-            uiMarkLabel8.Size = new Size(134, 32);
+            uiMarkLabel8.Size = new Size(113, 32);
             uiMarkLabel8.TabIndex = 19;
             uiMarkLabel8.Text = "Order";
             // 
@@ -279,10 +281,10 @@
             // btnSearch
             // 
             btnSearch.Font = new Font("Microsoft Sans Serif", 12F);
-            btnSearch.Location = new Point(455, 119);
+            btnSearch.Location = new Point(577, 114);
             btnSearch.MinimumSize = new Size(1, 1);
             btnSearch.Name = "btnSearch";
-            btnSearch.Size = new Size(114, 34);
+            btnSearch.Size = new Size(108, 36);
             btnSearch.Symbol = 61442;
             btnSearch.TabIndex = 17;
             btnSearch.Text = "Search";
@@ -291,10 +293,10 @@
             // btnclear
             // 
             btnclear.Font = new Font("Microsoft Sans Serif", 12F);
-            btnclear.Location = new Point(588, 119);
+            btnclear.Location = new Point(577, 66);
             btnclear.MinimumSize = new Size(1, 1);
             btnclear.Name = "btnclear";
-            btnclear.Size = new Size(97, 34);
+            btnclear.Size = new Size(108, 34);
             btnclear.Symbol = 557676;
             btnclear.TabIndex = 10;
             btnclear.Text = "Clear";
@@ -326,12 +328,12 @@
             cbotvbrand.DropDownStyle = Sunny.UI.UIDropDownStyle.DropDownList;
             cbotvbrand.FillColor = Color.White;
             cbotvbrand.Font = new Font("Microsoft Sans Serif", 12F);
-            cbotvbrand.Location = new Point(128, 18);
+            cbotvbrand.Location = new Point(111, 18);
             cbotvbrand.Margin = new Padding(4, 5, 4, 5);
             cbotvbrand.MinimumSize = new Size(63, 0);
             cbotvbrand.Name = "cbotvbrand";
             cbotvbrand.Padding = new Padding(0, 0, 30, 2);
-            cbotvbrand.Size = new Size(182, 35);
+            cbotvbrand.Size = new Size(177, 35);
             cbotvbrand.SymbolSize = 24;
             cbotvbrand.TabIndex = 5;
             cbotvbrand.TextAlignment = ContentAlignment.MiddleLeft;
@@ -352,27 +354,27 @@
             // 
             // dgvanal
             // 
-            dataGridViewCellStyle1.BackColor = Color.FromArgb(235, 243, 255);
-            dgvanal.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle11.BackColor = Color.FromArgb(235, 243, 255);
+            dgvanal.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle11;
             dgvanal.BackgroundColor = Color.White;
             dgvanal.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = Color.FromArgb(80, 160, 255);
-            dataGridViewCellStyle2.Font = new Font("Microsoft Sans Serif", 12F);
-            dataGridViewCellStyle2.ForeColor = Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
-            dgvanal.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle12.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle12.BackColor = Color.FromArgb(80, 160, 255);
+            dataGridViewCellStyle12.Font = new Font("Microsoft Sans Serif", 12F);
+            dataGridViewCellStyle12.ForeColor = Color.White;
+            dataGridViewCellStyle12.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle12.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle12.WrapMode = DataGridViewTriState.True;
+            dgvanal.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle12;
             dgvanal.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = SystemColors.Window;
-            dataGridViewCellStyle3.Font = new Font("Microsoft Sans Serif", 12F);
-            dataGridViewCellStyle3.ForeColor = Color.FromArgb(48, 48, 48);
-            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
-            dgvanal.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle13.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle13.BackColor = SystemColors.Window;
+            dataGridViewCellStyle13.Font = new Font("Microsoft Sans Serif", 12F);
+            dataGridViewCellStyle13.ForeColor = Color.FromArgb(48, 48, 48);
+            dataGridViewCellStyle13.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle13.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle13.WrapMode = DataGridViewTriState.False;
+            dgvanal.DefaultCellStyle = dataGridViewCellStyle13;
             dgvanal.Dock = DockStyle.Fill;
             dgvanal.EnableHeadersVisualStyles = false;
             dgvanal.Font = new Font("Microsoft Sans Serif", 12F);
@@ -380,22 +382,34 @@
             dgvanal.Location = new Point(0, 205);
             dgvanal.Name = "dgvanal";
             dgvanal.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = Color.FromArgb(235, 243, 255);
-            dataGridViewCellStyle4.Font = new Font("Microsoft Sans Serif", 12F);
-            dataGridViewCellStyle4.ForeColor = Color.FromArgb(48, 48, 48);
-            dataGridViewCellStyle4.SelectionBackColor = Color.FromArgb(80, 160, 255);
-            dataGridViewCellStyle4.SelectionForeColor = Color.White;
-            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
-            dgvanal.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle14.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle14.BackColor = Color.FromArgb(235, 243, 255);
+            dataGridViewCellStyle14.Font = new Font("Microsoft Sans Serif", 12F);
+            dataGridViewCellStyle14.ForeColor = Color.FromArgb(48, 48, 48);
+            dataGridViewCellStyle14.SelectionBackColor = Color.FromArgb(80, 160, 255);
+            dataGridViewCellStyle14.SelectionForeColor = Color.White;
+            dataGridViewCellStyle14.WrapMode = DataGridViewTriState.True;
+            dgvanal.RowHeadersDefaultCellStyle = dataGridViewCellStyle14;
             dgvanal.RowHeadersWidth = 57;
-            dataGridViewCellStyle5.BackColor = Color.White;
-            dataGridViewCellStyle5.Font = new Font("Microsoft Sans Serif", 12F);
-            dgvanal.RowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle15.BackColor = Color.White;
+            dataGridViewCellStyle15.Font = new Font("Microsoft Sans Serif", 12F);
+            dgvanal.RowsDefaultCellStyle = dataGridViewCellStyle15;
             dgvanal.SelectedIndex = -1;
             dgvanal.Size = new Size(1006, 329);
             dgvanal.StripeOddColor = Color.FromArgb(235, 243, 255);
             dgvanal.TabIndex = 7;
+            // 
+            // btnexport
+            // 
+            btnexport.Font = new Font("Microsoft Sans Serif", 12F);
+            btnexport.Location = new Point(577, 18);
+            btnexport.MinimumSize = new Size(1, 1);
+            btnexport.Name = "btnexport";
+            btnexport.Size = new Size(108, 37);
+            btnexport.Symbol = 362830;
+            btnexport.TabIndex = 24;
+            btnexport.Text = "Export";
+            btnexport.TipsFont = new Font("Microsoft Sans Serif", 9F);
             // 
             // FrmAanalysis
             // 
@@ -439,5 +453,6 @@
         private Sunny.UI.UIComboBox cbosort;
         private Sunny.UI.UIDataGridViewFooter uiDataGridViewFooter1;
         private Sunny.UI.UIDataGridView dgvanal;
+        private Sunny.UI.UISymbolButton btnexport;
     }
 }

@@ -19,11 +19,10 @@ namespace Group1project.Adminchildform
             LoadData();
             uiToolTip1.SetToolTip(uiPanel1, "Today Sell Quantity");
             uiToolTip1.SetToolTip(uiPanel2, "Stock");
-            uiToolTip1.SetToolTip(uiPanel3, "Days of Turnover = Stock/Average Daily Selllout of recent 7days");
+            uiToolTip1.SetToolTip(uiPanel3, "Days of Supply = Stock/Average Daily Sellout of recent 7days");
             uiToolTip1.SetToolTip(uiPanel4, "Today Profit");
-            uiToolTip1.SetToolTip(uiPanel1, "Today Hot Sell Product");
+            uiToolTip1.SetToolTip(uiPanel5, "Today Hot Sell Product");
         }
-
 
         private void LoadData()
         {
@@ -43,7 +42,7 @@ namespace Group1project.Adminchildform
                 lblDos.Text = avgDaily > 0 ? Math.Round(stock / avgDaily, 0).ToString("0", CultureInfo.InvariantCulture) : "-";
 
                 decimal profit = salesSvc.GetTodayProfit();
-                lblamount.Text = profit.ToString("0.##");
+                lblamount.Text = profit.ToString("N2",CultureInfo.InvariantCulture);
 
                 string best = salesSvc.GetTodayBestSellSpuName();
                 lblhotsell.Text = string.IsNullOrWhiteSpace(best) ? "-" : best;

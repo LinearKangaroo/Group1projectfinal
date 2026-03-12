@@ -38,8 +38,8 @@
             btnAdd = new Sunny.UI.UISymbolButton();
             btnSearch = new Sunny.UI.UISymbolButton();
             uiPanel1 = new Sunny.UI.UIPanel();
-            dgvproduct = new Sunny.UI.UIDataGridView();
             cbobrand = new Sunny.UI.UIComboBox();
+            dgvproduct = new Sunny.UI.UIDataGridView();
             uiPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvproduct).BeginInit();
             SuspendLayout();
@@ -115,6 +115,24 @@
             uiPanel1.Text = null;
             uiPanel1.TextAlignment = ContentAlignment.MiddleCenter;
             // 
+            // cbobrand
+            // 
+            cbobrand.DataSource = null;
+            cbobrand.FillColor = Color.White;
+            cbobrand.Font = new Font("Microsoft Sans Serif", 12F);
+            cbobrand.ItemHoverColor = Color.FromArgb(155, 200, 255);
+            cbobrand.ItemSelectForeColor = Color.FromArgb(235, 243, 255);
+            cbobrand.Location = new Point(295, 31);
+            cbobrand.Margin = new Padding(4, 5, 4, 5);
+            cbobrand.MinimumSize = new Size(63, 0);
+            cbobrand.Name = "cbobrand";
+            cbobrand.Padding = new Padding(0, 0, 30, 2);
+            cbobrand.Size = new Size(163, 37);
+            cbobrand.SymbolSize = 24;
+            cbobrand.TabIndex = 20;
+            cbobrand.TextAlignment = ContentAlignment.MiddleLeft;
+            cbobrand.Watermark = "Brand";
+            // 
             // dgvproduct
             // 
             dataGridViewCellStyle1.BackColor = Color.FromArgb(235, 243, 255);
@@ -162,24 +180,6 @@
             dgvproduct.Size = new Size(836, 346);
             dgvproduct.StripeOddColor = Color.FromArgb(235, 243, 255);
             dgvproduct.TabIndex = 21;
-            // 
-            // cbobrand
-            // 
-            cbobrand.DataSource = null;
-            cbobrand.FillColor = Color.White;
-            cbobrand.Font = new Font("Microsoft Sans Serif", 12F);
-            cbobrand.ItemHoverColor = Color.FromArgb(155, 200, 255);
-            cbobrand.ItemSelectForeColor = Color.FromArgb(235, 243, 255);
-            cbobrand.Location = new Point(295, 33);
-            cbobrand.Margin = new Padding(4, 5, 4, 5);
-            cbobrand.MinimumSize = new Size(63, 0);
-            cbobrand.Name = "cbobrand";
-            cbobrand.Padding = new Padding(0, 0, 30, 2);
-            cbobrand.Size = new Size(163, 37);
-            cbobrand.SymbolSize = 24;
-            cbobrand.TabIndex = 20;
-            cbobrand.TextAlignment = ContentAlignment.MiddleLeft;
-            cbobrand.Watermark = "Brand";
             // 
             // FrmAproduct
             // 

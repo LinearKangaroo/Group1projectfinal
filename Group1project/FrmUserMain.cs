@@ -24,7 +24,7 @@ namespace Group1project
             btnlogout.Click += BtnLogout_Click;
             btnsetting.Click += BtnSetting_Click;
             btnprofile.Click += BtnProfile_Click;
-            this.FormClosing += FrmUserMain_FormClosing;
+            this.FormClosed += FrmUserMain_FormClosed;
         }
 
         private void FrmUserMain_Load(object sender, EventArgs e)
@@ -119,7 +119,7 @@ namespace Group1project
             settingsForm.ShowDialog();
         }
 
-        private void FrmUserMain_FormClosing(object sender, FormClosingEventArgs e)
+        private void FrmUserMain_FormClosed(object sender, FormClosedEventArgs e)
         {
             if (!_isLoggingOut)
             {

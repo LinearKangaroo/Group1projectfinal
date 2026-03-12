@@ -43,6 +43,7 @@
             uiPagination1 = new Sunny.UI.UIPagination();
             uiDataGridViewFooter1 = new Sunny.UI.UIDataGridViewFooter();
             dgvimei = new Sunny.UI.UIDataGridView();
+            cbotvstatus = new Sunny.UI.UIComboTreeView();
             uiPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvimei).BeginInit();
             SuspendLayout();
@@ -54,12 +55,13 @@
             txtimei.Font = new Font("Microsoft Sans Serif", 12F);
             txtimei.Location = new Point(14, 18);
             txtimei.Margin = new Padding(4, 5, 4, 5);
+            txtimei.MaxLength = 15;
             txtimei.MinimumSize = new Size(1, 16);
             txtimei.Name = "txtimei";
             txtimei.Padding = new Padding(5);
             txtimei.ShowButton = true;
             txtimei.ShowText = false;
-            txtimei.Size = new Size(246, 34);
+            txtimei.Size = new Size(228, 34);
             txtimei.TabIndex = 19;
             txtimei.TextAlignment = ContentAlignment.MiddleLeft;
             txtimei.Watermark = "IMEI";
@@ -67,10 +69,10 @@
             // btnEdit
             // 
             btnEdit.Font = new Font("Microsoft Sans Serif", 12F);
-            btnEdit.Location = new Point(519, 18);
+            btnEdit.Location = new Point(597, 18);
             btnEdit.MinimumSize = new Size(1, 1);
             btnEdit.Name = "btnEdit";
-            btnEdit.Size = new Size(97, 34);
+            btnEdit.Size = new Size(81, 34);
             btnEdit.Symbol = 61508;
             btnEdit.TabIndex = 18;
             btnEdit.Text = "Edit";
@@ -79,10 +81,10 @@
             // btnAdd
             // 
             btnAdd.Font = new Font("Microsoft Sans Serif", 12F);
-            btnAdd.Location = new Point(416, 18);
+            btnAdd.Location = new Point(514, 18);
             btnAdd.MinimumSize = new Size(1, 1);
             btnAdd.Name = "btnAdd";
-            btnAdd.Size = new Size(93, 34);
+            btnAdd.Size = new Size(77, 34);
             btnAdd.Symbol = 61543;
             btnAdd.TabIndex = 17;
             btnAdd.Text = "Add";
@@ -91,7 +93,7 @@
             // btnSearch
             // 
             btnSearch.Font = new Font("Microsoft Sans Serif", 12F);
-            btnSearch.Location = new Point(278, 18);
+            btnSearch.Location = new Point(387, 18);
             btnSearch.MinimumSize = new Size(1, 1);
             btnSearch.Name = "btnSearch";
             btnSearch.Size = new Size(121, 34);
@@ -102,6 +104,7 @@
             // 
             // uiPanel1
             // 
+            uiPanel1.Controls.Add(cbotvstatus);
             uiPanel1.Controls.Add(btnexport);
             uiPanel1.Controls.Add(btnimport);
             uiPanel1.Controls.Add(txtimei);
@@ -122,10 +125,10 @@
             // btnexport
             // 
             btnexport.Font = new Font("Microsoft Sans Serif", 12F);
-            btnexport.Location = new Point(777, 18);
+            btnexport.Location = new Point(796, 18);
             btnexport.MinimumSize = new Size(1, 1);
             btnexport.Name = "btnexport";
-            btnexport.Size = new Size(121, 34);
+            btnexport.Size = new Size(102, 34);
             btnexport.Symbol = 362830;
             btnexport.TabIndex = 21;
             btnexport.Text = "Export";
@@ -134,10 +137,10 @@
             // btnimport
             // 
             btnimport.Font = new Font("Microsoft Sans Serif", 12F);
-            btnimport.Location = new Point(638, 18);
+            btnimport.Location = new Point(688, 18);
             btnimport.MinimumSize = new Size(1, 1);
             btnimport.Name = "btnimport";
-            btnimport.Size = new Size(121, 34);
+            btnimport.Size = new Size(102, 34);
             btnimport.Symbol = 362831;
             btnimport.TabIndex = 20;
             btnimport.Text = "Import";
@@ -221,6 +224,22 @@
             dgvimei.StripeOddColor = Color.FromArgb(235, 243, 255);
             dgvimei.TabIndex = 23;
             // 
+            // cbotvstatus
+            // 
+            cbotvstatus.DropDownStyle = Sunny.UI.UIDropDownStyle.DropDownList;
+            cbotvstatus.FillColor = Color.White;
+            cbotvstatus.Font = new Font("Microsoft Sans Serif", 12F);
+            cbotvstatus.Location = new Point(250, 20);
+            cbotvstatus.Margin = new Padding(4, 5, 4, 5);
+            cbotvstatus.MinimumSize = new Size(63, 0);
+            cbotvstatus.Name = "cbotvstatus";
+            cbotvstatus.Padding = new Padding(0, 0, 30, 2);
+            cbotvstatus.Size = new Size(125, 32);
+            cbotvstatus.SymbolSize = 24;
+            cbotvstatus.TabIndex = 22;
+            cbotvstatus.TextAlignment = ContentAlignment.MiddleLeft;
+            cbotvstatus.Watermark = "Status";
+            // 
             // FrmAIMEI
             // 
             AllowShowTitle = true;
@@ -252,5 +271,6 @@
         private Sunny.UI.UIDataGridView dgvimei;
         private Sunny.UI.UISymbolButton btnexport;
         private Sunny.UI.UISymbolButton btnimport;
+        private Sunny.UI.UIComboTreeView cbotvstatus;
     }
 }
