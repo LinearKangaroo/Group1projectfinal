@@ -19,10 +19,10 @@ namespace Group1project.Adminchildform
             Load += FrmUdash_Load;
             SizeChanged += FrmUdash_SizeChanged;
             LoadData();
-            uiToolTip1.SetToolTip(uiPanel1, "Today Sell Quantity");
-            uiToolTip1.SetToolTip(uiPanel2, "Stock");
-            uiToolTip1.SetToolTip(uiPanel3, "Days of Supply = Stock/Average Daily Selllout of recent 7days");
-            uiToolTip1.SetToolTip(uiPanel5, "Today Hot Sell Product");
+            uiToolTip1.SetToolTip(lblso, "Today Sell Quantity");
+            uiToolTip1.SetToolTip(lblstock, "Stock");
+            uiToolTip1.SetToolTip(lblDos, "Days of Supply = Stock/Average Daily Selllout of recent 7days");
+            uiToolTip1.SetToolTip(lblhotsell, "Today Hot Sell Product");
         }
 
         private void FrmUdash_Load(object? sender, EventArgs e)

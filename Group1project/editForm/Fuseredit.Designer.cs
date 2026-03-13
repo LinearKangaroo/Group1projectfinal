@@ -199,7 +199,7 @@
             rdouser.Name = "rdouser";
             rdouser.Size = new Size(106, 29);
             rdouser.TabIndex = 12;
-            rdouser.Text = "User";
+            rdouser.Text = "Staff";
             // 
             // txtemail
             // 
